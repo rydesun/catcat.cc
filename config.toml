@@ -1,0 +1,27 @@
+baseURL = "https://2cat.cc"
+title = "2cat.cc"
+
+languageCode = "zh-cn"
+hasCJKLanguage = true
+
+theme = ["hugo-notepadium"]
+
+[markup.highlight]
+codeFences = true
+noClasses = false
+
+[params]
+dateFormat = "2006年01月02日"
+slogan = "2cat(s) hide in cc"
+fullRss = true
+
+[params.comments]
+enable=true
+
+[params.nav]
+showCategories = true
+showTags = true
+
+[[params.nav.custom]]
+title = "CatchCat"
+url = "/about"
