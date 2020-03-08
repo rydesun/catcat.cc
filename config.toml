@@ -3,6 +3,10 @@ title = "2cat.cc"
 
 languageCode = "zh-cn"
 hasCJKLanguage = true
+enableEmoji = true
+enableRobotsTXT = true
+
+disqusShortname = "2cat"
 
 theme = ["hugo-notepadium"]
 
@@ -12,8 +16,9 @@ noClasses = false
 
 [params]
 dateFormat = "2006年01月02日"
-slogan = "2cat(s) hide in cc"
+slogan = "2cats hide in cc"
 fullRss = true
+license = '<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="/images/cc-80x15.png" /></a><br><span>© 2020 rydesun<span>'
 
 [params.comments]
 enable=true
@@ -24,4 +29,11 @@ showTags = true
 
 [[params.nav.custom]]
 title = "CatchCat"
-url = "/about"
+url = "/about/"
+
+[params.assets]
+css = ["css/tweak.css"]
+
+[params.syntax]
+theme = "friendly"
+darkTheme = "solarized-dark256"
