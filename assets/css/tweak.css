@@ -67,3 +67,7 @@ p code {
     background-color: #323242;
   }
 }
+
+code {
+  hyphens: none;
+}
