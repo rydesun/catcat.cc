@@ -1,0 +1,93 @@
+\:root
+  --light-theme-color-blob: #c586c6
+  --light-theme-color-glyph: #943c95
+  --light-theme-color-shadow: #9d90aa
+  --light-theme-color-faint: rgba(0,0,0,.5)
+  --light-theme-color-code-glyph: var(--light-theme-color-glyph)
+  --light-theme-color-code-blob: #f0f0f0
+  --dark-theme-color-blob: #705571
+  --dark-theme-color-glyph: #a684a6
+  --dark-theme-color-faint: rgba(255,255,255,.5)
+  --dark-theme-color-code-glyph: var(--dark-theme-color-glyph)
+  --dark-theme-color-code-blob: rgba(0,0,0,.1)
+  --dark-theme-color-code-block-blob: rgba(0,0,0,.35)
+  --dark-theme-color-link: #3e9dd7
+
+@mixin dark-theme
+  @media (prefers-color-scheme: dark)
+    @content
+
+div.header
+  span.left-side span.site.name
+    padding: 0.4rem 0.7rem
+    border-radius: 6px
+    box-shadow: 1px 1px 3px var(--light-theme-color-shadow)
+    color: white
+    background-color: var(--light-theme-color-blob)
+    @include dark-theme
+      &
+        box-shadow: none
+        background-color: var(--dark-theme-color-blob)
+
+  span.right-side nav a
+    color: var(--light-theme-color-glyph)
+    @include dark-theme
+      &
+        color: var(--dark-theme-color-glyph)
+
+.labels
+  a.category
+    border: none // remove wired border
+    background-color: var(--light-theme-color-blob)
+    @include dark-theme
+      &
+        background-color: var(--dark-theme-color-blob)
+  a.tag
+    color: var(--light-theme-color-glyph)
+    @include dark-theme
+      &
+        color: var(--dark-theme-color-glyph)
+
+
+// ==== post page ==== //
+
+article.article.markdown-body
+  a
+    @include dark-theme
+      &
+        color: var(--dark-theme-color-link)
+  p code // exclude fenced code block
+    hyphens: none
+    padding: 0.1rem 0.3rem
+    border-radius: 3px
+    color: var(--light-theme-color-code-glyph)
+    background-color: var(--light-theme-color-code-blob)
+    @include dark-theme
+      &
+        color: var(--dark-theme-color-code-glyph)
+        background-color: var(--dark-theme-color-code-blob)
+  pre.chroma
+    @include dark-theme
+      &
+        border: none
+        background-color: var(--dark-theme-color-code-block-blob)
+  blockquote
+    padding: 0.35em
+    border-left: 6px solid var(--light-theme-color-blob)
+    @include dark-theme
+      &
+        border-left: 6px solid var(--dark-theme-color-blob)
+
+section.article.license
+  text-align: right
+  font-size: 0.8rem
+  color: var(--light-theme-color-faint)
+  @include dark-theme
+    &
+      color: var(--dark-theme-color-faint)
+
+section#footer
+  a
+    @include dark-theme
+      &
+        color: var(--dark-theme-color-link)
