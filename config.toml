@@ -18,7 +18,7 @@ noClasses = false
 dateFormat = "2006年01月02日"
 slogan = "rydesun的纸箱"
 fullRss = true
-license = '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="/images/cc-80x15.png" /></a><p>© 2020 rydesun</p>'
+license = '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" src="/images/cc-80x15.png" /></a><p>© 2020 rydesun</p>'
 
 [params.comments]
 enable=true
