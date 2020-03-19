@@ -1,0 +1,53 @@
+#intro
+  display: flex
+  flex-wrap: wrap
+  svg.icon
+    width: 1.7em
+    height: 1.7em
+    vertical-align: middle
+    fill: currentColor
+  img.txt
+    height: 2rem
+    vertical-align: middle
+
+#face
+  width: 50%
+  margin-top: 0.4rem
+  figure
+    margin: 0
+  #avatar
+    border-radius: 4px
+  figcaption
+    padding: 0 10%
+  div.block
+    margin-top: 0.4rem
+  @media screen and (max-width: 680px)
+    &
+      min-width: 100%
+      margin-top: 0
+    & div.block
+      margin-top: 0
+      margin-bottom: 1.1rem
+
+#card
+  padding-left: 10%
+  div.block
+    margin-bottom: 1.1rem
+  div.line
+    margin-bottom: 0.3rem
+  svg.head.icon
+    margin-right: 0.4rem
+  span.head.icon
+    border-radius: 3px
+    font-size: 0.5rem
+    padding: 0.15rem 0.35rem
+    vertical-align: 0.15rem
+    margin-right: 0.4rem
+    color: white
+    background: var(--light-theme-color-blob)
+  @media (prefers-color-scheme: dark)
+    & span.head.icon
+      background: var(--dark-theme-color-blob)
+  #more a
+    margin-right: 1rem
+    text-decoration: none
