@@ -4,7 +4,8 @@
   {{- if or (eq .Params.comments true) (and (ne .Params.comments false) (eq site.Params.comments.enable true)) -}}
     <section class="article discussion">
       <div id="remark42"></div>
-      <script type="text/javascript" src="{{ $commentsJS.Permalink }}"></script>
+      <script type="text/javascript" src="{{ $commentsJS.RelPermalink }}"
+        integrity="{{ $commentsJS.Data.Integrity }}"></script>
       <style>
         #remark42 {
           margin: 26px 0px;

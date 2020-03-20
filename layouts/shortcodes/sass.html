@@ -1,3 +1,4 @@
 {{ $sass := .Get 0 }}
 {{ $style := resources.Get $sass | toCSS | minify | fingerprint }}
-<link rel="stylesheet" type="text/css" href="{{ $style.Permalink }}" >
+<link rel="stylesheet" type="text/css" href="{{ $style.RelPermalink }}"
+  integrity="{{ $style.Data.Integrity }}">
