@@ -48,9 +48,20 @@ div.header
       &
         color: var(--dark-theme-color-glyph)
 
+// ==== index page ==== //
+
 div#content ul.note.list li.item
-  margin-bottom: 26px;
-  box-shadow: 1px 1px 5px 3px rgba(0,0,0,.12)
+  box-shadow: none
+  background: inherit
+  padding-bottom: 8px
+  &:hover
+    box-shadow: 1px 1px 5px 3px rgba(0,0,0,.12)
+    background: white
+    & a.note
+      opacity: 1
+    @include dark-theme
+      &
+        background: #393e46
 
 // ==== post page ==== //
 
