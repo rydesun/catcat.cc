@@ -34,7 +34,7 @@ setTimeout(() => {
   commentObserver.observe(document.getElementById('remark42'));
 }, 1);
 
-detectDark.addEventListener("change", function(e) {
+detectDark.addListener((e) => {
   var theme = e.matches ? 'dark' : 'light';
   window.REMARK42.changeTheme(theme);
 });
