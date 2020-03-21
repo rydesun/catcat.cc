@@ -27,7 +27,7 @@
   var tags = document.getElementsByClassName('flytag');
   for (tag of tags) {
     var randomDelay = (Math.random()*0.5).toFixed(1);
-    tag.style.animation = `0.4s ease ${randomDelay}s flipInX`;
+    tag.style.animation = `0.4s ease ${randomDelay}s forwards flipInX`;
   }
 </script>
 <style>
@@ -43,6 +43,7 @@
     margin: 10px;
     border: 1px solid var(--light-theme-color-glyph);
     border-radius: 5px;
+    visibility: hidden;
   }
   @media (prefers-color-scheme: dark) {
     div.flytag {
