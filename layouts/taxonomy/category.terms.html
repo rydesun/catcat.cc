@@ -34,9 +34,10 @@
 </style>
 <script>
   var categories = document.getElementsByClassName('fly item');
-  for (category of categories) {
-    var randomDelay = (Math.random()*0.5).toFixed(1);
-    category.style.animation = `0.4s ease ${randomDelay}s forwards slideInLeft`;
+  var sliceTime = 0.2/categories.length
+  for (i in categories) {
+    var randomDelay = sliceTime*i;
+    categories[i].style.animation = `0.4s ease ${randomDelay}s forwards slideInLeft`;
   }
 </script>
 
