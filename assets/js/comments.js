@@ -7,6 +7,13 @@ var remark_config = {
 };
 
 function loadRemark42() {
+  // set theme by color scheme
+  if (detectDark.matches) {
+    remark_config.theme = 'dark';
+  } else {
+    remark_config.theme = 'light';
+  }
+
   var d = document, s = d.createElement('script');
   s.src = `${remark_config.host}/web/embed.js`;
   s.defer = true;
@@ -26,11 +33,6 @@ setTimeout(() => {
   }, { threshold: [0] });
   commentObserver.observe(document.getElementById('remark42'));
 }, 1);
-
-// FIXME: May work after remark42 loaded completely
-if (detectDark.matches) {
-  window.REMARK42.changeTheme('dark');
-}
 
 detectDark.addEventListener("change", function(e) {
   var theme = e.matches ? 'dark' : 'light';
