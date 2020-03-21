@@ -7,13 +7,14 @@ var remark_config = {
 };
 
 function loadRemark42() {
-  var commentComponents = remark_config.components || ['embed'];
-  for(component of commentComponents) {
-    var d = document, s = d.createElement('script');
-    s.src = remark_config.host + '/web/' + component +'.js';
-    s.defer = true;
-    (d.head || d.body).appendChild(s);
+  var d = document, s = d.createElement('script');
+  s.src = `${remark_config.host}/web/embed.js`;
+  s.defer = true;
+  s.onload = () => {
+    var hint = d.querySelector('#remark42 #load-hint');
+    hint.remove();
   }
+  (d.head || d.body).appendChild(s);
 }
 
 setTimeout(() => {

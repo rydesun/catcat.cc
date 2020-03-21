@@ -3,12 +3,18 @@
 {{- if gt (len site.DisqusShortname) 0 -}}
   {{- if or (eq .Params.comments true) (and (ne .Params.comments false) (eq site.Params.comments.enable true)) -}}
     <section class="article discussion">
-      <div id="remark42"></div>
-      <script type="text/javascript" src="{{ $commentsJS.RelPermalink }}"
+      <div id="remark42">
+        <p id="load-hint">加载评论中...</p>
+      </div>
+      <script defer type="text/javascript" src="{{ $commentsJS.RelPermalink }}"
         integrity="{{ $commentsJS.Data.Integrity }}"></script>
       <style>
         #remark42 {
           margin: 26px 0px;
+        }
+        #load-hint {
+          text-align: center;
+          margin-bottom: 155px;
         }
       </style>
     </section>
