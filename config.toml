@@ -1,7 +1,8 @@
 baseURL = "https://2cat.cc"
 title = "2cat.cc"
 
-languageCode = "zh-cn"
+languageCode = "zh"
+defaultContentLanguage = "zh"
 hasCJKLanguage = true
 enableEmoji = true
 enableRobotsTXT = true
