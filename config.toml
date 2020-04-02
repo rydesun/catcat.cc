@@ -15,6 +15,10 @@ theme = ["hugo-notepadium"]
 codeFences = true
 noClasses = false
 
+[author]
+name = "rydesun"
+email = "rydesun@gmail.com"
+
 [params]
 dateFormat = "2006年01月02日"
 slogan = "rydesun的纸箱"
