@@ -16,6 +16,12 @@
     {{- end -}}
 {{- end -}}
 
+{{- if (ne .Description "") -}}
+    <meta name="description" content="{{- .Description -}}">
+{{- else if (ne .Summary "") -}}
+    <meta name="description" content="{{- .Summary -}}">
+{{- end -}}
+
 {{- block "title" . -}}{{- end -}}
 
 {{- partial "style.html" . -}}
