@@ -21,6 +21,26 @@
 @mixin dark-theme
   @media (prefers-color-scheme: dark)
     @content
+@mixin user-default-theme
+  \:root:not([data-user-color-scheme]) &
+    @content
+@mixin user-dark-theme
+  \:root[data-user-color-scheme='dark'] &
+    @content
+@mixin user-light-theme
+  \:root[data-user-color-scheme='light'] &
+    @content
+
+@mixin smart-dark-theme
+  @include user-default-theme
+    @include dark-theme
+      @content
+  @include user-dark-theme
+    @content
+@mixin smart-light-theme
+  @content
+  @include user-light-theme
+    @content
 
 @mixin max-width($width)
   @media screen and (max-width: $width)
@@ -34,9 +54,10 @@ html
   font-family: -apple-system, BlinkMacSystemFont, "Noto Sans", "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif, "Twemoji", "Noto Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Apple Color Emoji"
 
 body
-  background: #f0f0f0
-  @include dark-theme
+  @include smart-dark-theme
     background: #222831
+  @include smart-light-theme
+    background: #f0f0f0
 
 div.warn
   color: white
@@ -74,27 +95,31 @@ section#header div.header
   span.left-side span.site.name
     padding: 0.4rem 0.7rem
     border-radius: 6px
-    box-shadow: 1px 1px 3px var(--light-theme-color-shadow)
     color: white
-    background-color: var(--light-theme-color-blob)
-    @include dark-theme
+    @include smart-light-theme
+      box-shadow: 1px 1px 3px var(--light-theme-color-shadow)
+      background-color: var(--light-theme-color-blob)
+    @include smart-dark-theme
       box-shadow: none
       background-color: var(--dark-theme-color-blob)
 
   span.right-side nav a
-    color: var(--light-theme-color-glyph)
-    @include dark-theme
+    @include smart-light-theme
+      color: var(--light-theme-color-glyph)
+    @include smart-dark-theme
       color: var(--dark-theme-color-glyph)
 
 .labels
   a.category
     border: none // remove wired border
-    background-color: var(--light-theme-color-blob)
-    @include dark-theme
+    @include smart-light-theme
+      background-color: var(--light-theme-color-blob)
+    @include smart-dark-theme
       background-color: var(--dark-theme-color-blob)
   a.tag
-    color: var(--light-theme-color-glyph)
-    @include dark-theme
+    @include smart-light-theme
+      color: var(--light-theme-color-glyph)
+    @include smart-dark-theme
       color: var(--dark-theme-color-glyph)
 
 // ==== index page ==== //
@@ -105,10 +130,11 @@ div#content ul.note.list li.item
   padding-bottom: 8px
   &:hover
     box-shadow: 1px 1px 5px 3px rgba(0,0,0,.12)
-    background: white
     & a.note
       opacity: 1
-    @include dark-theme
+    @include smart-light-theme
+      background: white
+    @include smart-dark-theme
       background: #393e46
 
 // ==== post page ==== //
@@ -117,40 +143,47 @@ div.article-container
   box-shadow: 1px 1px 5px 3px rgba(0,0,0,.12)
 
 article.article.markdown-body
-  color: #222
-  @include dark-theme
+  @include smart-light-theme
+    color: #222
+  @include smart-dark-theme
     color: rgba(255,255,255,0.65)
   a
-    @include dark-theme
+    @include smart-light-theme
+    @include smart-dark-theme
       color: var(--dark-theme-color-link)
   p code // exclude fenced code block
     hyphens: none
     padding: 0.1rem 0.3rem
     border-radius: 3px
-    color: var(--light-theme-color-code-glyph)
-    background-color: var(--light-theme-color-code-blob)
-    @include dark-theme
+    @include smart-light-theme
+      color: var(--light-theme-color-code-glyph)
+      background-color: var(--light-theme-color-code-blob)
+    @include smart-dark-theme
       color: var(--dark-theme-color-code-glyph)
       background-color: var(--dark-theme-color-code-blob)
   pre
-    background-color: var(--light-theme-color-code-block-blob)
-    @include dark-theme
+    @include smart-light-theme
+      background-color: var(--light-theme-color-code-block-blob)
+    @include smart-dark-theme
       border: none
       background-color: var(--dark-theme-color-code-block-blob)
   blockquote
     padding: 0.35em
-    border-left: 6px solid var(--light-theme-color-blob)
-    @include dark-theme
+    @include smart-light-theme
+      border-left: 6px solid var(--light-theme-color-blob)
+    @include smart-dark-theme
       border-left: 6px solid var(--dark-theme-color-blob)
 
 section.article.license
   text-align: right
   font-size: 0.8rem
-  color: var(--light-theme-color-faint)
-  @include dark-theme
+  @include smart-light-theme
+    color: var(--light-theme-color-faint)
+  @include smart-dark-theme
     color: var(--dark-theme-color-faint)
 
 section#footer
   a
-    @include dark-theme
+    @include smart-light-theme
+    @include smart-dark-theme
       color: var(--dark-theme-color-link)
