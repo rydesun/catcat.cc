@@ -1,0 +1,9 @@
+<section id="header" class="site header">
+  <div class="header wrap"><span class="header left-side"><a class="site home" href="{{- `/` | relLangURL -}}">
+    <span class="site name">{{- site.Title | safeHTML -}}</span></a></span>
+    <button id="colorscheme-swither" onclick=switchColorscheme()>auto</button>
+    <span class="header right-side">
+      {{- partial "navigation-items.html" site.Params.nav -}}
+    </span>
+  </div>
+</section>
