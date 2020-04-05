@@ -1,6 +1,8 @@
 @import animation
 
 \:root
+  --block1-max-width: 980px
+  --block2-max-width: 780px
   --light-theme-color-blob: #c586c6
   --light-theme-color-glyph: #943c95
   --light-theme-color-shadow: #9d90aa
@@ -19,6 +21,14 @@
   @media (prefers-color-scheme: dark)
     @content
 
+@mixin max-width($width)
+    @media screen and (max-width: $width)
+        @content
+
+@mixin margin-side($val)
+  margin-left: $val
+  margin-right: $val
+
 html
   font-family: -apple-system, BlinkMacSystemFont, "Noto Sans", "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif, "Twemoji", "Noto Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Apple Color Emoji"
 
@@ -27,6 +37,24 @@ body
   @include dark-theme
     &
       background: #222831
+
+div.base-body
+  max-width: unset
+  > *
+    @include margin-side(auto)
+    max-width: var(--block2-max-width)
+  div#content
+    @include margin-side(auto)
+    max-width: var(--block1-max-width)
+    > ul
+      @include margin-side(auto)
+      max-width: var(--block2-max-width)
+    @include max-width(500px)
+      > ul
+        @include margin-side(-20px)
+    section.article.discussion
+      @include margin-side(auto)
+      max-width: var(--block2-max-width)
 
 section#header
   border: none
