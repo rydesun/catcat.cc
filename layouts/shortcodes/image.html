@@ -1,0 +1,4 @@
+{{ $path := .Get 0 }}
+{{ $image := resources.Get $path | fingerprint }}
+
+<image src="{{ $image.RelPermalink }}" style="transform: none">
