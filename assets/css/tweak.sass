@@ -9,6 +9,7 @@
   --light-theme-color-faint: rgba(0,0,0,.5)
   --light-theme-color-code-glyph: var(--light-theme-color-glyph)
   --light-theme-color-code-blob: #f0f0f0
+  --light-theme-color-code-block-blob: #f0f0f0
   --dark-theme-color-blob: #705571
   --dark-theme-color-glyph: #a684a6
   --dark-theme-color-faint: rgba(255,255,255,.5)
@@ -131,7 +132,8 @@ article.article.markdown-body
       &
         color: var(--dark-theme-color-code-glyph)
         background-color: var(--dark-theme-color-code-blob)
-  pre.chroma
+  pre
+    background-color: var(--light-theme-color-code-block-blob)
     @include dark-theme
       &
         border: none
