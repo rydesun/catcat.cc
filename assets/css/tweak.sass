@@ -23,8 +23,8 @@
     @content
 
 @mixin max-width($width)
-    @media screen and (max-width: $width)
-        @content
+  @media screen and (max-width: $width)
+    @content
 
 @mixin margin-side($val)
   margin-left: $val
@@ -36,8 +36,7 @@ html
 body
   background: #f0f0f0
   @include dark-theme
-    &
-      background: #222831
+    background: #222831
 
 div.base-body
   max-width: unset
@@ -50,8 +49,7 @@ div.base-body
     > ul
       @include margin-side(auto)
       max-width: var(--block2-max-width)
-    @include max-width(500px)
-      > ul
+      @include max-width(500px)
         @include margin-side(-20px)
     section.article.discussion
       @include margin-side(auto)
@@ -70,28 +68,24 @@ section#header div.header
     color: white
     background-color: var(--light-theme-color-blob)
     @include dark-theme
-      &
-        box-shadow: none
-        background-color: var(--dark-theme-color-blob)
+      box-shadow: none
+      background-color: var(--dark-theme-color-blob)
 
   span.right-side nav a
     color: var(--light-theme-color-glyph)
     @include dark-theme
-      &
-        color: var(--dark-theme-color-glyph)
+      color: var(--dark-theme-color-glyph)
 
 .labels
   a.category
     border: none // remove wired border
     background-color: var(--light-theme-color-blob)
     @include dark-theme
-      &
-        background-color: var(--dark-theme-color-blob)
+      background-color: var(--dark-theme-color-blob)
   a.tag
     color: var(--light-theme-color-glyph)
     @include dark-theme
-      &
-        color: var(--dark-theme-color-glyph)
+      color: var(--dark-theme-color-glyph)
 
 // ==== index page ==== //
 
@@ -105,8 +99,7 @@ div#content ul.note.list li.item
     & a.note
       opacity: 1
     @include dark-theme
-      &
-        background: #393e46
+      background: #393e46
 
 // ==== post page ==== //
 
@@ -116,12 +109,10 @@ div.article-container
 article.article.markdown-body
   color: #222
   @include dark-theme
-    &
-      color: rgba(255,255,255,0.65)
+    color: rgba(255,255,255,0.65)
   a
     @include dark-theme
-      &
-        color: var(--dark-theme-color-link)
+      color: var(--dark-theme-color-link)
   p code // exclude fenced code block
     hyphens: none
     padding: 0.1rem 0.3rem
@@ -129,32 +120,27 @@ article.article.markdown-body
     color: var(--light-theme-color-code-glyph)
     background-color: var(--light-theme-color-code-blob)
     @include dark-theme
-      &
-        color: var(--dark-theme-color-code-glyph)
+      color: var(--dark-theme-color-code-glyph)
         background-color: var(--dark-theme-color-code-blob)
   pre
     background-color: var(--light-theme-color-code-block-blob)
     @include dark-theme
-      &
-        border: none
+      border: none
         background-color: var(--dark-theme-color-code-block-blob)
   blockquote
     padding: 0.35em
     border-left: 6px solid var(--light-theme-color-blob)
     @include dark-theme
-      &
-        border-left: 6px solid var(--dark-theme-color-blob)
+      border-left: 6px solid var(--dark-theme-color-blob)
 
 section.article.license
   text-align: right
   font-size: 0.8rem
   color: var(--light-theme-color-faint)
   @include dark-theme
-    &
-      color: var(--dark-theme-color-faint)
+    color: var(--dark-theme-color-faint)
 
 section#footer
   a
     @include dark-theme
-      &
-        color: var(--dark-theme-color-link)
+      color: var(--dark-theme-color-link)
