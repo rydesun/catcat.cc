@@ -37,6 +37,7 @@ url = "/about/"
 
 [params.assets]
 css = ["css/tweak.sass"]
+js = ["js/ie-warn.js"]
 
 [params.syntax]
 theme = "friendly"
