@@ -1,5 +1,3 @@
-var detectDark = window.matchMedia('(prefers-color-scheme: dark)')
-
 var remark_config = {
   host: "https://comments.srv.2cat.cc",
   site_id: '2cat.cc',
@@ -8,7 +6,7 @@ var remark_config = {
 
 function loadRemark42() {
   // set theme by color scheme
-  if (detectDark.matches) {
+  if (colorSchemeManager.checkDarkHTML() || (detectDark.matches)) {
     remark_config.theme = 'dark';
   } else {
     remark_config.theme = 'light';
