@@ -3,7 +3,9 @@
     <span class="site name">{{- site.Title | safeHTML -}}</span></a></span>
     <span class="header right-side">
       {{- partial "navigation-items.html" site.Params.nav -}}
-      <button id="colorscheme-switcher" onclick=switchColorscheme()>auto</button>
+      <div id="button-group">
+        <button id="colorscheme-switcher" onclick=switchColorscheme()>auto</button>
+      </div>
     </span>
   </div>
 </section>

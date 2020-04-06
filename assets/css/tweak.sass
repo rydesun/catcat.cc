@@ -112,41 +112,53 @@ section#header div.header
       background-color: var(--dark-theme-color-blob)
 
   span.right-side
+    text-align: right
+    @include max-width(450px)
+      vertical-align: -2.3rem
     div.nav.wrap
       display: inline-block
       vertical-align: middle
+      @include max-width(450px)
+        display: inline
+      nav
+        @include max-width(450px)
+          margin-bottom: 0.5rem
       a
         @include smart-light-theme
           color: var(--light-theme-color-glyph)
         @include smart-dark-theme
           color: var(--dark-theme-color-glyph)
-    button#colorscheme-switcher
+    div#button-group
       display: inline-block
-      padding: 0.1rem 0.4rem
-      border-radius: 5px
-      text-decoration: none
-      &::-moz-focus-inner
-        border: 0
-      &:before
-        vertical-align: -0.24rem
-        content: ""
+      button#colorscheme-switcher
         display: inline-block
-        height: 1rem
-        width: 1rem
-        background-size: 1rem 1rem
-        background-repeat: no-repeat
-      @include smart-light-theme
-        color: var(--light-theme-color-glyph)
-        background: white
-        border: 2px solid var(--light-theme-color-blob)
+        padding: 0.1rem 0.4rem
+        border-radius: 5px
+        text-decoration: none
+        &::-moz-focus-inner
+          border: 0
         &:before
-          background-image: url(/images/light-indicator.1.svg)
-      @include smart-dark-theme
-        color: var(--dark-theme-color-glyph)
-        background: #292929
-        border: 2px solid var(--dark-theme-color-blob)
-        &:before
-          background-image: url(/images/dark-indicator.1.svg)
+          vertical-align: -0.24rem
+          content: ""
+          display: inline-block
+          height: 1rem
+          width: 1rem
+          background-size: 1rem 1rem
+          background-repeat: no-repeat
+        @include smart-light-theme
+          color: var(--light-theme-color-glyph)
+          background: white
+          border: 2px solid var(--light-theme-color-blob)
+          &:before
+            background-image: url(/images/light-indicator.1.svg)
+        @include smart-dark-theme
+          color: var(--dark-theme-color-glyph)
+          background: #292929
+          border: 2px solid var(--dark-theme-color-blob)
+          &:before
+            background-image: url(/images/dark-indicator.1.svg)
+        @include max-width(450px)
+          margin-right: 10px
 
 .labels
   a.category
