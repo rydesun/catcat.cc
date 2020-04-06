@@ -122,19 +122,31 @@ section#header div.header
           color: var(--dark-theme-color-glyph)
     button#colorscheme-switcher
       display: inline-block
-      padding: 0.1rem 0.7rem
+      padding: 0.1rem 0.4rem
       border-radius: 5px
       text-decoration: none
       &::-moz-focus-inner
         border: 0
+      &:before
+        vertical-align: -0.24rem
+        content: ""
+        display: inline-block
+        height: 1rem
+        width: 1rem
+        background-size: 1rem 1rem
+        background-repeat: no-repeat
       @include smart-light-theme
         color: var(--light-theme-color-glyph)
         background: white
         border: 2px solid var(--light-theme-color-blob)
+        &:before
+          background-image: url(/images/light-indicator.1.svg)
       @include smart-dark-theme
         color: var(--dark-theme-color-glyph)
         background: #292929
         border: 2px solid var(--dark-theme-color-blob)
+        &:before
+          background-image: url(/images/dark-indicator.1.svg)
 
 .labels
   a.category
