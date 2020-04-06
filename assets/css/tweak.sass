@@ -111,6 +111,23 @@ section#header div.header
       box-shadow: none
       background-color: var(--dark-theme-color-blob)
 
+  div#menu
+    display: inline-block
+    button
+      padding: 0.1rem 0.7rem
+      border-radius: 5px
+      text-decoration: none
+      &::-moz-focus-inner
+        border: 0
+      @include smart-light-theme
+        color: var(--light-theme-color-glyph)
+        background: white
+        border: 2px solid var(--light-theme-color-blob)
+      @include smart-dark-theme
+        color: var(--dark-theme-color-glyph)
+        background: #292929
+        border: 2px solid var(--dark-theme-color-blob)
+
   span.right-side nav a
     @include smart-light-theme
       color: var(--light-theme-color-glyph)
