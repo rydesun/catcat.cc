@@ -36,3 +36,25 @@ detectDark.addListener((e) => {
   var theme = e.matches ? 'dark' : 'light';
   window.REMARK42.changeTheme(theme);
 });
+
+var htmlObserver = new MutationObserver((mutations) => {
+  for(let mutation of mutations) {
+    if (mutation.type == "attributes") {
+      let userColorScheme = document.documentElement.getAttribute('data-user-color-scheme')
+      if (userColorScheme === 'light') {
+        window.REMARK42.changeTheme('light');
+      } else if (userColorScheme === 'dark') {
+        window.REMARK42.changeTheme('dark');
+      } else {
+        if (detectDark.matches) {
+          window.REMARK42.changeTheme('dark');
+        } else {
+          window.REMARK42.changeTheme('light');
+        }
+      }
+    }
+  }
+})
+htmlObserver.observe(document.documentElement, {
+  attributes: true
+})
