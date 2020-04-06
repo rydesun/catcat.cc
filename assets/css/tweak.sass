@@ -111,9 +111,16 @@ section#header div.header
       box-shadow: none
       background-color: var(--dark-theme-color-blob)
 
-  div#menu
-    display: inline-block
-    button
+  span.right-side
+    div.nav.wrap
+      display: inline-block
+      a
+        @include smart-light-theme
+          color: var(--light-theme-color-glyph)
+        @include smart-dark-theme
+          color: var(--dark-theme-color-glyph)
+    button#colorscheme-switcher
+      display: inline-block
       padding: 0.1rem 0.7rem
       border-radius: 5px
       text-decoration: none
@@ -127,12 +134,6 @@ section#header div.header
         color: var(--dark-theme-color-glyph)
         background: #292929
         border: 2px solid var(--dark-theme-color-blob)
-
-  span.right-side nav a
-    @include smart-light-theme
-      color: var(--light-theme-color-glyph)
-    @include smart-dark-theme
-      color: var(--dark-theme-color-glyph)
 
 .labels
   a.category
