@@ -1,0 +1,2 @@
+{{ $warnIeJS := resources.Get "js/ie-warn.js" | minify | fingerprint }}
+<script src="{{ $warnIeJS.RelPermalink }}" integrity="{{ $warnIeJS.Data.Integrity }}" defer></script>
