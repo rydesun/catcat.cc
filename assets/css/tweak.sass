@@ -85,11 +85,13 @@ div.base-body
   div#content
     @include margin-side(auto)
     max-width: var(--block1-max-width)
+    // article list
     > ul
       @include margin-side(auto)
       max-width: var(--block2-max-width)
       @include max-width(500px)
         @include margin-side(-20px)
+    // article
     section.article.discussion
       @include margin-side(auto)
       max-width: var(--block2-max-width)
