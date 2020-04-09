@@ -1,0 +1,36 @@
+{{- define "main" -}}
+
+{{ $tocJS := resources.Get "js/menu.js" | minify | fingerprint }}
+{{- $justify := false -}}
+{{- if eq .Params.justify true -}} {{- $justify = true -}} {{- end -}}
+<script src="{{ $tocJS.RelPermalink }}" integrity="{{ $tocJS.Data.Integrity }}"></script>
+<div id="book">
+  {{ if (not .Params.disableToc) }}
+    <aside id="menu">
+      <div id="toc">
+        <div class="toolbar">
+          <button onclick="toggleSide()">换边</button>
+          <button onclick="toggleExpand()">展开</button>
+          <button onclick="toggleFixTop()">固定顶端</button>
+        </div>
+        <div id="toc-list">
+          {{ .TableOfContents }}
+        </div>
+      </div>
+    </aside>
+  {{ end }}
+  <div class="article-container">
+      {{- partial "article-header.html" . -}}
+      <article class="article markdown-body" {{- if $justify -}}style="text-align: justify;" {{- end -}}>
+          {{- with .Params.cover -}}<p><img class="cover" src="{{- . | safeURL -}}" alt></p>{{- end -}}
+          {{- .Content -}}
+      </article>
+      {{- partial "article-labels.html" . -}}
+      {{- partial "article-license.html" . -}}
+      {{- partial "article-author.html" . -}}
+  </div>
+  <div class="placeholder"></div>
+</div>
+{{- partial "article-bottom-navigation.html" . -}}
+{{- partial "article-comments.html" . -}}
+{{- end -}}

@@ -45,6 +45,9 @@
 @mixin max-width($width)
   @media screen and (max-width: $width)
     @content
+@mixin max-min-width($max-width, $min-width)
+  @media screen and (max-width: $max-width) and (min-width: $min-width)
+    @content
 
 @mixin margin-side($val)
   margin-left: $val
@@ -78,13 +81,14 @@ div.warn
    color: pink
 
 div.base-body
+  overflow: unset
   max-width: unset
   > *
     @include margin-side(auto)
     max-width: var(--block2-max-width)
   div#content
     @include margin-side(auto)
-    max-width: var(--block1-max-width)
+    max-width: unset
     // article list
     > ul
       @include margin-side(auto)
@@ -92,7 +96,7 @@ div.base-body
       @include max-width(500px)
         @include margin-side(-20px)
     // article
-    section.article.discussion
+    > section
       @include margin-side(auto)
       max-width: var(--block2-max-width)
 
@@ -191,6 +195,57 @@ div#content ul.note.list li.item
       background: #393e46
 
 // ==== post page ==== //
+
+div#book
+  $collapseWidth: 1600px
+  $compatWidth: 1000px
+  display: flex
+  &.right-side
+    flex-direction: row-reverse
+  align-items: flex-start
+  @include margin-side(auto)
+  max-width: 1920px
+  @include max-min-width($collapseWidth, $compatWidth)
+    max-width: $compatWidth
+  @include max-width($collapseWidth)
+    align-items: stretch
+    flex-direction: column !important
+
+  div.placeholder
+    flex: 1 6 20%
+  aside#menu
+    flex: 1 6 20%
+    position: sticky
+    top: 1rem
+    @include max-width($collapseWidth)
+      position: unset
+    &.fix-top
+      top: 0
+      position: sticky
+    div#toc
+      float: right
+      @include max-width($collapseWidth)
+        float: left
+        margin-bottom: 1rem
+      div#toc-list
+        margin-right: 1.3rem
+        padding-right: 1.3rem
+        border-left: 5px solid var(--light-theme-color-shadow)
+        border-bottom: 5px solid var(--light-theme-color-shadow)
+        display: none
+        &.expanded
+          display: unset
+        ul
+          padding-left: 1.3rem
+          list-style-type: none
+          li
+            padding: .2rem 0
+
+  div.article-container
+    flex: 3 1 60%
+    @include max-width(450px)
+      margin-left: -20px
+      margin-right: -20px
 
 div.article-container
   box-shadow: 1px 1px 5px 3px rgba(0,0,0,.12)
