@@ -200,8 +200,9 @@ div#book
   $collapseWidth: 1600px
   $compatWidth: 1000px
   display: flex
-  &.right-side
-    flex-direction: row-reverse
+  &.left-side
+    flex-direction: row
+  flex-direction: row-reverse
   align-items: flex-start
   @include margin-side(auto)
   max-width: 1920px
@@ -223,15 +224,29 @@ div#book
       top: 0
       position: sticky
     div#toc
-      float: right
       @include max-width($collapseWidth)
-        float: left
         margin-bottom: 1rem
+      div.toolbar
+        margin-left: 1.3rem
+        button
+          padding: 0.1rem 0.4rem
+          border-radius: 5px
+          text-decoration: none
+          &::-moz-focus-inner
+            border: 0
+          @include smart-light-theme
+            color: var(--light-theme-color-glyph)
+            background: white
+            border: 2px solid var(--light-theme-color-blob)
+          @include smart-dark-theme
+            color: var(--dark-theme-color-glyph)
+            background: #292929
+            border: 2px solid var(--dark-theme-color-blob)
       div#toc-list
-        margin-right: 1.3rem
-        padding-right: 1.3rem
-        border-left: 5px solid var(--light-theme-color-shadow)
-        border-bottom: 5px solid var(--light-theme-color-shadow)
+        font-size: 0.85rem
+        a
+          @include smart-dark-theme
+            color: #606e97
         display: none
         &.expanded
           display: unset

@@ -9,10 +9,10 @@ function toggleExpand() {
 
 function toggleSide() {
 let book = document.getElementById("book");
-  if (book.classList.contains('right-side')) {
-    book.classList.remove('right-side');
+  if (book.classList.contains('left-side')) {
+    book.classList.remove('left-side');
   } else {
-    book.classList.add('right-side');
+    book.classList.add('left-side');
   }
 }
 
