@@ -20,6 +20,8 @@
     <meta name="description" content="{{- .Description -}}">
 {{- else if (ne .Summary "") -}}
     <meta name="description" content="{{- .Summary -}}">
+{{- else -}}
+    <meta name="description" content="rydesun的博客">
 {{- end -}}
 
 {{- block "title" . -}}{{- end -}}
