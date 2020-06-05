@@ -194,6 +194,12 @@ div#content ul.note.list li.item
     @include smart-dark-theme
       background: #393e46
 
+.pagination ul li a.active
+  @include smart-light-theme
+    background: var(--light-theme-color-blob)
+  @include smart-dark-theme
+    background: var(--dark-theme-color-blob)
+
 // ==== post page ==== //
 
 div#book

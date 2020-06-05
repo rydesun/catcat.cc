@@ -1,5 +1,5 @@
 {{- define "main" -}}
-{{- $paginator := .Paginator -}}
+{{- $paginator := .Paginator 60 -}}
 
 {{- $title := T .Title -}}
 {{- if not $title -}}
