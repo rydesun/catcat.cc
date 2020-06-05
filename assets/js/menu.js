@@ -1,5 +1,5 @@
 function toggleExpand() {
-  let list = document.getElementById("toc-list");
+  let list = document.getElementById("toc");
   if (list.classList.contains('expanded')) {
     list.classList.remove('expanded');
   } else {
