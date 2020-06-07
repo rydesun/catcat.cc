@@ -23,6 +23,9 @@
 {{- else -}}
     <meta name="description" content="rydesun的博客">
 {{- end -}}
+{{ if eq .Kind "home" }}
+<link rel="shortcut icon" href="/favicon.ico">
+{{ end }}
 
 {{- block "title" . -}}{{- end -}}
 
