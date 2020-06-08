@@ -1,3 +1,5 @@
+@import lib
+
 div#content
   max-width: var(--block2-max-width) !important
 
@@ -25,9 +27,14 @@ section.article.header
     border-radius: 4px
   figcaption
     padding: 0 10%
+    img#arch-logo
+      @include smart-light-theme
+        content: url("/images/arch-logo.svg")
+      @include smart-dark-theme
+        content: url("/images/arch-logo-dark.svg")
   div.block
     margin-top: 0.4rem
-  @media screen and (max-width: 680px)
+  @include max-width(680px)
     min-width: 100%
     margin-top: 0
     div.block
@@ -49,9 +56,9 @@ section.article.header
     vertical-align: 0.15rem
     margin-right: 0.4rem
     color: white
-    background: var(--light-theme-color-blob)
-  @media (prefers-color-scheme: dark)
-    span.head.icon
+    @include smart-light-theme
+      background: var(--light-theme-color-blob)
+    @include smart-dark-theme
       background: var(--dark-theme-color-blob)
   #more a
     margin-right: 1rem
