@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{- site.Language.Lang -}}">
+<head>
+{{- partial "head.html" . -}}
+{{- block "structuredData" . -}}{{- end -}}
+</head>
+
+<body>
+    <div class="base-body">
+        {{- partial "header.html" . -}}
+        <div id="content">
+            {{- block "main" . -}}{{- end -}}
+        </div>
+        {{- partial "footer.html" . -}}
+    </div>
+</body>
+
+</html>

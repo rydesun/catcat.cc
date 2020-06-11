@@ -34,3 +34,20 @@
 {{- partial "article-bottom-navigation.html" . -}}
 {{- partial "article-comments.html" . -}}
 {{- end -}}
+
+{{- define "structuredData" -}}
+  {{ if (not .Params.disableStructuredData) }}
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org/",
+          "@type": "BlogPosting",
+          "author": {
+            "@type": "Person",
+            "name": "rydesun"
+          },
+          "datePublished": {{ .Date.Format "2006-01-02" }},
+          "dateModified": {{ .Lastmod.Format "2006-01-02" }}
+        }
+    </script>
+  {{- end -}}
+{{- end -}}
