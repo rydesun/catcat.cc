@@ -1,3 +1,5 @@
+var commmentLoaded = false
+
 var remark_config = {
   host: "https://comments.srv.2cat.cc",
   site_id: '2cat.cc',
@@ -5,6 +7,7 @@ var remark_config = {
 };
 
 function loadRemark42() {
+  commmentLoaded = true
   // set theme by color scheme
   if (colorSchemeManager.checkDarkHTML() || (detectDark.matches)) {
     remark_config.theme = 'dark';
@@ -30,6 +33,12 @@ setTimeout(() => {
     }
   }, { threshold: [0] });
   commentObserver.observe(document.getElementById('remark42'));
+  setTimeout(() => {
+    if (!commmentLoaded) {
+      loadRemark42();
+      commentObserver.disconnect();
+    }
+  }, 500);
 }, 1);
 
 detectDark.addListener((e) => {
