@@ -171,6 +171,7 @@ div#content ul.note.list li.item
 div#book
   $collapseWidth: 1600px
   $compatWidth: 1000px
+  $narrowWidth: 500px
   display: flex
   &.left-side
     flex-direction: row
@@ -200,6 +201,8 @@ div#book
         margin-bottom: 1rem
       div.toolbar
         margin-left: 1.3rem
+        @include max-width($collapseWidth)
+          margin-left: 0
         button
           padding: 0.1rem 0.4rem
           border-radius: 5px
