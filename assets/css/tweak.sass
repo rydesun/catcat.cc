@@ -231,8 +231,33 @@ div#book
           @include smart-dark-theme
             color: #ddd
             background: var(--dark-theme-color-shadow)
-          &:before
-            content: "＋ "
+        button#tocButton:before
+          content: "＋ "
+        button#scroll
+          all: unset
+          border-radius: 50%;
+          box-shadow: 1px 1px 5px 3px rgba(0,0,0,.12)
+          position: fixed
+          bottom: 30px
+          right: 30px
+          width: 65px
+          height: 65px
+          z-index: 10000
+          display: none
+          &.scrolling
+            display: unset
+          svg
+            border-radius: 50%;
+            width: 100%
+            height: 100%
+            @include smart-light-theme
+              background-color: var(--light-theme-color-blob)
+              path
+                fill: #fff
+            @include smart-dark-theme
+              background-color: var(--dark-theme-color-blob)
+              path
+                fill: #333
       div#toc-list
         font-size: 0.82rem
         @include smart-light-theme
@@ -269,7 +294,7 @@ div#book
       &.expanded
         div#toc-list
           display: unset
-        div.toolbar button:before
+        div.toolbar button#tocButton:before
           content: "ー "
 
   div.article-container
