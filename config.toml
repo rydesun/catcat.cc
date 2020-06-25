@@ -15,6 +15,9 @@ theme = ["hugo-notepadium"]
   defaultMarkdownHandler = "blackfriday"
   [markup.blackFriday]
     extensions = ["joinLines"]
+    hrefTargetBlank = true
+    nofollowLinks = true
+    noreferrerLinks = true
 
 [markup.highlight]
 codeFences = true
