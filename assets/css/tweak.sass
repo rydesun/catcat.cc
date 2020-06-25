@@ -263,6 +263,10 @@ div#book
         @include smart-light-theme
           ::-webkit-scrollbar
             width: 5px
+            @include smart-light-theme
+              background-color: #fff
+            @include smart-dark-theme
+              background-color: #393e46
           ::-webkit-scrollbar-thumb
             border-radius: 10px
             background-color: #aaa
@@ -272,25 +276,40 @@ div#book
         ::-webkit-scrollbar-track
             background-color: unset
         #TableOfContents
+          margin-left: 1.3rem
+          @include max-width($collapseWidth)
+            margin-left: 0
           margin-top: .4rem
+          max-width: 300px
+          border-radius: 6px
+          box-shadow: 1px 1px 5px 3px rgba(0,0,0,.12)
           height: 85vh
           overflow-y: auto
           scrollbar-width: thin
+          @include smart-light-theme
+            background: white
+            scrollbar-color: #aaa #fff
           @include smart-dark-theme
+            background: #393e46
             scrollbar-color: #999 rgba(0,0,0,0)
           @include max-width($collapseWidth)
-            margin-top: 0
             overflow-y: unset
             height: unset
+          > ul
+            padding-bottom: 1rem
+          ul
+            padding-left: 1.25rem
+            list-style-type: none
+            li
+              padding-top: .35rem
+              ::marker
+                color: #7a7a7a
+          ul ul
+            list-style-type: decimal
         a
           @include smart-dark-theme
             color: #606e97
         display: none
-        ul
-          padding-left: .85rem
-          list-style-type: none
-          li
-            padding-top: .35rem
       &.expanded
         div#toc-list
           display: unset
