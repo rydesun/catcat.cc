@@ -38,6 +38,19 @@ body
   @include smart-light-theme
     background: #f0f0f0
 
+::-webkit-scrollbar
+  width: 12px
+::-webkit-scrollbar-track
+  @include smart-light-theme
+    background-color: #ccc
+  @include smart-dark-theme
+    background-color: #555
+::-webkit-scrollbar-thumb
+  @include smart-light-theme
+    background-color: #999
+  @include smart-dark-theme
+    background-color: #999
+
 div.warn
   color: white
   background: #7373cc
@@ -222,13 +235,35 @@ div#book
           &:before
             content: "＋ "
       div#toc-list
-        font-size: 0.85rem
+        font-size: 0.82rem
+        @include smart-light-theme
+          ::-webkit-scrollbar
+            width: 5px
+          ::-webkit-scrollbar-thumb
+            border-radius: 10px
+            background-color: #aaa
+        @include smart-dark-theme
+          ::-webkit-scrollbar-thumb
+            background-color: #777
+        ::-webkit-scrollbar-track
+            background-color: unset
+        #TableOfContents
+          margin-top: .4rem
+          height: 85vh
+          overflow-y: auto
+          scrollbar-width: thin
+          @include smart-dark-theme
+            scrollbar-color: #999 rgba(0,0,0,0)
+          @include max-width($collapseWidth)
+            margin-top: 0
+            overflow-y: unset
+            height: unset
         a
           @include smart-dark-theme
             color: #606e97
         display: none
         ul
-          padding-left: 1.3rem
+          padding-left: .85rem
           list-style-type: none
           li
             padding-top: .35rem
