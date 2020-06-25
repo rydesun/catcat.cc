@@ -118,6 +118,8 @@ section#header div.header
           color: var(--dark-theme-color-glyph)
     div#button-group
       display: inline-block
+      button
+        margin-left: .5rem
       button#colorscheme-switcher
         display: inline-block
         padding: 0.2rem 0.7rem
@@ -125,6 +127,8 @@ section#header div.header
         text-decoration: none
         &::-moz-focus-inner
           border: 0
+        &:focus
+          outline: 0
         &:before
           vertical-align: -0.2rem
           content: ""
@@ -225,6 +229,8 @@ div#book
           border: none
           &::-moz-focus-inner
             border: 0
+          &:focus
+            outline: 0
           @include smart-light-theme
             color: white
             background: var(--light-theme-color-shadow)

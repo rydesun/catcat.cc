@@ -49,7 +49,8 @@ class ColorSchemeManager {
   }
 
   display(theme) {
-    document.getElementById(this.button_id).innerHTML = theme;
+    var t = {'dark': 'Dark', 'light': 'Light'};
+    document.getElementById(this.button_id).innerHTML = t[theme];
   }
 }
   
