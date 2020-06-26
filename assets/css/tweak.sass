@@ -194,7 +194,8 @@ div#content ul.note.list li.item
 // ==== post page ==== //
 
 div#book
-  $expandWidth: 1470px
+  $expandWidth1: 1800px
+  $expandWidth2: 1470px
   $collapseWidth: 1100px
   $compatWidth: 1000px
   $narrowWidth: 500px
@@ -217,24 +218,28 @@ div#book
     div.toolbar button#tocButton:before
       content: "ー " !important
     div.article-container
-      flex: 3 1 60%
-      @include max-width($expandWidth)
+      @include max-width($expandWidth1)
+        flex: 3 1 60%
+      @include max-width($expandWidth2)
         flex: 3 1 70%
     aside#menu
-      flex: 1 6 20%
-      @include max-width($expandWidth)
+      @include max-width($expandWidth1)
+        flex: 1 6 28%
+      @include max-width($expandWidth2)
         flex: 1 6 20%
     div.placeholder
-      @include max-width($expandWidth)
+      @include max-width($expandWidth1)
+        flex: 0 6 14%
+      @include max-width($expandWidth2)
         flex: 1 6 0
 
   div.placeholder
     flex: 1 6 20%
-    @include max-width($expandWidth)
+    @include max-width($expandWidth2)
       flex: 1 6 5%
   aside#menu
     flex: 1 6 20%
-    @include max-width($expandWidth)
+    @include max-width($expandWidth2)
       flex: 1 6 5%
     position: sticky
     top: 1rem
