@@ -214,7 +214,7 @@ div#book
 
   &.toc-expanded
     div#toc-list
-      display: unset !important
+      display: block !important
     div.toolbar button#tocButton:before
       content: "ー " !important
     div.article-container
@@ -304,43 +304,50 @@ div#book
               path
                 fill: #333
       div#toc-list
-        font-size: 0.82rem
+        max-width: 300px
+        max-height: 85vh
+        overflow-y: auto
+        margin-top: .4rem
+        margin-left: 1.3rem
+        border-radius: 6px
+        box-shadow: 1px 1px 5px 3px rgba(0,0,0,.12)
+        @include max-width($collapseWidth)
+          margin-left: 0
+          max-height: unset
+          overflow-y: unset
+
+        scrollbar-width: thin
         @include smart-light-theme
-          ::-webkit-scrollbar
-            width: 5px
-            @include smart-light-theme
-              background-color: #fff
-            @include smart-dark-theme
-              background-color: #393e46
-          ::-webkit-scrollbar-thumb
-            border-radius: 10px
-            background-color: #aaa
+          background: white
+          scrollbar-color: #aaa #fff
         @include smart-dark-theme
-          ::-webkit-scrollbar-thumb
-            background-color: #777
-        ::-webkit-scrollbar-track
-            background-color: unset
-        #TableOfContents
-          margin-left: 1.3rem
-          @include max-width($collapseWidth)
-            margin-left: 0
-          padding-right: 1rem
-          margin-top: .4rem
-          max-width: 300px
-          border-radius: 6px
-          box-shadow: 1px 1px 5px 3px rgba(0,0,0,.12)
-          max-height: 85vh
-          overflow-y: auto
-          scrollbar-width: thin
+          background: #393e46
+          scrollbar-color: #666 rgba(0,0,0,0)
+        &:hover
           @include smart-light-theme
-            background: white
-            scrollbar-color: #aaa #fff
+            scrollbar-color: var(--light-theme-color-blob) #fff
           @include smart-dark-theme
-            background: #393e46
-            scrollbar-color: #999 rgba(0,0,0,0)
-          @include max-width($collapseWidth)
-            overflow-y: unset
-            max-height: unset
+            scrollbar-color: var(--dark-theme-color-blob) rgba(0,0,0,0)
+
+        &::-webkit-scrollbar
+          width: 7px
+        &::-webkit-scrollbar-track
+          background-color: unset
+        &::-webkit-scrollbar-thumb
+          border-radius: 10px
+          @include smart-light-theme
+            background-color: #aaa
+          @include smart-dark-theme
+            background-color: #666
+        &:hover::-webkit-scrollbar-thumb
+            @include smart-light-theme
+              background-color: var(--light-theme-color-blob)
+            @include smart-dark-theme
+              background-color: var(--dark-theme-color-blob)
+
+        #TableOfContents
+          font-size: 0.82rem
+          padding-right: 1rem
           > ul
             padding-bottom: 1rem
           ul
