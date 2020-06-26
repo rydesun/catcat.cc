@@ -194,7 +194,8 @@ div#content ul.note.list li.item
 // ==== post page ==== //
 
 div#book
-  $collapseWidth: 1600px
+  $expandWidth: 1470px
+  $collapseWidth: 1100px
   $compatWidth: 1000px
   $narrowWidth: 500px
   display: flex
@@ -210,10 +211,31 @@ div#book
     align-items: stretch
     flex-direction: column !important
 
+  &.toc-expanded
+    div#toc-list
+      display: unset !important
+    div.toolbar button#tocButton:before
+      content: "ー " !important
+    div.article-container
+      flex: 3 1 60%
+      @include max-width($expandWidth)
+        flex: 3 1 70%
+    aside#menu
+      flex: 1 6 20%
+      @include max-width($expandWidth)
+        flex: 1 6 20%
+    div.placeholder
+      @include max-width($expandWidth)
+        flex: 1 6 0
+
   div.placeholder
     flex: 1 6 20%
+    @include max-width($expandWidth)
+      flex: 1 6 5%
   aside#menu
     flex: 1 6 20%
+    @include max-width($expandWidth)
+      flex: 1 6 5%
     position: sticky
     top: 1rem
     @include max-width($collapseWidth)
@@ -297,6 +319,7 @@ div#book
           margin-left: 1.3rem
           @include max-width($collapseWidth)
             margin-left: 0
+          padding-right: 1rem
           margin-top: .4rem
           max-width: 300px
           border-radius: 6px
@@ -328,11 +351,6 @@ div#book
           @include smart-dark-theme
             color: #909ec7
         display: none
-      &.expanded
-        div#toc-list
-          display: unset
-        div.toolbar button#tocButton:before
-          content: "ー "
 
   div.article-container
     flex: 3 1 60%

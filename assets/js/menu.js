@@ -1,9 +1,9 @@
 function toggleExpand() {
-  let list = document.getElementById("toc");
-  if (list.classList.contains('expanded')) {
-    list.classList.remove('expanded');
+  let book = document.getElementById("book");
+  if (book.classList.contains('toc-expanded')) {
+    book.classList.remove('toc-expanded');
   } else {
-    list.classList.add('expanded');
+    book.classList.add('toc-expanded');
   }
 }
 
