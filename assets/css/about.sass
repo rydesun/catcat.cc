@@ -1,77 +1,44 @@
 @import lib
 
+// 文章容器
 div#content
   max-width: var(--block2-max-width) !important
-  div.article-container
-    flex: unset
-
+  div.placeholder
+    display: none
+// 去除文章标题
 section.article.header
   display: none
 
-#intro
+div#intro
   display: flex
   flex-wrap: wrap
+  @include max-width(680px)
+    flex-direction: column
   svg.icon
-    width: 1.7em
-    height: 1.7em
     vertical-align: middle
     fill: currentColor
-  img.txt
-    height: 2rem
-    vertical-align: middle
 
-#face
-  width: 50%
+div#face
+  flex: 1 0 50%
   margin-top: 0.4rem
-  figure
-    margin: 0
-  #avatar
+  img
     border-radius: 4px
-  figcaption
-    padding: 0 10%
-    img#arch-logo
-      max-width: 100%
-      height: auto
-      @include smart-light-theme
-        content: url("/images/arch-logo.svg")
-      @include smart-dark-theme
-        content: url("/images/arch-logo-dark.svg")
-  div.block
-    margin-top: 0.4rem
-  @include max-width(680px)
-    min-width: 100%
-    margin-top: 0
-    div.block
-      margin-top: 0
-      margin-bottom: 1.1rem
-      white-space: nowrap
 
-#card
-  width: 50%
+div#card
+  flex: 1 0 50%
   padding-left: 10%
-  div.block
-    margin-bottom: 1.1rem
+  @include max-width(680px)
+    padding-left: 0
+  > div
+    margin-bottom: 1rem
+  div#email
     white-space: nowrap
-  div.line
-    margin-bottom: 0.3rem
-    white-space: nowrap
-  svg.head.icon
-    margin-right: 0.4rem
-  span.head.icon
-    border-radius: 3px
-    font-size: 0.5rem
-    padding: 0.15rem 0.35rem
-    vertical-align: 0.15rem
-    margin-right: 0.4rem
-    color: white
-    @include smart-light-theme
-      background: var(--light-theme-color-blob)
-    @include smart-dark-theme
-      background: var(--dark-theme-color-blob)
+    svg
+      margin-right: 0.6rem
   #more a
     margin-right: 1rem
     text-decoration: none
-    svg.icon
+    svg
       transition: transform 1s
       transform: rotate(0deg)
       &:hover
