@@ -2,6 +2,9 @@ const Fontmin = require('fontmin');
 const fs = require('fs');
 const glob = require("glob");
 
+// fix some characters
+extraText = '月'
+
 var files = [];
 for (p of ["content/**/*.md",
            "content/**/*.html",
@@ -19,6 +22,7 @@ for (f of files) {
   }
   content += fs.readFileSync(f, 'utf8');
 }
+content += extraText;
 
 var fontmin = new Fontmin()
   .src(['raw/fonts/sarasa-ui-sc-regular.ttf',
