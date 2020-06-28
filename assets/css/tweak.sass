@@ -29,9 +29,18 @@
   @import 'vendor/chroma-solarized-dark.scss'
 
 html
-  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans", "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif, "Twemoji", "Noto Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Apple Color Emoji"
+  $fontCN: "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Sarasa Compact"
+  $fontFallback: "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, "Microsoft YaHei"
+  $emoji: "Twemoji", "Noto Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Apple Color Emoji"
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans", $fontCN, $fontFallback, sans-serif, $emoji
   font-size: 16px
   line-height: 1.8
+
+code,
+tt,
+kbd,
+samp
+  font-family: Menlo, Monaco, Consolas, monospace
 
 body
   @include smart-dark-theme

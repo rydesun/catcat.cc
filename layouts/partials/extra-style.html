@@ -1,0 +1,19 @@
+{{ $fontRegular := resources.Get "/fonts/sarasa-ui-sc-regular.woff2" }}
+{{ $fontBold := resources.Get "/fonts/sarasa-ui-sc-bold.woff2" }}
+{{ $fontRegular = $fontRegular | resources.Fingerprint "sha384" }}
+{{ $fontBold = $fontBold | resources.Fingerprint "sha384" }}
+
+<style>
+@font-face {
+  font-family: 'Sarasa Compact';
+  src: url('{{ $fontRegular.RelPermalink }}') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sarasa Compact';
+  src: url('{{ $fontBold.RelPermalink }}') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+</style>
