@@ -1,4 +1,5 @@
 {{- define "main" -}}
+<style type="text/css">{{ (resources.Get "css/categories.sass" | toCSS).Content | safeCSS }}</style>
 {{- $paginator := .Paginator -}}
 
 {{- $title := T .Title -}}
@@ -23,15 +24,6 @@
   </li>
   {{- end -}}
 </ul>
-<style>
-  ul.note.list {
-    margin-bottom: 100px;
-  }
-  ul.note.list li.fly.item {
-    padding: 20px !important;
-    visibility: hidden;
-  }
-</style>
 <script>
   var categories = document.getElementsByClassName('fly item');
   var sliceTime = 0.2/categories.length

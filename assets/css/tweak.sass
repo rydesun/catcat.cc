@@ -91,6 +91,16 @@ div.base-body
       @include margin-side(auto)
       max-width: var(--block2-max-width)
 
+    // not article header
+    > section.article.header h1
+      font-size: 20px
+      padding-bottom: 10px
+      border-bottom: 2px dotted #7775
+      @include smart-light-theme
+        color: #777
+      @include smart-dark-theme
+        color: #999
+
 section#header
   border: none
   div.site.slogan
@@ -203,6 +213,19 @@ div#content ul.note.list li.item
 // ==== post page ==== //
 
 div#book
+  h1.article.title
+    font-size: 24px
+    padding-bottom: 12px
+    border-bottom: 2px dotted #7775
+  h2
+    font-size: 22px
+  h3
+    font-size: 20px
+  h4
+    font-size: 18px
+  h5
+    font-size: 16px
+
   $expandWidth1: 1800px
   $expandWidth2: 1470px
   $collapseWidth: 1100px

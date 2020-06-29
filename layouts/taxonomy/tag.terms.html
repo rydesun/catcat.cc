@@ -1,4 +1,5 @@
 {{- define "main" -}}
+<style type="text/css">{{ (resources.Get "css/tags.sass" | toCSS).Content | safeCSS }}</style>
 {{- $paginator := .Paginator 60 -}}
 
 {{- $title := T .Title -}}
@@ -16,11 +17,9 @@
 {{- if gt $paginator.TotalPages 0 -}}
 <div class="note list">
   {{- range $paginator.Pages -}}
-  <div class="flytag">
-    <a class="note" href="{{- .RelPermalink -}}">
-      <p class="note title">{{- .Title | safeHTML -}}</p>
-    </a>
-  </div>
+  <a class="flytag" href="{{- .RelPermalink -}}">
+    <p class="flytag">{{- .Title | safeHTML -}}</p>
+  </a>
   {{- end -}}
 </div>
 <script>
@@ -30,34 +29,6 @@
     tag.style.animation = `0.4s ease ${randomDelay}s forwards flipInX`;
   }
 </script>
-<style>
-  div.note.list {
-    max-width: var(--block2-max-width);
-    margin: auto auto 100px auto;
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-  div.flytag {
-    max-width: 200px;
-    margin: 10px;
-    border: 1px solid var(--light-theme-color-glyph);
-    border-radius: 5px;
-    visibility: hidden;
-  }
-  @media (prefers-color-scheme: dark) {
-    div.flytag {
-      border: 1px solid var(--dark-theme-color-glyph);
-    }
-  }
-
-  div.flytag a {
-    padding: 0 10px;
-  }
-  div.flytag a:hover {
-    opacity: 0.5;
-  }
-</style>
 
 {{- end -}}
 {{- partial "pagination.html" $paginator -}}
