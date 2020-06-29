@@ -1,6 +1,6 @@
 {{- define "main" -}}
 
-{{ $tocJS := resources.Get "js/menu.js" | minify | fingerprint }}
+{{ $tocJS := resources.Get "js/build/menu.js" | minify | fingerprint }}
 {{- $justify := false -}}
 {{- if eq .Params.justify true -}} {{- $justify = true -}} {{- end -}}
 <script src="{{ $tocJS.RelPermalink }}" integrity="{{ $tocJS.Data.Integrity }}"></script>

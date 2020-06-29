@@ -11,7 +11,7 @@ for (p of ["content/**/*.md",
            "layouts/**/*.html",
            "assets/css/*",
            "assets/css/vendor/*",
-           "assets/js/*"]) {
+           "assets/js/**/*.js"]) {
   files.push(...glob.sync(p));
 }
 

@@ -1,4 +1,4 @@
-{{ $commentsJS := resources.Get "js/comments.js" | minify | fingerprint }}
+{{ $commentsJS := resources.Get "js/build/comments.js" | minify | fingerprint }}
 
 {{- if gt (len site.DisqusShortname) 0 -}}
   {{- if or (eq .Params.comments true) (and (ne .Params.comments false) (eq site.Params.comments.enable true)) -}}

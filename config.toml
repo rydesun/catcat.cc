@@ -46,7 +46,7 @@ url = "/about/"
 
 [params.assets]
 css = ["css/tweak.sass"]
-js = ["js/lib.js", "js/colorscheme-switcher.js"]
+js = ["js/build/index.js"]
 
 [params.syntax]
 theme = "friendly"

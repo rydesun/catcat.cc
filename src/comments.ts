@@ -1,12 +1,25 @@
-var remark_config = {
+import {colorSchemeManager} from './colorschemeSwitcher';
+import {detectDark} from './lib'
+
+declare global {
+    interface Window {
+        remark_config: any;
+        REMARK42: any;
+    }
+}
+
+const remark_config = {
   host: "https://comments.srv.2cat.cc",
   site_id: '2cat.cc',
   components: ['embed'],
+  theme: "",
 };
+
+window.remark_config = remark_config;
 
 function loadRemark42() {
   // set theme by color scheme
-  if (colorSchemeManager.checkDarkHTML() || (detectDark.matches)) {
+  if (colorSchemeManager.checkDarkHTML() || (detectDark.isDark())) {
     remark_config.theme = 'dark';
   } else {
     remark_config.theme = 'light';
@@ -32,8 +45,8 @@ setTimeout(() => {
   commentObserver.observe(document.getElementById('remark42'));
 }, 1);
 
-detectDark.addListener((e) => {
-  var theme = e.matches ? 'dark' : 'light';
+detectDark.trigger((isDark) => {
+  var theme = isDark ? 'dark' : 'light';
   window.REMARK42.changeTheme(theme);
 });
 
@@ -46,7 +59,7 @@ var htmlObserver = new MutationObserver((mutations) => {
       } else if (userColorScheme === 'dark') {
         window.REMARK42.changeTheme('dark');
       } else {
-        if (detectDark.matches) {
+        if (detectDark.isDark()) {
           window.REMARK42.changeTheme('dark');
         } else {
           window.REMARK42.changeTheme('light');

@@ -1,4 +1,14 @@
-function toggleExpand() {
+declare global {
+    interface Window {
+      toggleExpand: Function;
+      scrollToTop: Function;
+    }
+}
+
+window.toggleExpand = toggleExpand;
+window.scrollToTop = scrollToTop;
+
+export function toggleExpand() {
   let book = document.getElementById("book");
   if (book.classList.contains('toc-expanded')) {
     book.classList.remove('toc-expanded');
@@ -7,29 +17,11 @@ function toggleExpand() {
   }
 }
 
-function toggleSide() {
-let book = document.getElementById("book");
-  if (book.classList.contains('left-side')) {
-    book.classList.remove('left-side');
-  } else {
-    book.classList.add('left-side');
-  }
-}
-
-function toggleFixTop() {
-  let menu = document.getElementById("menu");
-  if (menu.classList.contains('fix-top')) {
-    menu.classList.remove('fix-top');
-  } else {
-    menu.classList.add('fix-top');
-  }
-}
-
-function scrollToTop() {
+export function scrollToTop() {
   window.scrollTo(0, 0);
 }
 
-var scrollToTopTimeout;
+let scrollToTopTimeout: number;
 
 function showScrollToTop() {
   let button = document.getElementById("scroll");
@@ -42,9 +34,10 @@ function showScrollToTop() {
   }, 2000);
 }
 
-var positionY = 0;
-var ticking = false;
-window.addEventListener('scroll', function(e) {
+let positionY = 0;
+let ticking = false;
+
+window.addEventListener('scroll', function() {
   let offsetY = window.scrollY - positionY;
   positionY = window.scrollY;
   if (window. innerWidth > 900) {
