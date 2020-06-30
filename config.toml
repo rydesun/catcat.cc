@@ -45,7 +45,7 @@ title = "CatchCat"
 url = "/about/"
 
 [params.assets]
-css = ["css/tweak.sass"]
+css = ["css/index.sass"]
 js = ["js/build/index.js"]
 
 [params.syntax]

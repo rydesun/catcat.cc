@@ -1,0 +1,61 @@
+@import lib/mixin
+
+\:root
+  --block1-max-width: 980px
+  --block2-max-width: 780px
+  --light-theme-color-blob: #c586c6
+  --light-theme-color-glyph: #943c95
+  --light-theme-color-shadow: #bdb0ca
+  --light-theme-color-faint: rgba(0,0,0,.5)
+  --light-theme-color-code-glyph: var(--light-theme-color-glyph)
+  --light-theme-color-code-blob: #f0f0f0
+  --light-theme-color-code-block-blob: #f0f0f0
+  --dark-theme-color-blob: #705571
+  --dark-theme-color-glyph: #a684a6
+  --dark-theme-color-shadow: #221b1b
+  --dark-theme-color-faint: rgba(255,255,255,.5)
+  --dark-theme-color-code-glyph: var(--dark-theme-color-glyph)
+  --dark-theme-color-code-blob: rgba(0,0,0,.1)
+  --dark-theme-color-code-block-blob: rgba(0,0,0,.35)
+  --dark-theme-color-link: #3e9dd7
+
+\:root:not([data-user-color-scheme])
+  @media (prefers-color-scheme: dark)
+    @import 'vendor/dark-style.scss'
+    @import 'vendor/chroma-solarized-dark.scss'
+\:root[data-user-color-scheme='dark']
+  @import 'vendor/dark-style.scss'
+  @import 'vendor/chroma-solarized-dark.scss'
+
+html
+  $fontCN: "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Sarasa Compact"
+  $fontFallback: "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, "Microsoft YaHei"
+  $emoji: "Twemoji", "Noto Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Apple Color Emoji"
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans", $fontCN, $fontFallback, sans-serif, $emoji
+  font-size: 16px
+  line-height: 1.8
+
+body
+  @include smart-dark-theme
+    background: #222831
+  @include smart-light-theme
+    background: #f0f0f0
+
+code,
+tt,
+kbd,
+samp
+  font-family: Menlo, Monaco, Consolas, monospace
+
+::-webkit-scrollbar
+  width: 12px
+::-webkit-scrollbar-track
+  @include smart-light-theme
+    background-color: #ccc
+  @include smart-dark-theme
+    background-color: #555
+::-webkit-scrollbar-thumb
+  @include smart-light-theme
+    background-color: #999
+  @include smart-dark-theme
+    background-color: #999

@@ -1,5 +1,5 @@
 {{- define "main" -}}
-<style type="text/css">{{ (resources.Get "css/categories.sass" | toCSS).Content | safeCSS }}</style>
+<style type="text/css">{{ (resources.Get "css/pages/categories.sass" | toCSS).Content | safeCSS }}</style>
 {{- $paginator := .Paginator -}}
 
 {{- $title := T .Title -}}
