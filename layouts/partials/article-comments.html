@@ -1,4 +1,9 @@
-{{ $commentsJS := resources.Get "js/build/comments.js" | minify | fingerprint }}
+{{ $commentsJS := "" }}
+{{ if eq (getenv "HUGO_MODE") "dev" }}
+  {{ $commentsJS = resources.Get "js/build/comments.js" | fingerprint }}
+{{ else }}
+  {{ $commentsJS = resources.Get "js/build/comments.js" | minify | fingerprint }}
+{{ end }}
 
 {{- if gt (len site.DisqusShortname) 0 -}}
   {{- if or (eq .Params.comments true) (and (ne .Params.comments false) (eq site.Params.comments.enable true)) -}}

@@ -1,7 +1,6 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'production',
   entry: {
     index: './src/index.ts',
     comments: './src/comments.ts',

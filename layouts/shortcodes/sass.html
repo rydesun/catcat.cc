@@ -1,4 +1,9 @@
 {{ $sass := .Get 0 }}
-{{ $style := resources.Get $sass | toCSS | minify | fingerprint }}
+{{ $style := "" }}
+{{ if eq (getenv "HUGO_MODE") "dev" }}
+  {{ $style = resources.Get $sass | toCSS (dict "enableSourceMap" true) | fingerprint }}
+{{ else }}
+  {{ $style = resources.Get $sass | toCSS | minify | fingerprint }}
+{{ end }}
 <link rel="stylesheet" type="text/css" href="{{ $style.RelPermalink }}"
   integrity="{{ $style.Data.Integrity }}">
