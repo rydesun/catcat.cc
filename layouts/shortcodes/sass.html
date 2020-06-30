@@ -1,9 +1,17 @@
 {{ $sass := .Get 0 }}
+{{ $inline := .Get 1 }}
+
 {{ $style := "" }}
 {{ if eq (getenv "HUGO_MODE") "dev" }}
-  {{ $style = resources.Get $sass | toCSS (dict "enableSourceMap" true) | fingerprint }}
+  {{ $style = resources.Get $sass | toCSS (dict "enableSourceMap" true) }}
 {{ else }}
-  {{ $style = resources.Get $sass | toCSS | minify | fingerprint }}
+  {{ $style = resources.Get $sass | toCSS | minify }}
 {{ end }}
-<link rel="stylesheet" type="text/css" href="{{ $style.RelPermalink }}"
-  integrity="{{ $style.Data.Integrity }}">
+
+{{ if eq $inline true }}
+  <style type="text/css">{{ $style.Content | safeCSS }}</style>
+{{ else }}
+  {{ $style = $style | fingerprint }}
+  <link rel="stylesheet" type="text/css" href="{{ $style.RelPermalink }}"
+    integrity="{{ $style.Data.Integrity }}">
+{{ end }}
