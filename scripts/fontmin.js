@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const Fontmin = require('fontmin');
 const fs = require('fs');
 const glob = require("glob");

@@ -9,7 +9,7 @@ cp ./themes/hugo-notepadium/assets/css/dark-style.css ./assets/css/vendor/dark-s
 cp ./themes/hugo-notepadium/assets/css/chroma/${code_dark_theme}.css ./assets/css/vendor/${code_dark_theme}.scss
 rm -r ./assets/js/build
 yarn run build
-(node fontmin.js)
+scripts/fontmin.js
 rm -r ./public/*
 hugo -D --minify
 
