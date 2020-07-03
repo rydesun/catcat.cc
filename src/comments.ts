@@ -52,7 +52,7 @@ detectDark.trigger((isDark) => {
 
 const htmlObserver = new MutationObserver((mutations) => {
     for(const mutation of mutations) {
-        if (mutation.type == 'attributes') {
+        if (mutation.type === 'attributes') {
             const userColorScheme = document.documentElement.getAttribute('data-user-color-scheme');
             if (userColorScheme === 'light') {
                 window.REMARK42.changeTheme('light');
