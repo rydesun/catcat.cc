@@ -1,5 +1,5 @@
 import {colorSchemeManager} from './colorschemeSwitcher';
-import {detectDark} from './lib'
+import {detectDark} from './lib';
 
 declare global {
     interface Window {
@@ -9,65 +9,65 @@ declare global {
 }
 
 const remark_config = {
-  host: "https://comments.srv.2cat.cc",
-  site_id: '2cat.cc',
-  components: ['embed'],
-  theme: "",
+    host: 'https://comments.srv.2cat.cc',
+    site_id: '2cat.cc',
+    components: ['embed'],
+    theme: '',
 };
 
 window.remark_config = remark_config;
 
 function loadRemark42() {
-  // set theme by color scheme
-  if (colorSchemeManager.checkDarkHTML() || (detectDark.isDark())) {
-    remark_config.theme = 'dark';
-  } else {
-    remark_config.theme = 'light';
-  }
+    // set theme by color scheme
+    if (colorSchemeManager.checkDarkHTML() || (detectDark.isDark())) {
+        remark_config.theme = 'dark';
+    } else {
+        remark_config.theme = 'light';
+    }
 
-  var d = document, s = d.createElement('script');
-  s.src = `${remark_config.host}/web/embed.js`;
-  s.defer = true;
-  s.onload = () => {
-    var hint = d.querySelector('#remark42 #load-hint');
-    hint.remove();
-  }
-  (d.head || d.body).appendChild(s);
+    const d = document, s = d.createElement('script');
+    s.src = `${remark_config.host}/web/embed.js`;
+    s.defer = true;
+    s.onload = () => {
+        const hint = d.querySelector('#remark42 #load-hint');
+        hint.remove();
+    };
+    (d.head || d.body).appendChild(s);
 }
 
 setTimeout(() => {
-  var commentObserver = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      loadRemark42();
-      commentObserver.disconnect();
-    }
-  }, { threshold: [0] });
-  commentObserver.observe(document.getElementById('remark42'));
+    const commentObserver = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            loadRemark42();
+            commentObserver.disconnect();
+        }
+    }, { threshold: [0] });
+    commentObserver.observe(document.getElementById('remark42'));
 }, 1);
 
 detectDark.trigger((isDark) => {
-  var theme = isDark ? 'dark' : 'light';
-  window.REMARK42.changeTheme(theme);
+    const theme = isDark ? 'dark' : 'light';
+    window.REMARK42.changeTheme(theme);
 });
 
-var htmlObserver = new MutationObserver((mutations) => {
-  for(let mutation of mutations) {
-    if (mutation.type == "attributes") {
-      let userColorScheme = document.documentElement.getAttribute('data-user-color-scheme')
-      if (userColorScheme === 'light') {
-        window.REMARK42.changeTheme('light');
-      } else if (userColorScheme === 'dark') {
-        window.REMARK42.changeTheme('dark');
-      } else {
-        if (detectDark.isDark()) {
-          window.REMARK42.changeTheme('dark');
-        } else {
-          window.REMARK42.changeTheme('light');
+const htmlObserver = new MutationObserver((mutations) => {
+    for(const mutation of mutations) {
+        if (mutation.type == 'attributes') {
+            const userColorScheme = document.documentElement.getAttribute('data-user-color-scheme');
+            if (userColorScheme === 'light') {
+                window.REMARK42.changeTheme('light');
+            } else if (userColorScheme === 'dark') {
+                window.REMARK42.changeTheme('dark');
+            } else {
+                if (detectDark.isDark()) {
+                    window.REMARK42.changeTheme('dark');
+                } else {
+                    window.REMARK42.changeTheme('light');
+                }
+            }
         }
-      }
     }
-  }
-})
+});
 htmlObserver.observe(document.documentElement, {
-  attributes: true
-})
+    attributes: true
+});
