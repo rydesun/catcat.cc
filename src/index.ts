@@ -1,4 +1,4 @@
-import {colorSchemeManager} from './colorschemeSwitcher';
+import { colorSchemeManager } from './colorschemeSwitcher';
 
 function switchColorscheme() {
     const current_theme = colorSchemeManager.getCurrent();

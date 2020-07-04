@@ -1,5 +1,5 @@
-import {colorSchemeManager} from './colorschemeSwitcher';
-import {detectDark} from './lib';
+import { colorSchemeManager } from './colorschemeSwitcher';
+import { detectDark } from './lib';
 
 declare global {
     interface Window {
@@ -19,13 +19,14 @@ window.remark_config = remark_config;
 
 function loadRemark42() {
     // set theme by color scheme
-    if (colorSchemeManager.checkDarkHTML() || (detectDark.isDark())) {
+    if (colorSchemeManager.checkDarkHTML() || detectDark.isDark()) {
         remark_config.theme = 'dark';
     } else {
         remark_config.theme = 'light';
     }
 
-    const d = document, s = d.createElement('script');
+    const d = document,
+        s = d.createElement('script');
     s.src = `${remark_config.host}/web/embed.js`;
     s.defer = true;
     s.onload = () => {
@@ -36,12 +37,15 @@ function loadRemark42() {
 }
 
 setTimeout(() => {
-    const commentObserver = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-            loadRemark42();
-            commentObserver.disconnect();
-        }
-    }, { threshold: [0] });
+    const commentObserver = new IntersectionObserver(
+        (entries) => {
+            if (entries[0].isIntersecting) {
+                loadRemark42();
+                commentObserver.disconnect();
+            }
+        },
+        { threshold: [0] }
+    );
     commentObserver.observe(document.getElementById('remark42'));
 }, 1);
 
@@ -51,9 +55,11 @@ detectDark.trigger((isDark) => {
 });
 
 const htmlObserver = new MutationObserver((mutations) => {
-    for(const mutation of mutations) {
+    for (const mutation of mutations) {
         if (mutation.type === 'attributes') {
-            const userColorScheme = document.documentElement.getAttribute('data-user-color-scheme');
+            const userColorScheme = document.documentElement.getAttribute(
+                'data-user-color-scheme'
+            );
             if (userColorScheme === 'light') {
                 window.REMARK42.changeTheme('light');
             } else if (userColorScheme === 'dark') {
@@ -69,5 +75,5 @@ const htmlObserver = new MutationObserver((mutations) => {
     }
 });
 htmlObserver.observe(document.documentElement, {
-    attributes: true
+    attributes: true,
 });

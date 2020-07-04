@@ -1,7 +1,7 @@
 declare global {
     interface Window {
-      toggleExpand: Function;
-      scrollToTop: Function;
+        toggleExpand: Function;
+        scrollToTop: Function;
     }
 }
 
@@ -29,7 +29,7 @@ function showScrollToTop() {
     if (scrollToTopTimeout) {
         clearTimeout(scrollToTopTimeout);
     }
-    scrollToTopTimeout = setTimeout(function() {
+    scrollToTopTimeout = setTimeout(function () {
         button.classList.remove('scrolling');
     }, 2000);
 }
@@ -37,17 +37,17 @@ function showScrollToTop() {
 let positionY = 0;
 let ticking = false;
 
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     const offsetY = window.scrollY - positionY;
     positionY = window.scrollY;
-    if (window. innerWidth > 900) {
+    if (window.innerWidth > 900) {
         return;
     }
     if (offsetY > -100) {
         return;
     }
     if (!ticking) {
-        window.requestAnimationFrame(function() {
+        window.requestAnimationFrame(function () {
             showScrollToTop();
             ticking = false;
         });
