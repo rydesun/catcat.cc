@@ -1,11 +1,11 @@
-{{ $sass := .Get 0 }}
+{{ $scss := .Get 0 }}
 {{ $inline := .Get 1 }}
 
 {{ $style := "" }}
 {{ if eq (getenv "HUGO_MODE") "dev" }}
-  {{ $style = resources.Get $sass | toCSS (dict "enableSourceMap" true) }}
+  {{ $style = resources.Get $scss | toCSS (dict "enableSourceMap" true) }}
 {{ else }}
-  {{ $style = resources.Get $sass | toCSS | minify }}
+  {{ $style = resources.Get $scss | toCSS | minify }}
 {{ end }}
 
 {{ if eq $inline true }}

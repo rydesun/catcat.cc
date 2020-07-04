@@ -1,0 +1,427 @@
+@import "../lib/mixin";
+
+div#book {
+  h1.article.title {
+    font-size: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px dotted #7775;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  h5 {
+    font-size: 16px;
+  }
+
+  $expandWidth1: 1800px;
+  $expandWidth2: 1470px;
+  $collapseWidth: 1100px;
+  $compatWidth: 1000px;
+  $narrowWidth: 500px;
+
+  display: flex;
+
+  &.left-side {
+    flex-direction: row;
+  }
+
+  flex-direction: row-reverse;
+  align-items: flex-start;
+
+  @include margin-side(auto);
+
+  max-width: 1920px;
+
+  @include max-min-width($collapseWidth, $compatWidth) {
+    max-width: $compatWidth;
+  }
+
+
+  @include max-width($collapseWidth) {
+    align-items: stretch;
+    flex-direction: column !important;
+  }
+
+
+  &.toc-expanded {
+    div#toc-list {
+      display: block !important;
+    }
+
+    div.toolbar button#tocButton:before {
+      content: "ー " !important;
+    }
+
+    div.article-container {
+      @include max-width($expandWidth1) {
+        flex: 3 1 60%;
+      }
+
+
+      @include max-width($expandWidth2) {
+        flex: 3 1 70%;
+      }
+    }
+
+    aside#menu {
+      @include max-width($expandWidth1) {
+        flex: 1 6 28%;
+      }
+
+
+      @include max-width($expandWidth2) {
+        flex: 1 6 20%;
+      }
+    }
+
+    div.placeholder {
+      @include max-width($expandWidth1) {
+        flex: 0 6 14%;
+      }
+
+
+      @include max-width($expandWidth2) {
+        flex: 1 6 0;
+      }
+    }
+  }
+
+  div.placeholder {
+    flex: 1 6 20%;
+
+    @include max-width($expandWidth2) {
+      flex: 1 6 5%;
+    }
+  }
+
+  aside#menu {
+    flex: 1 6 20%;
+
+    @include max-width($expandWidth2) {
+      flex: 1 6 5%;
+    }
+
+
+    position: sticky;
+    top: 1rem;
+
+    @include max-width($collapseWidth) {
+      position: unset;
+    }
+
+
+    &.fix-top {
+      top: 0;
+      position: sticky;
+    }
+
+    div#toc {
+      @include max-width($collapseWidth) {
+        margin-bottom: 1rem;
+      }
+
+
+      div.toolbar {
+        margin-left: 1.3rem;
+
+        @include max-width($collapseWidth) {
+          margin-left: 0;
+        }
+
+
+        button {
+          padding: 0.2rem 0.7rem;
+          border-radius: 5px;
+          text-decoration: none;
+          border: none;
+
+          &::-moz-focus-inner {
+            border: 0;
+          }
+
+          &:focus {
+            outline: 0;
+          }
+
+          &:hover {
+            opacity: 0.8;
+          }
+
+          &:active {
+            opacity: 1;
+          }
+
+          @include smart-light-theme {
+            color: white;
+            background: var(--light-theme-color-blob);
+            box-shadow: 1px 1px 4px var(--light-theme-color-shadow);
+          }
+
+
+          @include smart-dark-theme {
+            color: #ddd;
+            background: var(--dark-theme-color-blob);
+            box-shadow: 1px 1px 4px var(--dark-theme-color-shadow);
+          }
+        }
+
+        button#tocButton:before {
+          content: "＋ ";
+        }
+
+        button#scroll {
+          all: unset;
+          border-radius: 50%;
+          box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.12);
+          position: fixed;
+          bottom: 30px;
+          right: 30px;
+          width: 65px;
+          height: 65px;
+          z-index: 10000;
+          display: none;
+
+          &.scrolling {
+            display: unset;
+          }
+
+          svg {
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+
+            @include smart-light-theme {
+              background-color: var(--light-theme-color-blob);
+
+              path {
+                fill: #fff;
+              }
+            }
+
+
+            @include smart-dark-theme {
+              background-color: var(--dark-theme-color-blob);
+
+              path {
+                fill: #333;
+              }
+            }
+          }
+        }
+      }
+
+      div#toc-list {
+        max-width: 300px;
+        max-height: 85vh;
+        overflow-y: auto;
+        margin-top: 0.4rem;
+        margin-left: 1.3rem;
+        border-radius: 6px;
+        box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.12);
+
+        @include max-width($collapseWidth) {
+          margin-left: 0;
+          max-height: unset;
+          overflow-y: unset;
+        }
+
+
+        scrollbar-width: thin;
+
+        @include smart-light-theme {
+          background: white;
+          scrollbar-color: #aaa #fff;
+        }
+
+
+        @include smart-dark-theme {
+          background: #393e46;
+          scrollbar-color: #666 rgba(0, 0, 0, 0);
+        }
+
+
+        &:hover {
+          @include smart-light-theme {
+            scrollbar-color: var(--light-theme-color-blob) #fff;
+          }
+
+
+          @include smart-dark-theme {
+            scrollbar-color: var(--dark-theme-color-blob) rgba(0, 0, 0, 0);
+          }
+        }
+
+        &::-webkit-scrollbar {
+          width: 7px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background-color: unset;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          border-radius: 10px;
+
+          @include smart-light-theme {
+            background-color: #aaa;
+          }
+
+
+          @include smart-dark-theme {
+            background-color: #666;
+          }
+        }
+
+        &:hover::-webkit-scrollbar-thumb {
+          @include smart-light-theme {
+            background-color: var(--light-theme-color-blob);
+          }
+
+
+          @include smart-dark-theme {
+            background-color: var(--dark-theme-color-blob);
+          }
+        }
+
+        #TableOfContents {
+          font-size: 0.82rem;
+          padding-right: 1rem;
+
+          > ul {
+            padding-bottom: 1rem;
+          }
+
+          ul {
+            padding-left: 1.25rem;
+            list-style-type: none;
+
+            li {
+              padding-top: 0.35rem;
+
+              ::marker {
+                color: #7a7a7a;
+              }
+            }
+          }
+
+          ul ul {
+            list-style-type: decimal;
+          }
+        }
+
+        a {
+          @include smart-dark-theme {
+            color: #909ec7;
+          }
+        }
+
+        display: none;
+      }
+    }
+  }
+
+  div.article-container {
+    flex: 3 1 60%;
+
+    @include max-width(450px) {
+      margin-left: -20px;
+      margin-right: -20px;
+    }
+  }
+}
+
+div.article-container {
+  box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.12);
+}
+
+article.article.markdown-body {
+  @include smart-light-theme {
+    color: #222;
+  }
+
+
+  @include smart-dark-theme {
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+
+  a {
+    @include smart-light-theme;
+    @include smart-dark-theme {
+      color: var(--dark-theme-color-link);
+    }
+  }
+
+  p code, li code {
+    hyphens: none;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+
+    @include smart-light-theme {
+      color: var(--light-theme-color-code-glyph);
+      background-color: var(--light-theme-color-code-blob);
+    }
+
+
+    @include smart-dark-theme {
+      color: var(--dark-theme-color-code-glyph);
+      background-color: var(--dark-theme-color-code-blob);
+    }
+  }
+
+  pre {
+    @include smart-light-theme {
+      background-color: var(--light-theme-color-code-block-blob);
+    }
+
+
+    @include smart-dark-theme {
+      border: none;
+      background-color: var(--dark-theme-color-code-block-blob);
+    }
+
+
+    code, kbd, samp {
+      @include smart-dark-theme {
+        color: rgba(255, 255, 255, 0.65);
+      }
+    }
+  }
+
+  blockquote {
+    padding: 0.35em;
+
+    @include smart-light-theme {
+      border-left: 6px solid var(--light-theme-color-blob);
+    }
+
+
+    @include smart-dark-theme {
+      border-left: 6px solid var(--dark-theme-color-blob);
+    }
+  }
+}
+
+section.article.license {
+  text-align: right;
+  font-size: 0.8rem;
+
+  @include smart-light-theme {
+    color: var(--light-theme-color-faint);
+  }
+
+
+  @include smart-dark-theme {
+    color: var(--dark-theme-color-faint);
+  }
+}

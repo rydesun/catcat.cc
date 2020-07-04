@@ -1,0 +1,60 @@
+@mixin dark-theme {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
+@mixin user-default-theme {
+  :root:not([data-user-color-scheme]) & {
+    @content;
+  }
+}
+
+@mixin user-dark-theme {
+  :root[data-user-color-scheme='dark'] & {
+    @content;
+  }
+}
+
+@mixin user-light-theme {
+  :root[data-user-color-scheme='light'] & {
+    @content;
+  }
+}
+
+@mixin smart-dark-theme {
+  @include user-default-theme {
+    @include dark-theme {
+      @content;
+    }
+  }
+
+
+  @include user-dark-theme {
+    @content;
+  }
+}
+
+@mixin smart-light-theme {
+  @content;
+  @include user-light-theme {
+    @content;
+  }
+}
+
+@mixin max-width($width) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin max-min-width($max-width, $min-width) {
+  @media screen and (max-width: $max-width) and (min-width: $min-width) {
+    @content;
+  }
+}
+
+@mixin margin-side($val) {
+  margin-left: $val;
+  margin-right: $val;
+}
