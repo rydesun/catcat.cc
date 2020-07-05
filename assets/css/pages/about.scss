@@ -1,4 +1,4 @@
-@import "../lib/mixin";
+@import '../lib/mixin';
 
 // 文章容器
 div#content {
@@ -24,8 +24,8 @@ div#intro {
 
 
   svg.icon {
-    vertical-align: middle;
     fill: currentColor;
+    vertical-align: middle;
   }
 }
 
@@ -64,8 +64,8 @@ div#card {
     text-decoration: none;
 
     svg {
-      transition: transform 1s;
       transform: rotate(0deg);
+      transition: transform 1s;
 
       &:hover {
         transform: rotate(360deg);

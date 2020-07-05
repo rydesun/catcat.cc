@@ -1,14 +1,14 @@
 @keyframes flipInX {
   from {
-    transform: perspective(400px) rotate3d(1, 0, 0, 180deg);
     animation-timing-function: ease-in;
     opacity: 0;
+    transform: perspective(400px) rotate3d(1, 0, 0, 180deg);
   }
 
   to {
-    visibility: visible;
-    transform: perspective(400px);
     opacity: 1;
+    transform: perspective(400px);
+    visibility: visible;
   }
 }
 
@@ -19,8 +19,8 @@
   }
 
   to {
-    visibility: visible;
     opacity: 1;
     transform: translate3d(0, 0, 0);
+    visibility: visible;
   }
 }

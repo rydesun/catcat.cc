@@ -1,16 +1,12 @@
-@import "../lib/mixin";
+@import '../lib/mixin';
 
 div#content ul.note.list li.item {
-  box-shadow: none;
   background: inherit;
+  box-shadow: none;
   padding-bottom: 8px;
 
   &:hover {
     box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.12);
-
-    & a.note {
-      opacity: 1;
-    }
 
     @include smart-light-theme {
       background: white;
@@ -19,6 +15,10 @@ div#content ul.note.list li.item {
 
     @include smart-dark-theme {
       background: #393e46;
+    }
+
+    a.note {
+      opacity: 1;
     }
   }
 }

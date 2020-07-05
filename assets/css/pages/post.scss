@@ -1,10 +1,36 @@
-@import "../lib/mixin";
+@import '../lib/mixin';
 
 div#book {
+
+  $expandWidth1: 1800px;
+  $expandWidth2: 1470px;
+  $collapseWidth: 1100px;
+  $compatWidth: 1000px;
+  $narrowWidth: 500px;
+
+  @include margin-side(auto);
+  align-items: flex-start;
+
+  display: flex;
+
+  flex-direction: row-reverse;
+
+  max-width: 1920px;
+
+  @include max-min-width($collapseWidth, $compatWidth) {
+    max-width: $compatWidth;
+  }
+
+
+  @include max-width($collapseWidth) {
+    align-items: stretch;
+    flex-direction: column !important;
+  }
+
   h1.article.title {
+    border-bottom: 2px dotted #7775;
     font-size: 24px;
     padding-bottom: 12px;
-    border-bottom: 2px dotted #7775;
   }
 
   h2 {
@@ -23,33 +49,8 @@ div#book {
     font-size: 16px;
   }
 
-  $expandWidth1: 1800px;
-  $expandWidth2: 1470px;
-  $collapseWidth: 1100px;
-  $compatWidth: 1000px;
-  $narrowWidth: 500px;
-
-  display: flex;
-
   &.left-side {
     flex-direction: row;
-  }
-
-  flex-direction: row-reverse;
-  align-items: flex-start;
-
-  @include margin-side(auto);
-
-  max-width: 1920px;
-
-  @include max-min-width($collapseWidth, $compatWidth) {
-    max-width: $compatWidth;
-  }
-
-
-  @include max-width($collapseWidth) {
-    align-items: stretch;
-    flex-direction: column !important;
   }
 
 
@@ -58,8 +59,8 @@ div#book {
       display: block !important;
     }
 
-    div.toolbar button#tocButton:before {
-      content: "ー " !important;
+    div.toolbar button#tocButton::before {
+      content: 'ー ' !important;
     }
 
     div.article-container {
@@ -107,13 +108,13 @@ div#book {
   aside#menu {
     flex: 1 6 20%;
 
-    @include max-width($expandWidth2) {
-      flex: 1 6 5%;
-    }
-
 
     position: sticky;
     top: 1rem;
+
+    @include max-width($expandWidth2) {
+      flex: 1 6 5%;
+    }
 
     @include max-width($collapseWidth) {
       position: unset;
@@ -121,8 +122,8 @@ div#book {
 
 
     &.fix-top {
-      top: 0;
       position: sticky;
+      top: 0;
     }
 
     div#toc {
@@ -140,10 +141,23 @@ div#book {
 
 
         button {
-          padding: 0.2rem 0.7rem;
-          border-radius: 5px;
-          text-decoration: none;
           border: none;
+          border-radius: 5px;
+          padding: 0.2rem 0.7rem;
+          text-decoration: none;
+
+          @include smart-light-theme {
+            background: var(--light-theme-color-blob);
+            box-shadow: 1px 1px 4px var(--light-theme-color-shadow);
+            color: white;
+          }
+
+
+          @include smart-dark-theme {
+            background: var(--dark-theme-color-blob);
+            box-shadow: 1px 1px 4px var(--dark-theme-color-shadow);
+            color: #ddd;
+          }
 
           &::-moz-focus-inner {
             border: 0;
@@ -160,36 +174,23 @@ div#book {
           &:active {
             opacity: 1;
           }
-
-          @include smart-light-theme {
-            color: white;
-            background: var(--light-theme-color-blob);
-            box-shadow: 1px 1px 4px var(--light-theme-color-shadow);
-          }
-
-
-          @include smart-dark-theme {
-            color: #ddd;
-            background: var(--dark-theme-color-blob);
-            box-shadow: 1px 1px 4px var(--dark-theme-color-shadow);
-          }
         }
 
-        button#tocButton:before {
-          content: "＋ ";
+        button#tocButton::before {
+          content: '＋ ';
         }
 
         button#scroll {
           all: unset;
           border-radius: 50%;
-          box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.12);
-          position: fixed;
           bottom: 30px;
+          box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.12);
+          display: none;
+          height: 65px;
+          position: fixed;
           right: 30px;
           width: 65px;
-          height: 65px;
           z-index: 10000;
-          display: none;
 
           &.scrolling {
             display: unset;
@@ -197,8 +198,8 @@ div#book {
 
           svg {
             border-radius: 50%;
-            width: 100%;
             height: 100%;
+            width: 100%;
 
             @include smart-light-theme {
               background-color: var(--light-theme-color-blob);
@@ -221,22 +222,24 @@ div#book {
       }
 
       div#toc-list {
-        max-width: 300px;
-        max-height: 85vh;
-        overflow-y: auto;
-        margin-top: 0.4rem;
-        margin-left: 1.3rem;
         border-radius: 6px;
         box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.12);
+
+        display: none;
+        margin-left: 1.3rem;
+        margin-top: 0.4rem;
+        max-height: 85vh;
+        max-width: 300px;
+        overflow-y: auto;
+
+
+        scrollbar-width: thin;
 
         @include max-width($collapseWidth) {
           margin-left: 0;
           max-height: unset;
           overflow-y: unset;
         }
-
-
-        scrollbar-width: thin;
 
         @include smart-light-theme {
           background: white;
@@ -302,8 +305,8 @@ div#book {
           }
 
           ul {
-            padding-left: 1.25rem;
             list-style-type: none;
+            padding-left: 1.25rem;
 
             li {
               padding-top: 0.35rem;
@@ -324,8 +327,6 @@ div#book {
             color: #909ec7;
           }
         }
-
-        display: none;
       }
     }
   }
@@ -362,20 +363,21 @@ article.article.markdown-body {
     }
   }
 
-  p code, li code {
+  p code,
+  li code {
+    border-radius: 3px;
     hyphens: none;
     padding: 0.1rem 0.3rem;
-    border-radius: 3px;
 
     @include smart-light-theme {
-      color: var(--light-theme-color-code-glyph);
       background-color: var(--light-theme-color-code-blob);
+      color: var(--light-theme-color-code-glyph);
     }
 
 
     @include smart-dark-theme {
-      color: var(--dark-theme-color-code-glyph);
       background-color: var(--dark-theme-color-code-blob);
+      color: var(--dark-theme-color-code-glyph);
     }
   }
 
@@ -386,12 +388,14 @@ article.article.markdown-body {
 
 
     @include smart-dark-theme {
-      border: none;
       background-color: var(--dark-theme-color-code-block-blob);
+      border: none;
     }
 
 
-    code, kbd, samp {
+    code,
+    kbd,
+    samp {
       @include smart-dark-theme {
         color: rgba(255, 255, 255, 0.65);
       }
@@ -413,8 +417,8 @@ article.article.markdown-body {
 }
 
 section.article.license {
-  text-align: right;
   font-size: 0.8rem;
+  text-align: right;
 
   @include smart-light-theme {
     color: var(--light-theme-color-faint);
