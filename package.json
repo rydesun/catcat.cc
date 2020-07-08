@@ -1,4 +1,5 @@
 {
+  "private": "true",
   "scripts": {
     "test": "webpack --config webpack.dev.js --watch",
     "build": "webpack --config webpack.prod.js"
