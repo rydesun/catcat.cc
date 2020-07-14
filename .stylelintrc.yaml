@@ -12,4 +12,5 @@ rules:
 
 ignoreFiles:
   - "node_modules/**/*"
+  - "public/**/*"
   - "assets/css/vendor/**/*"

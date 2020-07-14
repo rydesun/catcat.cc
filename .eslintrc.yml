@@ -1,3 +1,7 @@
+ignorePatterns:
+  - '/scripts'
+  - '/public'
+  - '/assets/js'
 env:
   browser: true
   es6: true
