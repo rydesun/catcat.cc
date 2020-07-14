@@ -4,16 +4,19 @@ const Fontmin = require('fontmin');
 const fs = require('fs');
 const glob = require("glob");
 
+var fontRegular = 'raw/fonts/sarasa-ui-sc-regular.ttf'
+var fontBold = 'raw/fonts/sarasa-ui-sc-bold.ttf'
 // fix some characters
 extraText = '月'
+fileSources = ["content/**/*.md",
+    "content/**/*.html",
+    "layouts/**/*.html",
+    "assets/css/*",
+    "assets/css/vendor/*",
+    "assets/js/**/*.js"]
 
 var files = [];
-for (p of ["content/**/*.md",
-           "content/**/*.html",
-           "layouts/**/*.html",
-           "assets/css/*",
-           "assets/css/vendor/*",
-           "assets/js/**/*.js"]) {
+for (p of fileSources) {
   files.push(...glob.sync(p));
 }
 
@@ -27,8 +30,7 @@ for (f of files) {
 content += extraText;
 
 var fontmin = new Fontmin()
-  .src(['raw/fonts/sarasa-ui-sc-regular.ttf',
-        'raw/fonts/sarasa-ui-sc-bold.ttf'])
+  .src([fontRegular, fontBold])
   .dest('assets/fonts')
   .use(Fontmin.glyph({text: content}))
   .use(Fontmin.ttf2woff2());
