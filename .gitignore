@@ -1,11 +1,13 @@
-node_modules/
+## use yarn.lock alternatively
 package-lock.json
-/assets/fonts
-/assets/js/build
-vendor
-/content
+node_modules/
+vendor/
 
-/raw
-/resources
-/public
-/static/fonts
+/content/
+/resources/
+/raw/
+
+## building
+/assets/js/build/
+/assets/fonts/
+/public/
