@@ -4,8 +4,7 @@ const Fontmin = require('fontmin');
 const fs = require('fs');
 const glob = require("glob");
 
-var fontRegular = 'raw/fonts/sarasa-ui-sc-regular.ttf'
-var fontBold = 'raw/fonts/sarasa-ui-sc-bold.ttf'
+var [fontRegular, fontBold] = process.argv.slice(2);
 // fix some characters
 extraText = '月'
 fileSources = ["content/**/*.md",
