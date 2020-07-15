@@ -5,14 +5,17 @@ const fs = require('fs');
 const glob = require("glob");
 
 var [fontRegular, fontBold] = process.argv.slice(2);
-// fix some characters
-extraText = '月'
-fileSources = ["content/**/*.md",
+
+fileSources = [
+    "config.toml",
+    "content/**/*.md",
     "content/**/*.html",
     "layouts/**/*.html",
+    "i18n/*.toml",
     "assets/css/*",
     "assets/css/vendor/*",
-    "assets/js/**/*.js"]
+    "assets/js/**/*.js",
+]
 
 var files = [];
 for (p of fileSources) {
@@ -26,7 +29,6 @@ for (f of files) {
   }
   content += fs.readFileSync(f, 'utf8');
 }
-content += extraText;
 
 var fontmin = new Fontmin()
   .src([fontRegular, fontBold])
