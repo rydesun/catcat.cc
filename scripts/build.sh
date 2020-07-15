@@ -31,4 +31,7 @@ hugo -D --minify
 
 # diff output
 (cd public && git status -s)
-diff <(echo "$old_font") <(ls public/fonts)
+
+if [ -d public/fonts ]; then
+	diff <(echo "$old_font") <(ls public/fonts)
+fi
