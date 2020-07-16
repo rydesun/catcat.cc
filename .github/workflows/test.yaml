@@ -2,7 +2,7 @@ name: Test
 on: [push]
 jobs:
   test:
-    name: Build on ${{ matrix.os }} ${{ matrix.node }}
+    name: Build on ${{ matrix.os }} Node.js ${{ matrix.node }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
