@@ -7,12 +7,12 @@
 
 [双猫CC](https://2cat.cc) - 我的博客
 
-## 依赖
+## 安装依赖
 
-```text
-hugo
-yarn
-git
+先安装 hugo, yarn, git 后，然后运行：
+
+```shell
+yarn install
 ```
 
 ## 测试
@@ -36,3 +36,12 @@ git
 ```
 
 编译结果在`./public`中。
+
+## 字体
+
+将更纱黑体放在目录`./raw/fonts`中：
+
+```text
+./raw/fonts/sarasa-ui-sc-regular.ttf
+./raw/fonts/sarasa-ui-sc-bold.ttf
+```
