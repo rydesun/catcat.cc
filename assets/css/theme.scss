@@ -33,11 +33,10 @@
 }
 
 html {
-  $fontCN: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans CJK SC', 'Sarasa Compact';
-  $fontFallback: 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Tahoma, Arial, 'Microsoft YaHei';
-  $emoji: 'Twemoji', 'Noto Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Apple Color Emoji';
+  $fontEN: 'Noto Sans', 'Ubuntu', 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Tahoma, Arial;
+  $fontCN: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans CJK SC', 'Sarasa Compact', 'Microsoft YaHei';
 
-  font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans', $fontCN, $fontFallback, sans-serif, $emoji;
+  font-family: -apple-system, BlinkMacSystemFont, $fontEN, $fontCN, sans-serif;
   font-size: 16px;
   line-height: 1.8;
 }
@@ -55,7 +54,10 @@ code,
 tt,
 kbd,
 samp {
-  font-family: Menlo, Monaco, Consolas, monospace;
+  font-family: Menlo, Monaco, Consolas, Inconsolata, 'Source Code Pro', 'Liberation Mono', monospace;
+}
+pre {
+  font-size: 14px;
 }
 
 ::-webkit-scrollbar {
