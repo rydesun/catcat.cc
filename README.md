@@ -20,19 +20,19 @@ yarn install
 本地运行：
 
 ```shell
-./scripts/test.sh
+./tools/test.sh
 ```
 
 后面可接`hugo`的参数，例如：
 
 ```shell
-./scripts/test.sh --bind 192.168.0.2
+./tools/test.sh --bind 192.168.0.2
 ```
 
 ## 编译
 
 ```shell
-./scripts/build.sh
+./tools/build.sh
 ```
 
 编译结果在`./public`中。

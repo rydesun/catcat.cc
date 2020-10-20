@@ -19,7 +19,7 @@ if [ -d ./assets/js/build ]; then
 fi
 yarn run build
 if [ -f ${font_regular} ] && [ -f ${font_bold} ]; then
-	scripts/fontmin.js ${font_regular} ${font_bold}
+	tools/fontmin.js ${font_regular} ${font_bold}
 else
 	echo Chinese fonts are missing. >&2
 fi

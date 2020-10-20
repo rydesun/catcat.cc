@@ -2,10 +2,10 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    index: './src/index.ts',
-    comments: './src/comments.ts',
-    menu: './src/menu.ts',
-    warnIE: './src/warnIE.js',
+    index: './js/index.ts',
+    comments: './js/comments.ts',
+    menu: './js/menu.ts',
+    warnIE: './js/warnIE.js',
   },
   output: {
     path: path.resolve(__dirname, './assets/js/build'),
