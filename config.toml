@@ -1,4 +1,4 @@
-baseURL = "https://2cat.cc"
+baseURL = "https://catcat.cc"
 title = "双猫CC"
 
 languageCode = "zh"
@@ -6,8 +6,6 @@ defaultContentLanguage = "zh"
 hasCJKLanguage = true
 enableEmoji = true
 enableRobotsTXT = true
-
-disqusShortname = "2cat"
 
 theme = ["hugo-notepadium"]
 

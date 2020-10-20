@@ -1,11 +1,11 @@
 # 双猫CC
 
-<a href="https://2cat.cc">
-<img src="https://2cat.cc/images/2cats.png" width="208" height="50" /></a>
+<a href="https://catcat.cc">
+<img src="https://catcat.cc/images/2cats.png" width="208" height="50" /></a>
 <br>
 <br>
 
-[双猫CC](https://2cat.cc) - 我的博客
+[双猫CC](https://catcat.cc) - 我的博客
 
 ## 安装依赖
 

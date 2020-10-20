@@ -9,7 +9,7 @@ declare global {
 }
 
 const remark_config = {
-    host: 'https://comments.srv.2cat.cc',
+    host: 'https://comments.srv.catcat.cc',
     site_id: '2cat.cc',
     components: ['embed'],
     theme: '',
