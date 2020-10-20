@@ -26,4 +26,4 @@ jobs:
         hugo-version: '0.73.0'
         extended: true
     - name: Test build
-      run: scripts/build.sh
+      run: tools/build.sh
