@@ -1,5 +1,15 @@
 @import '../lib/mixin';
 
+div#content p.note.urgency {
+  font-size: 13px;
+  @include smart-light-theme {
+    color: var(--light-theme-color-urgency);
+  }
+  @include smart-dark-theme {
+    color: var(--dark-theme-color-urgency);
+  }
+}
+
 div#content ul.note.list li.item {
   background: inherit;
   box-shadow: none;

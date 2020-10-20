@@ -10,6 +10,7 @@
   --light-theme-color-code-glyph: var(--light-theme-color-glyph);
   --light-theme-color-code-blob: #f0f0f0;
   --light-theme-color-code-block-blob: #f0f0f0;
+  --light-theme-color-urgency: #b73838;
   --dark-theme-color-blob: #705571;
   --dark-theme-color-glyph: #a684a6;
   --dark-theme-color-shadow: #221b1b;
@@ -18,6 +19,7 @@
   --dark-theme-color-code-blob: rgba(0, 0, 0, 0.1);
   --dark-theme-color-code-block-blob: rgba(0, 0, 0, 0.35);
   --dark-theme-color-link: #3e9dd7;
+  --dark-theme-color-urgency: #fb5252;
 }
 
 :root:not([data-user-color-scheme]) {
