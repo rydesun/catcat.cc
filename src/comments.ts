@@ -10,6 +10,7 @@ declare global {
 
 const remark_config = {
     host: 'https://comments.srv.catcat.cc',
+    url: 'https://2cat.cc' + window.location.pathname,
     site_id: '2cat.cc',
     components: ['embed'],
     theme: '',
