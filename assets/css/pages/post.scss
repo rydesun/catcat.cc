@@ -223,7 +223,7 @@ div#book {
 
       div#toc-list {
         border-radius: 6px;
-        box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.12);
+        box-shadow: 0px 1px 4px rgba(12, 12, 13, 0.1);
 
         display: none;
         margin-left: 1.3rem;
@@ -342,7 +342,7 @@ div#book {
 }
 
 div.article-container {
-  box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 1px 4px rgba(12, 12, 13, 0.1);
 }
 
 article.article.markdown-body {
