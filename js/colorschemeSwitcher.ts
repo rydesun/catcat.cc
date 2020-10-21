@@ -49,6 +49,10 @@ export class ColorSchemeManager {
     cleanHTML(): void {
         document.documentElement.removeAttribute(this.domMark);
     }
+    checkLightHTML(): boolean {
+        const mark = document.documentElement.getAttribute(this.domMark);
+        return mark === 'light';
+    }
     checkDarkHTML(): boolean {
         const mark = document.documentElement.getAttribute(this.domMark);
         return mark === 'dark';

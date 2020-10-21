@@ -20,11 +20,7 @@ window.remark_config = remark_config;
 
 function loadRemark42() {
     // set theme by color scheme
-    if (colorSchemeManager.checkDarkHTML() || detectDark.isDark()) {
-        remark_config.theme = 'dark';
-    } else {
-        remark_config.theme = 'light';
-    }
+    remark_config.theme = colorSchemeManager.getCurrent();
 
     const d = document,
         s = d.createElement('script');
