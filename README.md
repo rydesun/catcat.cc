@@ -7,9 +7,15 @@
 
 [双猫CC](https://catcat.cc) - 我的博客
 
-## 安装依赖
+## 依赖
 
-先安装 hugo, yarn, git 后，然后运行：
+1. 需要 submodule
+
+```shell
+git submodule update --init --recursive
+```
+
+2. 安装 hugo, yarn, git，然后运行
 
 ```shell
 yarn install
@@ -37,7 +43,7 @@ yarn install
 
 编译结果在`./public`中。
 
-## 字体
+## 额外字体
 
 将更纱黑体放在目录`./raw/fonts`中：
 
