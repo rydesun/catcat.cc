@@ -25,13 +25,7 @@
 @import 'vendor/style';
 @import 'vendor/normalize';
 
-:root:not([data-user-color-scheme]) {
-  @import 'vendor/chroma-friendly';
-}
-
-:root[data-user-color-scheme='light'] {
-  @import 'vendor/chroma-friendly';
-}
+@import 'vendor/chroma-friendly';
 
 :root:not([data-user-color-scheme]) {
   @media (prefers-color-scheme: dark) {

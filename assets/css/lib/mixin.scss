@@ -16,6 +16,7 @@
   }
 }
 
+// Not used
 @mixin user-light-theme {
   :root[data-user-color-scheme='light'] & {
     @content;
@@ -35,12 +36,9 @@
   }
 }
 
+// As default
 @mixin smart-light-theme {
-  // FIXME: Should be wrapped by `@include user-default-theme`
   @content;
-  @include user-light-theme {
-    @content;
-  }
 }
 
 @mixin max-width($width) {
