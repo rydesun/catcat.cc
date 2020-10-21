@@ -36,6 +36,7 @@
 }
 
 @mixin smart-light-theme {
+  // FIXME: Should be wrapped by `@include user-default-theme`
   @content;
   @include user-light-theme {
     @content;

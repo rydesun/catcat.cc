@@ -103,12 +103,12 @@ section#header div.header {
       button#colorscheme-switcher {
         border-radius: 5px;
         display: inline-block;
+        border: none;
         padding: 0.2rem 0.7rem;
         text-decoration: none;
 
         @include smart-light-theme {
           background: var(--light-theme-color-blob);
-          border: none;
           box-shadow: 1px 1px 7px var(--light-theme-color-shadow);
           color: white;
 

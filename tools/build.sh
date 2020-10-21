@@ -1,18 +1,6 @@
 #!/bin/bash
 
-code_dark_theme=dracula
-font_regular='raw/fonts/sarasa-ui-sc-regular.ttf'
-font_bold='raw/fonts/sarasa-ui-sc-bold.ttf'
-
-if [ -d public/fonts ]; then
-	old_font=$(ls public/fonts)
-else
-	old_font=
-fi
-
-mkdir -p ./assets/css/vendor/
-cp ./themes/hugo-notepadium/assets/css/dark-style.css ./assets/css/vendor/dark-style.scss
-cp ./themes/hugo-notepadium/assets/css/chroma/${code_dark_theme}.css ./assets/css/vendor/${code_dark_theme}.scss
+source ./tools/prebuild.sh
 
 if [ -d ./assets/js/build ]; then
 	rm -r ./assets/js/build

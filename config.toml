@@ -45,6 +45,3 @@ url = "/about/"
 [params.assets]
 css = ["css/index.scss"]
 js = ["js/build/index.js"]
-
-[params.syntax]
-theme = "friendly"
