@@ -6,14 +6,14 @@
 <style>
 @font-face {
   font-family: 'Sarasa Compact';
-  src: url('{{ $fontRegular.RelPermalink }}') format('woff2');
+  src: url('{{ site.Params.staticBaseURL }}{{ $fontRegular.RelPermalink }}') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: fallback;
 }
 @font-face {
   font-family: 'Sarasa Compact';
-  src: url('{{ $fontBold.RelPermalink }}') format('woff2');
+  src: url('{{ site.Params.staticBaseURL }}{{ $fontBold.RelPermalink }}') format('woff2');
   font-weight: bold;
   font-style: normal;
   font-display: fallback;
