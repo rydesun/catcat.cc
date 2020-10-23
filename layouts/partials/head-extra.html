@@ -1,7 +1,0 @@
-{{ $warnIeJS := "" }}
-{{ if eq (getenv "HUGO_MODE") "dev" }}
-  {{ $warnIeJS = resources.Get "js/build/warnIE.js" | fingerprint }}
-{{ else }}
-  {{ $warnIeJS = resources.Get "js/build/warnIE.js" | minify | fingerprint }}
-{{ end }}
-<script src="{{ $warnIeJS.RelPermalink }}" integrity="{{ $warnIeJS.Data.Integrity }}" defer></script>

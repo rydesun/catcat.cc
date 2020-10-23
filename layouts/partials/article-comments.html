@@ -1,10 +1,3 @@
-{{ $commentsJS := "" }}
-{{ if eq (getenv "HUGO_MODE") "dev" }}
-  {{ $commentsJS = resources.Get "js/build/comments.js" | fingerprint }}
-{{ else }}
-  {{ $commentsJS = resources.Get "js/build/comments.js" | minify | fingerprint }}
-{{ end }}
-
   {{- if or (eq .Params.comments true) (and (ne .Params.comments false) (eq site.Params.comments.enable true)) -}}
     <section class="article discussion">
       <div id="remark42">
@@ -16,8 +9,6 @@
           <noscript>&nbsp;&nbsp;需要开启 JavaScript</noscript>
         </div>
       </div>
-    <script defer type="text/javascript" src="{{ $commentsJS.RelPermalink }}"
-      integrity="{{ $commentsJS.Data.Integrity }}"></script>
     <style>
       #remark42 {
         margin: 26px 0px;

@@ -1,14 +1,6 @@
 {{- define "main" -}}
-
-{{ $tocJS := "" }}
-{{ if eq (getenv "HUGO_MODE") "dev" }}
-  {{ $tocJS = resources.Get "js/build/menu.js" | fingerprint }}
-{{ else }}
-  {{ $tocJS = resources.Get "js/build/menu.js" | minify | fingerprint }}
-{{ end }}
 {{- $justify := false -}}
 {{- if eq .Params.justify true -}} {{- $justify = true -}} {{- end -}}
-<script src="{{ $tocJS.RelPermalink }}" integrity="{{ $tocJS.Data.Integrity }}"></script>
 <div id="book">
   {{ if (not .Params.disableToc) }}
     <aside id="menu">
@@ -43,19 +35,6 @@
 {{- partial "article-comments.html" . -}}
 {{- end -}}
 
-{{- define "structuredData" -}}
-  {{ if (not .Params.disableStructuredData) }}
-    <script type="application/ld+json">
-        {
-          "@context": "https://schema.org/",
-          "@type": "BlogPosting",
-          "author": {
-            "@type": "Person",
-            "name": "rydesun"
-          },
-          "datePublished": {{ .Date.Format "2006-01-02" }},
-          "dateModified": {{ .Lastmod.Format "2006-01-02" }}
-        }
-    </script>
-  {{- end -}}
+{{- define "head-extra" -}}
+  {{- partial "script-post.html" . -}}
 {{- end -}}

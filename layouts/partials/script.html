@@ -1,0 +1,15 @@
+{{- $coreJS := resources.Get "js/build/index.js" -}}
+{{- $warnIeJS := resources.Get "js/build/warnIE.js" -}}
+
+{{- if eq (getenv "HUGO_MODE") "dev" -}}
+  {{- $coreJS = $coreJS | fingerprint "sha384" -}}
+  {{- $warnIeJS = $warnIeJS | fingerprint "sha384" -}}
+{{- else -}}
+  {{- $coreJS = $coreJS | minify | fingerprint "sha384" -}}
+  {{- $warnIeJS = $warnIeJS | minify | fingerprint "sha384" -}}
+{{- end -}}
+
+<script src="{{- $coreJS.RelPermalink -}}" type="text/javascript" defer
+  integrity="{{- $coreJS.Data.Integrity -}}"></script>
+<script src="{{- $warnIeJS.RelPermalink -}}" type="text/javascript" async defer
+  integrity="{{- $warnIeJS.Data.Integrity -}}"></script>
