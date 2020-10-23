@@ -25,7 +25,6 @@
           {{- with .Params.cover -}}<p><img class="cover" src="{{- . | safeURL -}}" alt></p>{{- end -}}
           {{- .Content -}}
       </article>
-      {{- partial "article-labels.html" . -}}
       {{- partial "article-license.html" . -}}
   </div>
   <div class="placeholder"></div>
