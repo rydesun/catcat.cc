@@ -28,10 +28,8 @@ email = "rydesun@gmail.com"
 [params]
 description = "rydesun的纸箱猫窝，快看看里面有什么宝贝！"
 staticBaseURL = "https://static.catcat.cc"
-style = "light"
 dateFormat = "2006年01月02日"
 fullRss = true
-license = '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" src="/images/cc-80x15.png" /></a><p>© 2020 rydesun</p>'
 
 [params.comments]
 enable=true
@@ -43,10 +41,6 @@ showTags = true
 [[params.nav.custom]]
 title = "CatchCat"
 url = "/about/"
-
-[params.assets]
-css = ["css/index.scss"]
-js = ["js/build/index.js"]
 
 [outputs]
 home = ["HTML"]
