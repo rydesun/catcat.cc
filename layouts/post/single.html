@@ -1,6 +1,4 @@
 {{- define "main" -}}
-{{- $justify := false -}}
-{{- if eq .Params.justify true -}} {{- $justify = true -}} {{- end -}}
 <div id="book">
   {{ if (not .Params.disableToc) }}
     <aside id="menu">
@@ -19,16 +17,15 @@
       </div>
     </aside>
   {{ end }}
+
   <div class="article-container">
-      {{- partial "article-header.html" . -}}
-      <article class="article markdown-body" {{- if $justify -}}style="text-align: justify;" {{- end -}}>
-          {{- with .Params.cover -}}<p><img class="cover" src="{{- . | safeURL -}}" alt></p>{{- end -}}
-          {{- .Content -}}
-      </article>
-      {{- partial "article-license.html" . -}}
+    {{- partial "article-header.html" . -}}
+    <article class="article markdown-body">{{- .Content -}}</article>
+    {{- partial "article-license.html" . -}}
   </div>
   <div class="placeholder"></div>
 </div>
+
 {{- partial "article-bottom-navigation.html" . -}}
 {{- partial "article-comments.html" . -}}
 {{- end -}}
