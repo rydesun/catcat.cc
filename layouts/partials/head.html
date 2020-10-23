@@ -4,33 +4,28 @@
 <meta name="color-scheme" content="light dark">
 <meta name="supported-color-schemes" content="light dark">
 
-{{- define "title" -}}
-    {{- $title := .Title -}}
-    {{- if and (ne $title "") (ne $title site.Title) -}}
-        <title>{{- $title | safeHTML -}} &nbsp;&ndash;&nbsp; {{- site.Title | safeHTML -}}</title>
-    {{- else -}}
-        {{- $slogan := site.Params.slogan -}}
-        <title>{{- site.Title | safeHTML -}}{{- if and (isset site.Params "slogan") (ne $slogan "") -}} &nbsp;&ndash;&nbsp;
-            {{- $slogan | safeHTML -}}{{- end -}}</title>
-    {{- end -}}
+{{ $description := "" }}
+{{- if (ne .Description "") -}}
+  {{ $description = .Description }}
+{{- else if (ne .Summary "") -}}
+  {{ $description = .Summary }}
+{{- else -}}
+  {{ $description = site.Params.Description }}
+{{- end -}}
+<meta name="description" content="{{ $description }}">
+
+{{- if and (ne .Title "") (ne .Title site.Title) -}}
+  <title>{{- .Title -}} &nbsp;-&nbsp; {{- site.Title -}}</title>
+{{- else -}}
+  <title>{{- site.Title -}}</title>
 {{- end -}}
 
-{{- if (ne .Description "") -}}
-    <meta name="description" content="{{- .Description -}}">
-{{- else if (ne .Summary "") -}}
-    <meta name="description" content="{{- .Summary -}}">
-{{- else -}}
-    <meta name="description" content="rydesun的纸箱猫窝，快看看里面有什么宝贝！">
-{{- end -}}
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="shortcut icon" href="/favicon.ico">
 
-{{- block "title" . -}}{{- end -}}
-
 {{- partial "style.html" . -}}
-{{- partial "extra-style.html" . -}}
 {{- partial "script.html" . -}}
 {{- partial "rss-feed.html" . -}}

@@ -1,19 +1,28 @@
-{{- $css := "" -}}
-{{- range site.Params.assets.css -}}
-  {{- $customCSS := resources.Get . -}}
-  {{- if $customCSS -}}
-    {{- $scss := false -}}
-    {{- $filePath := . | lower -}}
-    {{- if or (strings.HasSuffix $filePath ".scss") (strings.HasSuffix $filePath ".sass") -}}{{- $scss = true -}}{{- end -}}
-    {{- if $scss -}}{{- $customCSS = $customCSS | resources.ToCSS -}}{{- end -}}
-    {{- if eq $css "" -}}
-      {{- $css = $customCSS -}}
-    {{- else -}}
-      {{- $css = slice $css $customCSS | resources.Concat (printf "%s.tmp_custom.css" .) -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
+{{- $coreCSS := resources.Get "css/index.scss" | toCSS -}}
+{{- $coreCSS = $coreCSS | minify | fingerprint "sha384" -}}
+<link rel="stylesheet" href="{{- $coreCSS.RelPermalink -}}"
+  integrity="{{- $coreCSS.Data.Integrity -}}">
 
-{{- $css = $css | resources.Minify | resources.Fingerprint "sha384" -}}
+<!-- TODO: Use Hugo template variables in SCSS files by `resources.ExecuteAsTemplate` -->
 
-<link rel="stylesheet" href="{{- $css.RelPermalink -}}" integrity="{{- $css.Data.Integrity -}}">
+{{ $fontRegular := resources.Get "/fonts/sarasa-ui-sc-regular.woff2" }}
+{{ $fontBold := resources.Get "/fonts/sarasa-ui-sc-bold.woff2" }}
+{{ $fontRegular = $fontRegular | resources.Fingerprint "sha384" }}
+{{ $fontBold = $fontBold | resources.Fingerprint "sha384" }}
+
+<style>
+@font-face {
+  font-family: 'Sarasa Compact';
+  src: url('{{ site.Params.staticBaseURL }}{{ $fontRegular.RelPermalink }}') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: fallback;
+}
+@font-face {
+  font-family: 'Sarasa Compact';
+  src: url('{{ site.Params.staticBaseURL }}{{ $fontBold.RelPermalink }}') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: fallback;
+}
+</style>
