@@ -47,3 +47,10 @@ url = "/about/"
 [params.assets]
 css = ["css/index.scss"]
 js = ["js/build/index.js"]
+
+[outputs]
+home = ["HTML"]
+page = ["HTML"]
+section = ["RSS"]
+taxonomy = ["HTML"]
+term = ["HTML"]
