@@ -1,10 +1,12 @@
-import { colorSchemeManager } from './colorschemeSwitcher';
-import { detectDark } from './lib';
+import { ColorSchemeManager } from './colorschemeSwitcher';
+import { DetectDark } from './lib';
 
 declare global {
     interface Window {
         remark_config: any;
         REMARK42: any;
+        colorSchemeManager: ColorSchemeManager;
+        detectDark: DetectDark;
     }
 }
 
@@ -20,7 +22,7 @@ window.remark_config = remark_config;
 
 function loadRemark42() {
     // set theme by color scheme
-    remark_config.theme = colorSchemeManager.getCurrent();
+    remark_config.theme = window.colorSchemeManager.getCurrent();
 
     const d = document,
         s = d.createElement('script');
@@ -46,7 +48,7 @@ setTimeout(() => {
     commentObserver.observe(document.getElementById('remark42'));
 }, 1);
 
-detectDark.trigger((isDark) => {
+window.detectDark.trigger((isDark) => {
     const theme = isDark ? 'dark' : 'light';
     window.REMARK42.changeTheme(theme);
 });
@@ -62,7 +64,7 @@ const htmlObserver = new MutationObserver((mutations) => {
             } else if (userColorScheme === 'dark') {
                 window.REMARK42.changeTheme('dark');
             } else {
-                if (detectDark.isDark()) {
+                if (window.detectDark.isDark()) {
                     window.REMARK42.changeTheme('dark');
                 } else {
                     window.REMARK42.changeTheme('light');

@@ -1,4 +1,5 @@
-import { colorSchemeManager } from './colorschemeSwitcher';
+import { colorSchemeManager, ColorSchemeManager } from './colorschemeSwitcher';
+import { detectDark, DetectDark } from './lib';
 
 function switchColorscheme() {
     const current_theme = colorSchemeManager.getCurrent();
@@ -28,7 +29,11 @@ main();
 declare global {
     interface Window {
         switchColorscheme: Function;
+        colorSchemeManager: ColorSchemeManager;
+        detectDark: DetectDark;
     }
 }
 
 window.switchColorscheme = switchColorscheme;
+window.colorSchemeManager = colorSchemeManager;
+window.detectDark = detectDark;
