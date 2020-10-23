@@ -1,0 +1,39 @@
+{{- define "main" -}}
+{{- $justify := false -}}
+{{- if eq .Params.justify true -}} {{- $justify = true -}} {{- end -}}
+<div id="book">
+  {{ if (not .Params.disableToc) }}
+    <aside id="menu">
+      <div id="toc">
+        <div class="toolbar">
+          <!-- <button onclick="toggleSide()">换边</button> -->
+          <button id="tocButton" onclick="toggleExpand()">目录</button>
+          <button id="scroll" onclick="scrollToTop()">
+            <svg t="1593079707500" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="848" width="20" height="20"><path d="M314.9339765 553.76909545C308.930543 559.56602264 305.5379393 567.5312661 305.49368795 575.86527084 306.27546183 594.67209569 322.08794517 609.3192934 340.89477001 608.65552311 350.63006757 608.69977445 359.96710298 604.84990679 366.85556353 597.97619669L512 453.83479087 657.14443647 597.97619669C664.03289702 604.84990679 673.36993243 608.69977445 683.10522999 608.65552311 701.91205483 609.3192934 717.72453817 594.67209569 718.50631205 575.86527084 718.4620607 567.5312661 715.069457 559.56602264 709.0660235 553.76909545L537.96079353 383.2833844C523.54960302 369.12295158 500.45039698 369.12295158 486.03920647 383.2833844L314.9339765 553.76909545Z" p-id="849"></path></svg>
+          </button>
+          <!-- <button onclick="toggleFixTop()">固定顶端</button> -->
+        </div>
+        <div id="toc-list">
+          {{ .TableOfContents }}
+        </div>
+      </div>
+    </aside>
+  {{ end }}
+  <div class="article-container">
+      {{- partial "article-header.html" . -}}
+      <article class="article markdown-body" {{- if $justify -}}style="text-align: justify;" {{- end -}}>
+          {{- with .Params.cover -}}<p><img class="cover" src="{{- . | safeURL -}}" alt></p>{{- end -}}
+          {{- .Content -}}
+      </article>
+      {{- partial "article-labels.html" . -}}
+      {{- partial "article-license.html" . -}}
+  </div>
+  <div class="placeholder"></div>
+</div>
+{{- partial "article-bottom-navigation.html" . -}}
+{{- partial "article-comments.html" . -}}
+{{- end -}}
+
+{{- define "head-extra" -}}
+  {{- partial "script-post.html" . -}}
+{{- end -}}

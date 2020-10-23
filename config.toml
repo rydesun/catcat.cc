@@ -7,8 +7,6 @@ hasCJKLanguage = true
 enableEmoji = true
 enableRobotsTXT = true
 
-theme = ["hugo-notepadium"]
-
 [markup]
   defaultMarkdownHandler = "blackfriday"
   [markup.blackFriday]
