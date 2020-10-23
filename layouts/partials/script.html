@@ -9,7 +9,7 @@
   {{- $warnIeJS = $warnIeJS | minify | fingerprint "sha384" -}}
 {{- end -}}
 
-<script src="{{- $coreJS.RelPermalink -}}" type="text/javascript" defer
+<script src="{{- $coreJS.RelPermalink -}}" type="text/javascript"
   integrity="{{- $coreJS.Data.Integrity -}}"></script>
 <script src="{{- $warnIeJS.RelPermalink -}}" type="text/javascript" async defer
   integrity="{{- $warnIeJS.Data.Integrity -}}"></script>
