@@ -17,16 +17,12 @@ div#content ul.note.list li.item {
 
   &:hover {
     box-shadow: 0px 1px 4px rgba(12, 12, 13, 0.1);
-
     @include smart-light-theme {
-      background: white;
+      background-color: var(--light-theme-color-card);
     }
-
-
     @include smart-dark-theme {
-      background: #393e46;
+      background-color: var(--dark-theme-color-card);
     }
-
     a.note {
       opacity: 1;
     }

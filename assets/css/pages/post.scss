@@ -240,15 +240,12 @@ div#book {
           max-height: unset;
           overflow-y: unset;
         }
-
         @include smart-light-theme {
-          background: white;
+          background-color: var(--light-theme-color-card);
           scrollbar-color: #aaa #fff;
         }
-
-
         @include smart-dark-theme {
-          background: #393e46;
+          background-color: var(--dark-theme-color-card);
           scrollbar-color: #666 rgba(0, 0, 0, 0);
         }
 
@@ -343,6 +340,12 @@ div#book {
 
 div.article-container {
   box-shadow: 0px 1px 4px rgba(12, 12, 13, 0.1);
+  @include smart-light-theme {
+    background-color: var(--light-theme-color-card);
+  }
+  @include smart-dark-theme {
+    background-color: var(--dark-theme-color-card);
+  }
 }
 
 article.article.markdown-body {
@@ -436,10 +439,10 @@ section.article.discussion {
   padding: 20px;
   box-shadow: 0px 1px 4px rgba(12, 12, 13, 0.1);
   @include smart-light-theme {
-    background: #fff;
+    background-color: var(--light-theme-color-card);
   }
   @include smart-dark-theme {
-    background: #393e46;
+    background-color: var(--dark-theme-color-card);
   }
   #load-hint {
     text-align: center;
