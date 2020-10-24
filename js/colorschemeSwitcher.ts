@@ -1,3 +1,5 @@
+import { Theme } from 'remark42/types';
+
 import { detectDark, DetectDark } from './lib';
 
 export class ColorSchemeManager {
@@ -31,7 +33,7 @@ export class ColorSchemeManager {
             theme || (this.detectDark.isDark() && 'dark') || this.defaultTheme;
         return this.currentTheme;
     }
-    getCompatibleCurrent(): string {
+    getCompatibleCurrent(): Theme {
         const current = this.getCurrent();
         return current === 'light' ? 'light' : 'dark';
     }

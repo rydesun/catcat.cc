@@ -4190,6 +4190,10 @@ remark-stringify@^8.0.0:
     unherit "^1.0.4"
     xtend "^4.0.1"
 
+"remark42@https://gitpkg.now.sh/umputun/remark42/frontend/app/common?master":
+  version "0.0.0"
+  resolved "https://gitpkg.now.sh/umputun/remark42/frontend/app/common?master#6a0ee37bb8d0c3ffc8fa245ebac2581794c7d793"
+
 remark@^12.0.0:
   version "12.0.1"
   resolved "https://registry.npm.taobao.org/remark/download/remark-12.0.1.tgz?cache=0&sync_timestamp=1594993790638&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fremark%2Fdownload%2Fremark-12.0.1.tgz#f1ddf68db7be71ca2bad0a33cd3678b86b9c709f"

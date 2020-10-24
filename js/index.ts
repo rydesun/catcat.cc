@@ -28,7 +28,7 @@ main();
 
 declare global {
     interface Window {
-        switchColorscheme: Function;
+        switchColorscheme: () => void;
         colorSchemeManager: ColorSchemeManager;
         detectDark: DetectDark;
     }

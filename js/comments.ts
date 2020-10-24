@@ -1,21 +1,30 @@
+import { CommentsConfig } from 'remark42/config-types';
+import { Theme } from 'remark42/types';
+
 import { ColorSchemeManager } from './colorschemeSwitcher';
 import { DetectDark } from './lib';
 
+interface RemarkConfig extends CommentsConfig {
+    components: [string];
+}
+
 declare global {
     interface Window {
-        remark_config: any;
-        REMARK42: any;
+        remark_config: RemarkConfig;
+        REMARK42: {
+            changeTheme?: (theme: Theme) => void;
+        };
         colorSchemeManager: ColorSchemeManager;
         detectDark: DetectDark;
     }
 }
 
-const remark_config = {
+const remark_config: RemarkConfig = {
     host: 'https://comments.srv.catcat.cc',
     url: 'https://2cat.cc' + window.location.pathname,
     site_id: '2cat.cc',
     components: ['embed'],
-    theme: '',
+    theme: 'light',
     locale: 'zh',
 };
 

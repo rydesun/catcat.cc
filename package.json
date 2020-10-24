@@ -12,6 +12,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "fontmin": "^0.9.8",
     "prettier": "^2.0.5",
+    "remark42": "https://gitpkg.now.sh/umputun/remark42/frontend/app/common?master",
     "stylelint": "^13.6.1",
     "stylelint-config-sass-guidelines": "^7.0.0",
     "ts-loader": "^7.0.5",

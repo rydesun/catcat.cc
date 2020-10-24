@@ -1,14 +1,14 @@
 declare global {
     interface Window {
-        toggleExpand: Function;
-        scrollToTop: Function;
+        toggleExpand: () => void;
+        scrollToTop: () => void;
     }
 }
 
 window.toggleExpand = toggleExpand;
 window.scrollToTop = scrollToTop;
 
-export function toggleExpand() {
+export function toggleExpand(): void {
     const book = document.getElementById('book');
     if (book.classList.contains('toc-expanded')) {
         book.classList.remove('toc-expanded');
@@ -17,7 +17,7 @@ export function toggleExpand() {
     }
 }
 
-export function scrollToTop() {
+export function scrollToTop(): void {
     window.scrollTo(0, 0);
 }
 
