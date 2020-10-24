@@ -16,6 +16,7 @@ const remark_config = {
     site_id: '2cat.cc',
     components: ['embed'],
     theme: '',
+    locale: 'zh',
 };
 
 window.remark_config = remark_config;
