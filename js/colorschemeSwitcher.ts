@@ -21,7 +21,7 @@ export class ColorSchemeManager {
                 this.cleanStore();
                 this.cleanHTML();
             }
-            this.display((isDark && 'dark') || 'light');
+            this.display(this.getCurrent());
         });
     }
 

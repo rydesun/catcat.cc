@@ -8,7 +8,7 @@ export class DetectDark {
     isDark(): boolean {
         return this.matchMedia.matches;
     }
-    trigger(cb: DarkTrigger) {
+    trigger(cb: DarkTrigger): void {
         this.matchMedia.addListener((e) => {
             const isDark = e.matches;
             cb(isDark);
