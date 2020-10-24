@@ -11,12 +11,12 @@
 
 
 {{ if (not .Params.disableToc) }}
-  <script src="{{ $tocJS.RelPermalink }}" type="text/javascript" async defer
+  <script src="{{ $tocJS.RelPermalink }}" async defer
     integrity="{{ $tocJS.Data.Integrity }}"></script>
 {{- end -}}
 
 {{- if or (eq .Params.comments true) (and (ne .Params.comments false) (eq site.Params.comments.enable true)) -}}
-  <script src="{{ $commentsJS.RelPermalink }}" type="text/javascript" async defer
+  <script src="{{ $commentsJS.RelPermalink }}" defer
     integrity="{{ $commentsJS.Data.Integrity }}"></script>
 {{- end -}}
 
