@@ -22,7 +22,7 @@ window.remark_config = remark_config;
 
 function loadRemark42() {
     // set theme by color scheme
-    remark_config.theme = window.colorSchemeManager.getCurrent();
+    remark_config.theme = window.colorSchemeManager.getCompatibleCurrent();
 
     const d = document,
         s = d.createElement('script');
@@ -62,6 +62,8 @@ const htmlObserver = new MutationObserver((mutations) => {
             if (userColorScheme === 'light') {
                 window.REMARK42.changeTheme('light');
             } else if (userColorScheme === 'dark') {
+                window.REMARK42.changeTheme('dark');
+            } else if (userColorScheme === 'night') {
                 window.REMARK42.changeTheme('dark');
             } else {
                 if (window.detectDark.isDark()) {

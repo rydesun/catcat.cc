@@ -3,6 +3,7 @@
 :root {
   --block1-max-width: 980px;
   --block2-max-width: 780px;
+  --light-theme-color-body: #f0f0f0;
   --light-theme-color-blob: #c586c6;
   --light-theme-color-card: #fff;
   --light-theme-color-glyph: #943c95;
@@ -12,6 +13,7 @@
   --light-theme-color-code-blob: #f0f0f0;
   --light-theme-color-code-block-blob: #f0f0f0;
   --light-theme-color-urgency: #b73838;
+  --dark-theme-color-body: #222831;
   --dark-theme-color-blob: #705571;
   --dark-theme-color-card: #393e46;
   --dark-theme-color-glyph: #a684a6;
@@ -22,6 +24,12 @@
   --dark-theme-color-code-block-blob: rgba(0, 0, 0, 0.35);
   --dark-theme-color-link: #3e9dd7;
   --dark-theme-color-urgency: #dd6f6f;
+}
+:root[data-user-color-scheme='night'] {
+  --dark-theme-color-body: #000;
+  --dark-theme-color-card: #000;
+  --dark-theme-color-code-blob: #111;
+  --dark-theme-color-code-block-blob: #111;
 }
 
 @import 'vendor/style';
@@ -36,7 +44,9 @@
   }
 }
 
-:root[data-user-color-scheme='dark'] {
+:root[data-user-color-scheme='dark'],
+:root[data-user-color-scheme='night']
+{
   @import 'vendor/dark-style';
   @import 'vendor/chroma-solarized-dark';
 }
@@ -51,11 +61,11 @@ html {
 }
 
 body {
-  @include smart-dark-theme {
-    background: #222831;
-  }
   @include smart-light-theme {
-    background: #f0f0f0;
+    background: var(--light-theme-color-body);
+  }
+  @include smart-dark-theme {
+    background: var(--dark-theme-color-body);
   }
 }
 

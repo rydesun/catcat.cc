@@ -31,6 +31,10 @@ export class ColorSchemeManager {
             theme || (this.detectDark.isDark() && 'dark') || this.defaultTheme;
         return this.currentTheme;
     }
+    getCompatibleCurrent(): string {
+        const current = this.getCurrent();
+        return current === 'light' ? 'light' : 'dark';
+    }
     getNext(theme: string): string {
         return this.themeOrder[theme] || this.defaultTheme;
     }
@@ -62,7 +66,11 @@ export class ColorSchemeManager {
         return (isDark && theme === 'dark') || (!isDark && theme === 'light');
     }
     display(theme: string): void {
-        const t: { [k: string]: string } = { dark: 'Dark', light: 'Light' };
+        const t: { [k: string]: string } = {
+            light: '明亮',
+            dark: '暗灰',
+            night: '永夜',
+        };
         document.getElementById(this.ButtonID).innerHTML = t[theme];
     }
 }
@@ -71,7 +79,8 @@ const colorSchemeManager = new ColorSchemeManager(
     'light',
     {
         light: 'dark',
-        dark: 'light',
+        dark: 'night',
+        night: 'light',
     },
     'data-user-color-scheme',
     localStorage,

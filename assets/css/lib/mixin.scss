@@ -11,7 +11,8 @@
 }
 
 @mixin user-dark-theme {
-  :root[data-user-color-scheme='dark'] & {
+  :root[data-user-color-scheme='dark'] &,
+  :root[data-user-color-scheme='night'] & {
     @content;
   }
 }
