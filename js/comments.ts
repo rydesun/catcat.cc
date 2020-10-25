@@ -45,18 +45,30 @@ function loadRemark42() {
     (d.head || d.body).appendChild(s);
 }
 
-setTimeout(() => {
-    const commentObserver = new IntersectionObserver(
-        (entries) => {
-            if (entries[0].isIntersecting) {
-                loadRemark42();
-                commentObserver.disconnect();
-            }
-        },
-        { threshold: [0] }
-    );
-    commentObserver.observe(document.getElementById('remark42'));
-}, 1);
+let loaded = false;
+
+function onceLoadRemark42() {
+    if (loaded) {
+        window.removeEventListener('load', onceLoadRemark42);
+        commentObserver.disconnect();
+        return;
+    }
+    loaded = true;
+    loadRemark42();
+}
+
+window.addEventListener('load', onceLoadRemark42);
+
+const commentObserver = new IntersectionObserver(
+    (entries) => {
+        if (entries[0].isIntersecting) {
+            onceLoadRemark42();
+        }
+    },
+    { threshold: [0] }
+);
+
+commentObserver.observe(document.getElementById('remark42'));
 
 window.detectDark.trigger((isDark) => {
     const theme = isDark ? 'dark' : 'light';
