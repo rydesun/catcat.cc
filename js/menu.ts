@@ -12,8 +12,11 @@ export function toggleExpand(): void {
     const book = document.getElementById('book');
     if (book.classList.contains('toc-expanded')) {
         book.classList.remove('toc-expanded');
+        window.removeEventListener('scroll', activateToc);
     } else {
+        activateToc();
         book.classList.add('toc-expanded');
+        window.addEventListener('scroll', activateToc);
     }
 }
 
@@ -34,6 +37,11 @@ function showScrollToTop() {
     }, 2000);
 }
 
+const titles: NodeListOf<HTMLElement> = document.querySelectorAll(
+    'h1, h2, h3, h4, h5, h6'
+);
+const toclist = document.getElementById('TableOfContents');
+let currentTitleNode: HTMLLinkElement;
 let positionY = 0;
 let ticking = false;
 
@@ -54,3 +62,21 @@ window.addEventListener('scroll', function () {
     }
     ticking = true;
 });
+
+export function activateToc(): void {
+    let currentTitle;
+    for (const t of titles) {
+        if (t.offsetTop - window.scrollY < 200) {
+            currentTitle = t.id;
+        }
+    }
+    if (!currentTitle) {
+        currentTitle = titles[0].id;
+    }
+    const href = '#' + currentTitle;
+    if (currentTitleNode && currentTitleNode.href !== href) {
+        currentTitleNode.classList.remove('active');
+    }
+    currentTitleNode = toclist.querySelector('a[href="' + href + '"]');
+    currentTitleNode?.classList.add('active');
+}

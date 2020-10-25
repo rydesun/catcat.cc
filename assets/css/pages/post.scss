@@ -320,8 +320,21 @@ div#book {
         }
 
         a {
+          display: inline-block;
           @include smart-dark-theme {
             color: #909ec7;
+          }
+          &.active {
+            padding: 1px 6px;
+            border-radius: 4px;
+            @include smart-light-theme {
+              color: var(--light-theme-color-glyph);
+              background: var(--light-theme-color-code-blob);
+            }
+            @include smart-dark-theme {
+              color: var(--dark-theme-color-glyph);
+              background: var(--dark-theme-color-code-blob);
+            }
           }
         }
       }
