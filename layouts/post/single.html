@@ -1,5 +1,9 @@
 {{- define "head-meta" -}}{{- partial "head-meta.html" . -}}{{- end -}}
-{{- define "head-link" -}}{{- partial "head-link.html" . -}}{{- end -}}
+{{- define "head-link" -}}
+<link rel="preconnect" href="https://comments.srv.catcat.cc">
+<link rel="dns-prefetch" href="https://comments.srv.catcat.cc">
+{{- partial "head-link.html" . -}}
+{{- end -}}
 {{- define "head-style" -}}{{- partial "head-style.html" . -}}{{- end -}}
 {{- define "head-script" -}}
 {{- partial "head-script.html" . -}}
