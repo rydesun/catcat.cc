@@ -9,7 +9,7 @@ other = " • 预计阅读时间 {{ .Count }} 分钟"
 other = "more"
 
 [Categories]
-other = "Categories"
+other = "系列"
 
 [Tags]
-other = "Tags"
+other = "标签"

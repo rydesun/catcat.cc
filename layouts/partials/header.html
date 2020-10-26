@@ -6,11 +6,11 @@
     <span class="header right-side">
       <div class="nav wrap">
         <nav class="nav">
-          {{- if $nav.showCategories -}}
-              <a class="nav item" href="{{- `/categories/` | relLangURL -}}">{{- T "Categories" -}}</a>
-          {{- end -}}
           {{- if $nav.showTags -}}
               <a class="nav item" href="{{- `/tags/` | relLangURL -}}">{{- T "Tags" -}}</a>
+          {{- end -}}
+          {{- if $nav.showCategories -}}
+              <a class="nav item" href="{{- `/categories/` | relLangURL -}}">{{- T "Categories" -}}</a>
           {{- end -}}
           {{- range $nav.custom -}}
             {{- $url := .url | safeURL -}}

@@ -83,11 +83,13 @@ section#header div.header {
 
       a {
         @include smart-light-theme {
+          text-shadow: 1px 1px #d9d9d9;
           color: var(--light-theme-color-glyph);
         }
 
 
         @include smart-dark-theme {
+          text-shadow: 1px 1px #111;
           color: var(--dark-theme-color-glyph);
         }
       }
