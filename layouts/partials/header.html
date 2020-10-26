@@ -1,8 +1,17 @@
 {{- $nav := site.Params.nav -}}
 
 <section id="header" class="site header">
-  <div class="header wrap"><span class="header left-side"><a class="site home" href="{{- `/` | relLangURL -}}">
-    <span class="site name">{{- site.Title | safeHTML -}}</span></a></span>
+  <div class="header wrap">
+    <span class="header left-side">
+      <a class="site home" href="{{- `/` | relLangURL -}}">
+      {{- if (or .IsHome ( eq .RelPermalink "/about/" ) ) -}}
+        <!-- Bing SEO suggest tag <h1> -->
+        <h1 class="site name">{{- site.Title | safeHTML -}}</h1>
+      {{- else -}}
+        <span class="site name">{{- site.Title | safeHTML -}}</span>
+      {{- end -}}
+       </a>
+     </span>
     <span class="header right-side">
       <div class="nav wrap">
         <nav class="nav">
