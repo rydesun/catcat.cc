@@ -58,12 +58,12 @@
 
 {{- define "body-script" -}}
   {{- partial "body-script.html" . -}}
-  {{- $tocJS := "js/build/menu.js" -}}
-  {{- $commentsJS := "js/build/comments.js" -}}
+  {{- $tocJS := resources.Get "js/build/menu.js" -}}
+  {{- $commentsJS := resources.Get "js/build/comments.js" -}}
 
   {{ if not (eq (getenv "HUGO_MODE") "dev") }}
-    {{ $tocJS = resources.Get $tocJS | minify }}
-    {{ $commentsJS = resources.Get $commentsJS | minify }}
+    {{ $tocJS = $tocJS | minify }}
+    {{ $commentsJS = $commentsJS | minify }}
   {{ end }}
   {{ if (not .Params.disableToc) }}
     <script>{{- $tocJS.Content | safeJS -}}</script>
