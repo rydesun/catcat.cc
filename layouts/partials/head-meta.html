@@ -1,0 +1,21 @@
+<meta charset="utf-8">
+{{- hugo.Generator -}}
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+
+{{ $description := "" }}
+{{- if (ne .Description "") -}}
+  {{ $description = .Description }}
+{{- else if (ne .Summary "") -}}
+  {{ $description = .Summary }}
+{{- else -}}
+  {{ $description = site.Params.Description }}
+{{- end -}}
+<meta name="description" content="{{ $description }}">
+
+{{- if and (ne .Title "") (ne .Title site.Title) -}}
+  <title>{{- .Title -}} &nbsp;-&nbsp; {{- site.Title -}}</title>
+{{- else -}}
+  <title>{{- site.Title -}}</title>
+{{- end -}}
