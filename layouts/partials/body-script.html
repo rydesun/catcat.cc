@@ -1,0 +1,10 @@
+{{- $coreJS := resources.Get "js/build/index.js" -}}
+{{- $warnIeJS := resources.Get "js/build/warnIE.js" -}}
+
+{{- if not (eq (getenv "HUGO_MODE") "dev") -}}
+  {{- $coreJS = $coreJS | minify -}}
+  {{- $warnIeJS = $warnIeJS | minify -}}
+{{- end -}}
+
+<script>{{- $coreJS.Content | safeJS -}}</script>
+<script>{{- $warnIeJS.Content | safeJS -}}</script>

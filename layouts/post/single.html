@@ -5,43 +5,23 @@
 {{- partial "head-link.html" . -}}
 {{- end -}}
 {{- define "head-style" -}}{{- partial "head-style.html" . -}}{{- end -}}
+
 {{- define "head-script" -}}
-{{- partial "head-script.html" . -}}
-{{- $tocJS := "js/build/menu.js" -}}
-{{- $commentsJS := "js/build/comments.js" -}}
-
-{{ if eq (getenv "HUGO_MODE") "dev" }}
-  {{ $tocJS = resources.Get $tocJS | fingerprint }}
-  {{ $commentsJS = resources.Get $commentsJS | fingerprint }}
-{{ else }}
-  {{ $tocJS = resources.Get $tocJS | minify | fingerprint }}
-  {{ $commentsJS = resources.Get $commentsJS | minify | fingerprint }}
-{{ end }}
-
-{{ if (not .Params.disableToc) }}
-  <script src="{{ $tocJS.RelPermalink }}" async defer
-    integrity="{{ $tocJS.Data.Integrity }}"></script>
-{{- end -}}
-
-{{- if or (eq .Params.comments true) (and (ne .Params.comments false) (eq site.Params.comments.enable true)) -}}
-  <script src="{{ $commentsJS.RelPermalink }}" defer
-    integrity="{{ $commentsJS.Data.Integrity }}"></script>
-{{- end -}}
-
-{{ if (not .Params.disableStructuredData) }}
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "BlogPosting",
-      "author": {
-        "@type": "Person",
-        "name": "rydesun"
-      },
-      "datePublished": {{ .Date.Format "2006-01-02" }},
-      "dateModified": {{ .Lastmod.Format "2006-01-02" }}
-    }
-  </script>
-{{- end -}}
+  {{- partial "head-script.html" . -}}
+  {{ if (not .Params.disableStructuredData) }}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "BlogPosting",
+        "author": {
+          "@type": "Person",
+          "name": "rydesun"
+        },
+        "datePublished": {{ .Date.Format "2006-01-02" }},
+        "dateModified": {{ .Lastmod.Format "2006-01-02" }}
+      }
+    </script>
+  {{- end -}}
 {{- end -}}
 
 {{- define "main" -}}
@@ -74,4 +54,22 @@
 
 {{- partial "article-bottom-navigation.html" . -}}
 {{- partial "article-comments.html" . -}}
+{{- end -}}
+
+{{- define "body-script" -}}
+  {{- partial "body-script.html" . -}}
+  {{- $tocJS := "js/build/menu.js" -}}
+  {{- $commentsJS := "js/build/comments.js" -}}
+
+  {{ if not (eq (getenv "HUGO_MODE") "dev") }}
+    {{ $tocJS = resources.Get $tocJS | minify }}
+    {{ $commentsJS = resources.Get $commentsJS | minify }}
+  {{ end }}
+  {{ if (not .Params.disableToc) }}
+    <script>{{- $tocJS.Content | safeJS -}}</script>
+  {{- end -}}
+
+  {{- if or (eq .Params.comments true) (and (ne .Params.comments false) (eq site.Params.comments.enable true)) -}}
+    <script>{{- $commentsJS.Content | safeJS -}}</script>
+  {{- end -}}
 {{- end -}}

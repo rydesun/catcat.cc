@@ -8,13 +8,14 @@
 </head>
 
 <body>
-    <div class="base-body">
-        {{- partial "header.html" . -}}
-        <div id="content">
-            {{- block "main" . -}}{{- end -}}
-        </div>
-        {{- partial "footer.html" . -}}
+  <div class="base-body">
+    {{- partial "header.html" . -}}
+    <div id="content">
+      {{- block "main" . -}}{{- end -}}
     </div>
+    {{- partial "footer.html" . -}}
+  </div>
+  {{- block "body-script" . -}} {{- end -}}
 </body>
 
 </html>
