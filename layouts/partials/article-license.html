@@ -1,6 +1,8 @@
 <section class="article license">
   <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-    <img alt="知识共享许可协议" width="80" height="15" src="/images/cc-80x15.png" />
+    {{- $img := "assets/images/cc-80x15.png" -}}
+    <img alt="知识共享许可协议" width="80" height="15"
+      src="data:image/png;base64,{{- readFile $img | base64Encode -}}" />
   </a>
   <p>© 2020 rydesun</p>
 </section>
