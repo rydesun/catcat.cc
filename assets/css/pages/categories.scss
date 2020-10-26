@@ -1,16 +1,17 @@
 @import '../lib/mixin';
 
 ul.note.list {
+  max-width: calc(var(--block2-max-width) - 200px) !important;
   li.fly.item {
-    padding: 10px 20px !important;
+    padding: 0 !important;
     visibility: hidden;
-
+    a {
+      padding: 10px 20px !important;
+    }
     p {
       @include smart-light-theme {
         color: #444;
       }
-
-
       @include smart-dark-theme {
         color: #ccc;
       }
