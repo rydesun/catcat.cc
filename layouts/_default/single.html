@@ -6,8 +6,23 @@
 {{- end -}}
 {{- partial "head-link.html" . -}}
 {{- end -}}
-{{- define "head-style" -}}{{- partial "head-style.html" . -}}{{- end -}}
-{{- define "head-script" -}}{{- partial "head-script.html" . -}}{{- end -}}
+
+{{- define "head-style" -}}
+  {{- if eq .RelPermalink "/about/" -}}
+    {{ $style := resources.Get "/css/pages/about.scss" | toCSS | minify }}
+    <style type="text/css">{{ $style.Content | safeCSS }}</style>
+  {{- end -}}
+  {{- partial "head-style.html" . -}}
+{{- end -}}
+
+{{- define "head-script" -}}
+  {{- if eq .RelPermalink "/about/" -}}
+    {{ $script := resources.Get "/js/iconfont.js" | minify | fingerprint "sha384" }}
+    <script src="{{ $script.RelPermalink }}" async defer
+      integrity="{{ $script.Data.Integrity }}"></script>
+  {{- end -}}
+  {{- partial "head-script.html" . -}}
+{{- end -}}
 
 {{- define "main" -}}
 <div id="book">
