@@ -1,15 +1,23 @@
 {{- define "head-meta" -}}{{- partial "head-meta.html" . -}}{{- end -}}
 {{- define "head-link" -}}{{- partial "head-link.html" . -}}{{- end -}}
-{{- define "head-style" -}}{{- partial "head-style.html" . -}}{{- end -}}
+{{- define "head-style" -}}
+{{- partial "head-style.html" . -}}
+<style>
+#main {
+  max-width: var(--block2-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+</style>
+{{- end -}}
 {{- define "head-script" -}}{{- partial "head-script.html" . -}}{{- end -}}
 
 {{ define "main"}}
-  <main id="main">
-    <div>
-      <h2>页面不见了</h2>
-      <h1 id="title"><a href="{{ "/" | relURL }}">返回首页</a></h1>
-    </div>
-  </main>
+  <div id="main">
+    <h2>这里只有 404 和你在一起 ...</h2>
+    <a href="{{ "/" | relURL }}">返回首页吧</a>
+  </div>
 {{ end }}
 
 {{- define "body-script" -}}{{- partial "body-script.html" . -}}{{- end -}}
