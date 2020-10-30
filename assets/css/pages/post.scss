@@ -56,7 +56,7 @@ div#book {
 
   &.toc-expanded {
     div#toc-list {
-      display: block !important;
+      display: inline-block !important;
     }
 
     div.toolbar button#tocButton::before {
