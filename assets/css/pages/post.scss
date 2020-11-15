@@ -397,6 +397,21 @@ article.article.markdown-body {
     }
   }
 
+  pre {
+    @include smart-light-theme {
+      background-color: var(--light-theme-color-code-block-blob);
+    }
+    @include smart-dark-theme {
+      background-color: var(--dark-theme-color-code-block-blob);
+      border: none;
+    }
+    code, kbd, samp {
+      @include smart-dark-theme {
+        color: rgba(255, 255, 255, 0.65);
+      }
+    }
+  }
+
   .chroma {
     @include smart-light-theme {
       background-color: var(--light-theme-color-code-block-blob);
@@ -414,11 +429,6 @@ article.article.markdown-body {
     pre.chroma {
       padding-left: 3px;
       padding-right: 3px;
-    }
-    code, kbd, samp {
-      @include smart-dark-theme {
-        color: rgba(255, 255, 255, 0.65);
-      }
     }
     code.language-text {
       white-space: pre-wrap;
