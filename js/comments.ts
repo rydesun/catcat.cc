@@ -1,11 +1,15 @@
-import { CommentsConfig } from 'remark42/config-types';
-import { Theme } from 'remark42/types';
-
 import { ColorSchemeManager } from './colorschemeSwitcher';
 import { DetectDark } from './lib';
 
-interface RemarkConfig extends CommentsConfig {
+type Theme = 'light' | 'dark';
+
+interface RemarkConfig {
+    host: string;
+    url?: string;
+    site_id?: string;
     components: [string];
+    theme: Theme;
+    locale: string;
 }
 
 declare global {

@@ -1,6 +1,6 @@
-import { Theme } from 'remark42/types';
-
 import { detectDark, DetectDark } from './lib';
+
+type Theme = 'light' | 'dark';
 
 export class ColorSchemeManager {
     private currentTheme: string;
