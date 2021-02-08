@@ -53,7 +53,8 @@
 
 html {
   $fontEN: 'Noto Sans', 'Ubuntu', 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Tahoma, Arial;
-  $fontCN: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans CJK SC', 'Sarasa Compact', 'Microsoft YaHei';
+  $fontCN: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans CJK SC', 'Source Han Sans CN',
+    'Sarasa Compact', 'Microsoft YaHei UI', 'Microsoft YaHei';
 
   font-family: -apple-system, BlinkMacSystemFont, $fontEN, $fontCN, sans-serif;
   font-size: 16px;
