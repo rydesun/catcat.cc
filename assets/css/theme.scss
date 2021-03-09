@@ -101,3 +101,7 @@ pre {
     background-color: #999;
   }
 }
+
+mark, ::selection {
+    background-color: #ddcbea;
+}
