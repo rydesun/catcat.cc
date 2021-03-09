@@ -10,4 +10,5 @@ vendor/
 ## building
 /assets/js/build/
 /assets/fonts/
+/assets/images/
 /public/

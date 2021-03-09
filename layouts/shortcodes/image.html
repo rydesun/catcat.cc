@@ -1,4 +1,8 @@
-{{ $path := .Get 0 }}
-{{ $image := resources.Get $path | fingerprint }}
+{{ $src := .Get "src" }}
+{{ $image := resources.Get $src | fingerprint }}
 
-<image src="{{ $image.RelPermalink }}" style="transform: none">
+{{ if .Get "auto-dark" }}
+  <image src="{{ $image.RelPermalink }}" class="auto-dark">
+{{ else }}
+  <image src="{{ $image.RelPermalink }}">
+{{ end }}

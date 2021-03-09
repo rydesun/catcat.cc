@@ -210,3 +210,9 @@ section#footer {
     }
   }
 }
+
+img.auto-dark {
+  @include smart-dark-theme {
+    filter: invert(85%);
+  }
+}
