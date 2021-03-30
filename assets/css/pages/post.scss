@@ -316,11 +316,11 @@ div#book {
 
           ul ul {
             list-style-type: decimal;
+            list-style-position: inside;
           }
         }
 
         a {
-          display: inline-block;
           @include smart-dark-theme {
             color: #909ec7;
           }
