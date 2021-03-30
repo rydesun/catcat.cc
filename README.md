@@ -1,10 +1,5 @@
 # 双猫CC
 
-<a href="https://catcat.cc">
-<img src="https://catcat.cc/images/2cats.png" width="208" height="50" /></a>
-<br>
-<br>
-
 [双猫CC](https://catcat.cc) - 我的博客
 
 ## 依赖
