@@ -321,11 +321,11 @@ div#book {
         }
 
         a {
+          padding: 1px 6px;
           @include smart-dark-theme {
             color: #909ec7;
           }
           &.active {
-            padding: 1px 6px;
             border-radius: 4px;
             @include smart-light-theme {
               color: var(--light-theme-color-glyph);
