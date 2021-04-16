@@ -6,6 +6,12 @@ module.exports = {
     comments: './js/comments.ts',
     menu: './js/menu.ts',
     warnIE: './js/warnIE.js',
+    graphviz: {
+      import: './node_modules/d3-graphviz/index.js',
+      library: {
+        type: 'global',
+      },
+    },
   },
   output: {
     path: path.resolve(__dirname, './assets/js/build'),

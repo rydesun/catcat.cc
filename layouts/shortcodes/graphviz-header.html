@@ -1,0 +1,6 @@
+{{ $script := resources.Get "js/build/graphviz.js" | minify | fingerprint "sha384" }}
+{{ $id := .Get 0 }}
+
+<script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
+<script src="{{ $script.RelPermalink }}"
+  integrity="{{ $script.Data.Integrity }}"></script>

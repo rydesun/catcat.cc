@@ -16,9 +16,11 @@
     "stylelint-config-sass-guidelines": "^7.0.0",
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.5",
-    "webpack": "^4.43.0",
+    "webpack": "^5.33.2",
     "webpack-cli": "^3.3.12",
     "webpack-merge": "^4.2.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "d3-graphviz": "^4.0.0"
+  }
 }

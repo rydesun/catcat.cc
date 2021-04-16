@@ -24,7 +24,7 @@ export function scrollToTop(): void {
     window.scrollTo(0, 0);
 }
 
-let scrollToTopTimeout: number;
+let scrollToTopTimeout: NodeJS.Timeout;
 
 function showScrollToTop() {
     const button = document.getElementById('scroll');
