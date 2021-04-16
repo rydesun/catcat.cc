@@ -7,6 +7,8 @@ hasCJKLanguage = true
 enableEmoji = true
 enableRobotsTXT = true
 
+ignoreFiles = ["content/assets/.*"]
+
 [markup]
   defaultMarkdownHandler = "blackfriday"
   [markup.blackFriday]
