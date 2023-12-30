@@ -1,0 +1,11 @@
+// 作为hugo模板
+
+:root:not([data-user-color-scheme]) {
+  @media (prefers-color-scheme: dark) {
+    {{ . }}
+  }
+}
+
+:root[data-user-color-scheme="dark"] {
+  {{ . }}
+}

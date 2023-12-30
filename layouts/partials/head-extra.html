@@ -1,0 +1,34 @@
+{{/* 添加description，允许页面使用Summary作为Description */}}
+<meta name="description" content="{{- or .Description .Summary site.Params.description -}}">
+
+{{/* 浏览器预连接 */}}
+{{- range site.Params.preconnect -}}
+  <link rel="dns-prefetch" href="{{- . -}}">
+  <link rel="preconnect" href="{{- . -}}">
+{{- end -}}
+
+{{/* 所有页面都必须启用的核心js */}}
+{{- $js := resources.Get "js/base.ts" -}}
+{{- $js = $js | js.Build | resources.Fingerprint "sha384" -}}
+<script src="{{- $js.RelPermalink -}}" defer
+  integrity="{{- $js.Data.Integrity -}}"></script>
+
+{{/* 评论系统remark42的相关设置 */}}
+{{- $js := resources.Get "js-inline/remarkConfig.ts" -}}
+{{- $js = $js | js.Build (dict "params" site.Params.comments.remark42) -}}
+<script>{{- $js.Content | safeJS -}}</script>
+
+{{/* 按类型区分，引入不同的head */}}
+{{/* /post/被当作博客文章 */}}
+{{- $postJS := resources.Get "js/post.ts" | js.Build | resources.Fingerprint "sha384" -}}
+{{- if eq .Type "post" -}}
+  {{- partial "extend/post-head-extra" (dict "context" . "postJS" $postJS) -}}
+{{- else -}}
+  {{/* 在非文章页面预加载文章页面的JS脚本 */}}
+  <link rel="preload" href="{{- $postJS.RelPermalink -}}" as="script" />
+{{- end -}}
+
+{{/* 根据页面上的变量remark_config.components注入相应的remark42脚本 */}}
+{{/* 来自: https://remark42.com/docs/configuration/frontend/ */}}
+{{- $js := resources.Get "js-inline/injectRemarkModule.js" -}}
+<script>{{- $js.Content | safeJS -}}</script>

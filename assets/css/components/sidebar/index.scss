@@ -1,0 +1,40 @@
+@use "colors/mixin" as colors;
+
+@use "inner";
+@use "large-screen.scss";
+
+#article-sidebar {
+  max-height: calc(100vh - 130px); // 减去header高度
+
+  // 显示在右下角
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+
+  box-shadow: 1px 1px 12px 2px #dac8d2;
+}
+
+#article-and-sidebar {
+  #TableOfContents {
+    display: none; // 不在激活状态时需要隐藏目录
+  }
+
+  &.enabled #TableOfContents {
+    display: initial;
+    width: 300px;
+    background-color: var(--color-page-background);
+  }
+}
+
+// 暗色主题下，边框取代阴影
+@include colors.dark-theme {
+  #article-and-sidebar {
+    #article-sidebar {
+      box-shadow: none;
+    }
+
+    &.enabled #article-sidebar {
+      border: 1px solid var(--color-faint-blob);
+    }
+  }
+}

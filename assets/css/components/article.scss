@@ -1,0 +1,99 @@
+@use "colors/mixin" as colors;
+@use "effects/button";
+
+code,
+kbd,
+tt,
+samp {
+  color: var(--color-code);
+  background-color: var(--color-codeblock);
+}
+
+pre,
+// 没有 pre code
+.chroma {
+  background-color: var(--color-codeblock);
+}
+
+// 修复原主题在暗色主题下优先级过高
+@include colors.dark-theme {
+  code,
+  kbd,
+  tt,
+  samp {
+    color: var(--color-code);
+    // 非代码块不改变原始主题背景
+  }
+
+  pre,
+  pre code,
+  .chroma {
+    color: var(--color-code);
+    background-color: var(--color-codeblock);
+  }
+}
+
+// 代码块的行号
+.article.markdown-body .lntable {
+  .lntd:first-child {
+    user-select: none;
+    border-right: 1px dashed #b0b0b0;
+    // TODO: 不如直接取消.article.markdown-body .lntable .lntd pre的外边距
+    padding: 0 8px;
+  }
+
+  .lntd:last-child {
+    padding-left: 8px;
+  }
+}
+
+// 正文
+.article.markdown-body {
+  a {
+    color: var(--color-link);
+
+    &:visited {
+      color: var(--color-link-visited);
+    }
+  }
+
+  blockquote {
+    background-color: var(--color-overlay);
+    // 懒得用!important覆盖暗色模式了
+    border-left-color: var(--color-faint-blob);
+
+    > :first-child {
+      padding-top: 10px;
+    }
+
+    > :last-child {
+      padding-bottom: 10px;
+    }
+  }
+}
+
+// 文章结尾处的license
+// 使用类.license-custom，避免使用.license
+.article.license-custom {
+  text-align: right;
+  font-size: 0.8rem;
+  margin-top: 2rem;
+}
+
+// 复制代码的按钮
+.highlight {
+  position: relative;
+
+  .copy-code {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 0.1rem;
+    font-size: 0.65rem;
+    color: var(--color-faint-blob-glyph);
+    background: var(--color-faint-blob);
+    user-select: none;
+
+    @include button.border;
+  }
+}

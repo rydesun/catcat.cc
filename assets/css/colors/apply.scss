@@ -1,0 +1,29 @@
+@use "palette";
+@use "mixin" as *;
+
+// 默认使用亮色主题
+:root {
+  --theme-name: "白猫猫";
+
+  @include set-var-colors(palette.$theme-light);
+}
+
+// 浏览器偏好暗色主题，且没有设置用户主题
+// 以及Dark Reader暗色
+@include dark-theme {
+  --theme-name: "黑猫猫";
+
+  @include set-var-colors(palette.$theme-dark);
+}
+
+// 其他用户主题
+:root[data-user-color-scheme-variant="night"] {
+  --theme-name: "黑猫×2";
+
+  @include set-var-colors(palette.$theme-night);
+}
+
+// Dark Reader
+:root[data-darkreader-mode] {
+  --theme-name: "Dark Reader" !important;
+}

@@ -1,0 +1,65 @@
+@use "effects/button";
+
+// 用flex左右两侧对齐
+.header.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  // outline被吞掉的问题
+  padding: 2px;
+}
+
+// 左侧名字
+.site.home {
+  font-size: 1.2rem;
+
+  &:hover {
+    opacity: initial; // 取消主题的设置
+  }
+
+  .site.name {
+    &:hover {
+      text-shadow:
+        -1px -1px 0 var(--color-faint-blob),
+        1px 1px 0 var(--color-faint-blob),
+        2px 2px 0 #a0a0a0;
+    }
+  }
+}
+
+// 右侧导航
+.nav.item {
+  vertical-align: middle;
+
+  &:hover {
+    opacity: initial; // 取消主题的设置
+  }
+}
+
+// 右侧链接
+.nav.item.link {
+  color: var(--color-glyph);
+
+  border-bottom: 1.9px dotted;
+  padding: 2px;
+  margin-right: 10px;
+
+  &:hover {
+    text-shadow: 1px 1px 8px var(--color-glyph-shadow);
+  }
+}
+
+// 右侧的主题切换按钮
+#theme-changer {
+  color: var(--color-faint-blob-glyph);
+  background-color: var(--color-faint-blob);
+  padding: 5px 7px;
+
+  &::after {
+    content: var(--theme-name);
+  }
+
+  @include button.border;
+}

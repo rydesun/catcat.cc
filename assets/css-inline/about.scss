@@ -1,0 +1,84 @@
+@use "../css/colors/mixin" as colors;
+
+// 并排图片与段落
+.article.markdown-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  #avatar {
+    max-width: 56%;
+    margin-right: 20px;
+  }
+
+  #profile > * {
+    margin-bottom: 20px;
+  }
+}
+
+// 小屏幕上变竖排
+@media (max-width: 560px) {
+  .article.markdown-body {
+    flex-direction: column;
+
+    #avatar {
+      max-width: 80%;
+      margin-right: 0;
+    }
+  }
+}
+
+// 介绍文本
+#profile {
+  #email {
+    white-space: nowrap;
+  }
+
+  a {
+    color: var(--color-icon-brand) !important;
+    text-decoration: none;
+  }
+
+  #showcase {
+    margin-left: -0.2rem;
+
+    .icon {
+      width: 2rem;
+      height: 2rem;
+      margin-right: 0.5rem;
+    }
+
+    // 微不足道的动画
+    .icon {
+      transition: transform 1s;
+
+      &:hover {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}
+
+// archlinux文字变logo
+#arch {
+  span {
+    opacity: 0; // 隐藏但可复制
+  }
+
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: var(--icon-archlinux);
+}
+
+{{- $archLogo := resources.Get "images/arch-logo.svg" -}}
+{{- $archLogoDark := resources.Get "images/arch-logo-dark.svg" -}}
+
+:root {
+  --icon-archlinux: url("data:image/svg+xml;utf8;base64,{{- $archLogo.Content | encoding.Base64Encode -}}");
+}
+
+@include colors.dark-theme {
+  --icon-archlinux: url("data:image/svg+xml;utf8;base64,{{- $archLogoDark.Content | encoding.Base64Encode -}}");
+}

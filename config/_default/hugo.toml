@@ -1,0 +1,77 @@
+baseURL = "https://catcat.cc"
+title = "双猫CC"
+copyright = "© 2020-2023 rydesun"
+
+theme = "hugo-notepadium"
+enableRobotsTXT = true
+hasCJKLanguage = true
+languageCode = "zh-cn"
+defaultContentLanguage = "zh"
+
+ # 不要为taxonomy自身生成页面，
+ # 但保留term，因为我还需要用到category
+disableKinds = ["taxonomy"]
+
+# 保留各个category的页面，并且去掉tag
+[taxonomies]
+category = "categories"
+
+[outputs]
+term = ['html'] # 去掉category下的RSS
+section = ['rss'] # 去掉section自身的HTML页面
+
+[params]
+# 用于head里的meta
+description = "rydesun的纸箱猫窝，快看看里面收集了哪些宝贝！"
+
+author = "rydesun"
+
+# 浏览器预连接
+preconnect = ["https://comments.srv.catcat.cc"]
+
+# style = "auto" # 废弃。修改后的style.html强制自动切换主题
+dateFormat = "2006年01月02日"
+
+# 不用slogan
+slogan = ""
+
+[params.comments]
+enable = true
+[params.comments.remark42] # 被改成了只支持remark42
+host = "https://comments.srv.catcat.cc"
+site_id = "2cat.cc"
+url_prefix = "https://2cat.cc"
+theme = "light"
+locale = "zh"
+
+# 修改后的style.html要求必须设置所有值
+[params.syntax]
+use = "chroma"           # chroma/hljs/prismjs。chroma不需要js库，速度最快
+theme = "github"
+darkTheme = "xcode-dark"
+
+[markup.highlight]
+lineNos = true
+codeFences = true
+noClasses = false
+
+[markup.tableOfContents]
+endLevel = 4   # 初始值为3
+ordered = true
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[module]
+[[module.mounts]]
+source = 'content'
+target = 'content'
+[[module.mounts]]
+source = 'private/content'
+target = 'content'
+[[module.mounts]]
+source = 'assets'
+target = 'assets'
+[[module.mounts]]
+source = 'private/assets'
+target = 'assets'

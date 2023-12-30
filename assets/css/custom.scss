@@ -1,0 +1,94 @@
+@use "colors/mixin" as colors;
+@use "colors/apply";
+@use "components/note-list";
+@use "components/topbar";
+@use "components/article";
+@use "components/sidebar";
+@use "components/footer";
+
+html {
+  font-family: system-ui, ui-sans-serif, sans-serif;
+}
+
+// 所有链接
+a:hover {
+  text-decoration: underline dashed;
+  text-underline-offset: 4px;
+}
+
+.tag:hover {
+  opacity: initial;
+}
+
+button,
+input {
+  // font-size: inherit;
+  font-size: 0.9rem;
+}
+
+// 选中文本的高亮
+::selection {
+  background-color: var(--color-blob);
+}
+
+// 所有不明显的文本
+.slogan,
+.date,
+.license {
+  color: var(--color-minor) !important;
+}
+
+// 滚动条
+* {
+  scrollbar-color: var(--color-faint-blob) transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background-color: var(--color-faint-blob) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-focus-blob) !important;
+}
+
+// 水平滚动条
+::-webkit-scrollbar:horizontal {
+  height: 8px;
+}
+
+// 所有暗色主题
+@include colors.dark-theme {
+  // 一些白色图片可反色
+  .auto-dark {
+    filter: invert(85%);
+  }
+}
+
+// 其他主题
+:root[data-user-color-scheme-variant="night"] {
+  body,
+  .note.list .item,
+  .article-container,
+  .article.markdown-body blockquote,
+  pre,
+  pre code,
+  .chroma {
+    background-color: var(--color-page-background) !important;
+  }
+
+  .note.list .item,
+  .article-container {
+    box-shadow: unset;
+  }
+
+  pre,
+  .chroma {
+    border: 2px dotted var(--color-faint-blob);
+  }
+}
+
+// 评论区
+.article.discussion {
+  border-top: none;
+}

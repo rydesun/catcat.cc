@@ -1,0 +1,56 @@
+$theme-light: (
+  "glyph": #bc86b3,
+  "glyph-shadow": #bb67bc62,
+  "blob": #f4d6f0,
+  "focus-blob": #b469ae,
+  "faint-blob": #d79cd3,
+  "faint-blob-glyph": #fff,
+  "overlay": #fff5f5,
+
+  "link": #8652d1,
+  "link-visited": #ab37aa,
+  "link-visited-blob": #efecf4,
+  "link-hover": #f6f6f9,
+
+  "icon-brand": #406599,
+
+  "codeblock": #efecf4,
+  "code": #7c5177,
+  "tag": white,
+
+  "vendor-page-background": #fff,
+  // 来自quote
+  "vendor-faint": #6a737d,
+);
+
+$theme-dark: (
+  "glyph": #a684a6,
+  "blob": #6a3c63,
+  "focus-blob": #6e4064,
+  "faint-blob": #5e3655,
+  "faint-blob-glyph": #bbb0ba,
+  "overlay": #191e20,
+
+  "link": #a39deb,
+  "link-visited": #cd9dc8,
+  "link-visited-blob": #1f1f24,
+  "link-hover": #212127,
+
+  "icon-brand": #8fa8ca,
+
+  "code": #c7d5f6,
+  "codeblock": #1f1f24,
+  "tag": #c7d5f6,
+
+  "vendor-page-background": #21262d,
+  "vendor-faint": #595e66,
+);
+
+$theme-night: (
+  "page-background": #000,
+);
+
+:root {
+  --color-page-background: var(--color-vendor-page-background);
+  --color-minor: var(--color-vendor-faint);
+}

@@ -1,0 +1,61 @@
+{{/* 编译SCSS用dartsass，不用libsass */}}
+{{ $compileOpts := dict "transpiler" "dartsass" }}
+
+{{/* 为了支持 :root[data-user-color-scheme="dark"] */}}
+{{/* 所以修改style.html */}}
+
+{{/* 先引用来自theme的assets文件 */}}
+
+{{- $normalizeCSS := resources.Get "css/normalize.css" -}}
+
+{{- $styleCSS := resources.Get "css/style.css" -}}
+{{- $darkStyleCSS := resources.Get "css/dark-style.css" -}}
+{{- $darkStyleCSS := resources.Get "css/_tmpl-vendor-dark.scss"
+  | resources.ExecuteAsTemplate "css/tmp_style_dark.scss" $darkStyleCSS.Content -}}
+{{- $darkStyleCSS = $darkStyleCSS | resources.ToCSS $compileOpts -}}
+
+{{/* 代码语法高亮：必须在hugo.html文件里设置syntax的各项值 */}}
+{{- $syntaxUse := site.Params.syntax.use -}}
+{{- if eq $syntaxUse "prismjs" -}}
+  {{- $syntaxUse = "prism" -}}
+{{- end -}}
+{{- $themePath := path.Join "css" $syntaxUse -}}
+{{- $syntaxCSS := resources.Get (print (path.Join $themePath site.Params.syntax.theme) ".css") -}}
+{{- $darkSyntaxCSS := resources.Get (print (path.Join $themePath site.Params.syntax.darkTheme) ".css") -}}
+{{- $darkSyntaxCSS := resources.Get "css/_tmpl-vendor-dark.scss"
+  | resources.ExecuteAsTemplate "css/tmp_syntax_dark.scss" $darkSyntaxCSS.Content -}}
+{{- $darkSyntaxCSS = $darkSyntaxCSS | resources.ToCSS $compileOpts -}}
+
+{{/* 添加自定义的SCSS文件 */}}
+{{- $customCSS := resources.Get "css/custom.scss" -}}
+{{- $customCSS = $customCSS | resources.ToCSS $compileOpts -}}
+
+{{/* 使用自定义的iconfont.js，不用主题内置的iconfont */}}
+{{/* 并且内联iconfont的样式，以防样式文件没有成功加载时，图标过大的问题 */}}
+{{- $iconfontCSS := resources.Get "css-inline/iconfont.scss" -}}
+{{- $iconfontCSS = $iconfontCSS | resources.ToCSS $compileOpts -}}
+<style title="Normalize iconfont">{{- $iconfontCSS.Content | safeCSS -}}</style>
+
+{{/* 拼接上面的assets文件 */}}
+{{- $coreCSS := slice $normalizeCSS $styleCSS $darkStyleCSS $syntaxCSS $darkSyntaxCSS $customCSS
+  | resources.Concat "css/tmp_core.css" -}}
+
+{{/* 保留原文件中的功能：在hugo.toml里添加自定义CSS文件 */}}
+{{- with partial "custom-css.html" . -}}
+  {{- if ne . "" -}}
+      {{- $coreCSS = slice $coreCSS . | resources.Concat "css/custom_core.css" -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $coreCSS = slice $coreCSS ("" | resources.FromString "css/_core.css") | resources.Concat "css/core.css" -}}
+{{- $coreCSS = $coreCSS | resources.Fingerprint "sha384" -}}
+
+<link rel="stylesheet" href="{{- $coreCSS.RelPermalink -}}" integrity="{{- $coreCSS.Data.Integrity -}}">
+
+{{/* 为单个页面注入额外的CSS */}}
+{{- with .Params.css -}}
+  {{- $css := resources.Get . -}}
+  {{- $css := $css | resources.ExecuteAsTemplate (printf "%s.extra.scss" .) . -}}
+  {{- $css = $css | resources.ToCSS $compileOpts -}}
+  <style>{{ $css.Content | safeCSS }}</style>
+{{- end -}}

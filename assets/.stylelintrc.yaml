@@ -1,0 +1,9 @@
+extends:
+  - stylelint-config-standard-scss
+
+rules:
+  declaration-empty-line-before: null
+  no-duplicate-selectors: null
+  selector-id-pattern: null
+  scss/dollar-variable-empty-line-before: null
+  scss/double-slash-comment-empty-line-before: null

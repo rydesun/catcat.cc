@@ -1,14 +1,8 @@
-## use yarn.lock alternatively
-package-lock.json
-node_modules/
-vendor/
+/private
+/config/development
 
-/content/
-/resources/
-/raw/
-
-## building
-/assets/js/build/
-/assets/fonts/
-/assets/images/
-/public/
+/*.lock
+/public
+/resources
+jsconfig.json
+node_modules

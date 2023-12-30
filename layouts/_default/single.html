@@ -1,36 +1,42 @@
-{{- define "head-meta" -}}{{- partial "head-meta.html" . -}}{{- end -}}
-{{- define "head-link" -}}
-{{- if eq .RelPermalink "/about/" -}}
-<link rel="preconnect" href="https://i.loli.net">
-<link rel="dns-prefetch" href="https://i.loli.net">
-{{- end -}}
-{{- partial "head-link.html" . -}}
-{{- end -}}
-
-{{- define "head-style" -}}
-  {{- if eq .RelPermalink "/about/" -}}
-    {{ $style := resources.Get "/css/pages/about.scss" | toCSS | minify }}
-    <style type="text/css">{{ $style.Content | safeCSS }}</style>
-  {{- end -}}
-  {{- partial "head-style.html" . -}}
-{{- end -}}
-
-{{- define "head-script" -}}
-  {{- if eq .RelPermalink "/about/" -}}
-    {{ $script := resources.Get "/js/iconfont.js" | minify | fingerprint "sha384" }}
-    <script src="{{ $script.RelPermalink }}" async defer
-      integrity="{{ $script.Data.Integrity }}"></script>
-  {{- end -}}
-  {{- partial "head-script.html" . -}}
-{{- end -}}
-
 {{- define "main" -}}
-<div id="book">
-  <div class="article-container">
-    <article class="article markdown-body">{{- .Content -}}</article>
-  </div>
-  <div class="placeholder"></div>
-</div>
-{{- end -}}
 
-{{- define "body-script" -}}{{- partial "body-script.html" . -}}{{- end -}}
+{{/* 新增一个div用于排列文章和侧边栏。评论区在这个div外面 */}}
+{{/* FIXME: 为什么用main不用div？*/}}
+{{/* 评论区不是该在main里面吗？(所以应该在baseof.html里用main) */}}
+<main id="article-and-sidebar">
+  <div class="article-container">
+    {{- partial "article-header.html" . -}}
+
+    {{/* 封面图。从.article.markdown-body中移出 */}}
+    {{- with .Params.cover -}}
+      <p><img class="cover" src="{{- . | safeURL -}}" alt></p>
+    {{- end -}}
+
+    <article class="article markdown-body">
+      {{- .Content -}}
+    </article>
+
+    {{/* 去掉文章末尾的结构，只保留自定义的article-extra.html */}}
+    {{/* {{- partial "article-labels.html" . -}} */}}
+    {{/* {{- partial "article-share.html" . -}} */}}
+    {{/* {{- partial "article-license.html" . -}} */}}
+    {{/* {{- partial "article-author.html" . -}} */}}
+    {{- partial "article-extra.html" . -}}
+  </div>
+
+  {{/* 侧边栏目录 */}}
+  {{ if (ne .Params.toc false) }}
+    <div id="article-sidebar" class="article sidebar">
+      <button onclick="sidebarManager.toggle()">目录</button>
+      {{ .TableOfContents }}
+    </div>
+  {{ end }}
+</main>
+
+<div class="article bottom">
+  {{/* 去掉导航到其他文章 */}}
+  {{/* {{- partial "article-bottom-navigation.html" . -}} */}}
+  {{- partial "article-comments.html" . -}}
+</div>
+
+{{- end -}}

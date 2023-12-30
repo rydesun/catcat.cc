@@ -1,0 +1,81 @@
+@use "effects/button";
+
+// 用flex布局来控制侧边栏内部元素
+#article-sidebar {
+  display: flex;
+  flex-direction: column;
+
+  #TableOfContents {
+    overflow-y: auto;
+    overscroll-behavior: none;
+    scroll-behavior: smooth;
+    flex: 1; // 扩展到整个侧边栏的高度
+  }
+}
+
+// 侧边栏按钮
+#article-sidebar button {
+  white-space: nowrap;
+  color: var(--color-faint-blob-glyph);
+  background-color: var(--color-faint-blob);
+  border: none;
+  padding: 2px 6px;
+
+  @include button.border;
+}
+
+// 侧边栏目录的内部
+#article-sidebar #TableOfContents {
+  // 因为要滚动后的文本贴近边缘，所以必须是在目录本身上设置边距
+  padding: 16px 0 16px 16px;
+
+  ol {
+    font-size: 0.9rem;
+    list-style-type: none;
+  }
+
+  // 从第二级开始
+  ol ol {
+    border-left: 2px dotted var(--color-blob);
+
+    &:hover {
+      border-left-style: solid;
+    }
+
+    // 让竖线对齐序号
+    margin-left: 7px;
+
+    // 缩进次级标题
+    padding-left: 20px;
+  }
+
+  li {
+    &::before {
+      content: unset;
+    }
+
+    .counter {
+      margin-right: 10px;
+      opacity: 0.6;
+    }
+  }
+
+  a {
+    display: block; // 链接全宽
+    padding: 4px;
+
+    text-decoration: none;
+    color: var(--color-link);
+
+    &:hover {
+      background-color: var(--color-link-hover);
+    }
+  }
+
+  // 高亮当前正在查看的标题的链接
+  // 不能高亮li，否则下一级的li也高亮了
+  li.active > a:first-child {
+    color: var(--color-link-visited);
+    background-color: var(--color-link-visited-blob);
+  }
+}

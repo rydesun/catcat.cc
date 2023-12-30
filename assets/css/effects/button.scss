@@ -1,0 +1,9 @@
+@mixin border {
+  // 不直接设为none
+  border: 2px solid transparent;
+  transition: border-color 100ms;
+
+  &:focus {
+    border: 2px solid var(--color-link-visited);
+  }
+}

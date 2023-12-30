@@ -1,0 +1,17 @@
+{{/* 使用.license-custom，以避免与主题已有的 .article.license 的 CSS 冲突 */}}
+{{- if (ne .Params.license false) -}}
+  <section class="article license-custom">
+    {{- $cc_image := "assets/images/cc-80x15.png" -}}
+    {{- $cc_width := "80" -}}
+    {{- $cc_height := "15" -}}
+    {{- $cc_text := "CC BY-NC-SA 4.0" -}}
+    {{- $cc_url := "https://creativecommons.org/licenses/by-nc-sa/4.0/" -}}
+    {{- $copyright := site.Copyright -}}
+
+    <a rel="license" href={{ $cc_url }} target="_blank">
+      <img alt="{{ $cc_text }}" width={{ $cc_width }} height={{ $cc_height }}
+        src="data:image/png;base64,{{- readFile $cc_image | base64Encode -}}" />
+    </a>
+    <p>{{ $copyright }}</p>
+  </section>
+{{- end -}}

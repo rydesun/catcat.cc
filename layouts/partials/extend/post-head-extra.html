@@ -1,0 +1,21 @@
+{{/* 只在post页面开启评论 */}}
+<script>remark_config.components = ["embed"]</script>
+
+{{/* 针对post页面的定制脚本 */}}
+<script src="{{- .postJS.RelPermalink -}}"defer
+  integrity="{{- .postJS.Data.Integrity -}}"></script>
+
+{{/* 结构化数据 */}}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "BlogPosting",
+    "headline": "{{- .context.Title -}}",
+    "author": {
+      "@type": "Person",
+      "name": "{{- site.Params.author -}}"
+    },
+    "datePublished": {{- .context.Date.Format "2006-01-02" -}},
+    "dateModified": {{- .context.Lastmod.Format "2006-01-02" -}}
+  }
+</script>

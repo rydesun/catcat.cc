@@ -1,7 +1,0 @@
-{{ $id := .Get "id" }}
-{{ $path := .Get "path" }}
-
-<div id="{{ $id }}"
-  {{ if .Get "auto-dark" }}class="auto-dark"{{ end }}></div>
-
-<script>{{ readFile $path | safeJS }}</script>

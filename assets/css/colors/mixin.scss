@@ -1,0 +1,22 @@
+@mixin set-var-colors($colors) {
+  @each $name, $color in $colors {
+    --color-#{$name}: #{$color};
+  }
+}
+
+@mixin dark-theme {
+  :root:not([data-user-color-scheme]) {
+    @media (prefers-color-scheme: dark) {
+      @content;
+    }
+  }
+
+  :root[data-user-color-scheme="dark"] {
+    @content;
+  }
+
+  // 适配Dark Reader
+  :root[data-darkreader-scheme="dark"] {
+    @content;
+  }
+}

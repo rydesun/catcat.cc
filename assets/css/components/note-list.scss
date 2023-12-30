@@ -1,0 +1,28 @@
+#content .note.labels {
+  .category {
+    color: var(--color-tag);
+    background-color: var(--color-faint-blob);
+  }
+
+  .tag {
+    color: var(--color-glyph);
+  }
+}
+
+.pagination {
+  ul li a {
+    &:not(.active) {
+      color: var(--color-glyph) !important;
+    }
+
+    &.active {
+      color: var(--color-tag) !important;
+      background-color: var(--color-faint-blob) !important;
+    }
+
+    &:hover {
+      // TODO
+      background-color: var(--color-faint-blob) !important;
+    }
+  }
+}

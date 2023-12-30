@@ -1,13 +1,5 @@
-  {{- if or (eq .Params.comments true) (and (ne .Params.comments false) (eq site.Params.comments.enable true)) -}}
-    <section class="article discussion">
-      <div id="remark42">
-        <div id="load-hint">
-          <p>开始加载评论</p>
-          <div class="dot d1"></div>
-          <div class="dot d2"></div>
-          <div class="dot d3"></div>
-          <noscript>&nbsp;&nbsp;需要开启 JavaScript</noscript>
-        </div>
-      </div>
-  </section>
+{{- if or .Params.comments (and (ne .Params.comments false) site.Params.comments.enable) -}}
+<section class="article discussion">
+  <div id="remark42"></div>
+</section>
 {{- end -}}
