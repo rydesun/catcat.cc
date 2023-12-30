@@ -2,9 +2,11 @@ import { ArticleReadState } from "./article";
 
 const container = document.getElementById("article-and-sidebar");
 const sidebarTOC = document.getElementById("TableOfContents");
+const discussionArea = document.getElementById("discussion-area");
 
 export class SidebarManager {
   private tocIsRewritten = false;
+  private discussionAreaLink: HTMLLIElement | null = null;
 
   constructor(private articleReadState: ArticleReadState) {
     this.rewriteTOC();
@@ -33,6 +35,10 @@ export class SidebarManager {
 
     // 在最上面添加标题的链接
     this.addTitleLink(ol);
+    if (discussionArea) {
+      // 在末尾添加留言区的链接
+      this.addDiscussionLink(ol);
+    }
 
     sidebarTOC?.classList.add("rewritten");
     this.tocIsRewritten = true;
@@ -48,7 +54,17 @@ export class SidebarManager {
       window.scrollManager.gotoTop();
     };
     listItem.appendChild(link);
-    ol.insertBefore(link, ol.firstChild);
+    ol.insertBefore(listItem, ol.firstChild);
+  }
+
+  private addDiscussionLink(ol: HTMLOListElement) {
+    const listItem = document.createElement("li");
+    const link = document.createElement("a");
+    link.textContent = "留言区";
+    link.href = "#discussion-area";
+    listItem.appendChild(link);
+    ol.appendChild(listItem);
+    this.discussionAreaLink = listItem;
   }
 
   toggle() {
@@ -81,6 +97,15 @@ export class SidebarManager {
     if (sidebarTOC === null) {
       return;
     }
+
+    // 先判断是否在留言区，再判断是否处于次级标题下
+    if (discussionArea && discussionArea.offsetTop - window.scrollY < 120) {
+      this.clearSidebarActiveState("active");
+      this.discussionAreaLink?.classList.add("active");
+      sidebarTOC.scrollTo({ top: this.discussionAreaLink?.offsetTop });
+      return;
+    }
+
     // 标题与上文正文的边距为24~20px
     const id = this.articleReadState.findActiveTitleId(40);
     if (id === null) {
