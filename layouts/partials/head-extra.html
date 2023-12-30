@@ -18,7 +18,8 @@
 {{- $js = $js | js.Build (dict "params" site.Params.comments.remark42) -}}
 <script>{{- $js.Content | safeJS -}}</script>
 
-{{/* 按类型区分，引入不同的head */}}
+{{/* 再按类型区分，引入不同的head */}}
+
 {{/* /post/被当作博客文章 */}}
 {{- $postJS := resources.Get "js/post.ts" | js.Build | resources.Fingerprint "sha384" -}}
 {{- if eq .Type "post" -}}
@@ -28,7 +29,12 @@
   <link rel="preload" href="{{- $postJS.RelPermalink -}}" as="script" />
 {{- end -}}
 
-{{/* 根据页面上的变量remark_config.components注入相应的remark42脚本 */}}
+{{/* 除主页外的页面也加入全站RSS链接 */}}
+{{ if not .IsHome }}
+  <link rel="alternate" type="application/rss+xml" href="/index.xml" title="{{- site.Title -}}">
+{{ end }}
+
+{{/* 最后根据页面上的变量remark_config.components注入相应的remark42脚本 */}}
 {{/* 来自: https://remark42.com/docs/configuration/frontend/ */}}
 {{- $js := resources.Get "js-inline/injectRemarkModule.js" -}}
 <script>{{- $js.Content | safeJS -}}</script>
