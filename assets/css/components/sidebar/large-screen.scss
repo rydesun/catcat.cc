@@ -7,9 +7,11 @@ $screen-width: 1140px;
   #content {
     max-width: unset;
 
-    // 但需要恢复主页列表和留言区的宽度
+    // 但需要恢复文章容器、主页列表和留言区的宽度
     .note.list,
-    .article.bottom {
+    .article.bottom,
+    // 注意404页面只有文章容器
+    .article-container {
       max-width: 744px;
       margin: 0 auto;
     }
@@ -28,7 +30,6 @@ $screen-width: 1140px;
 
     .article-container {
       grid-column-start: 2; // 居中
-      width: 744px;
     }
 
     // 侧边栏的目录被激活时
