@@ -10,3 +10,9 @@ rm -r public/assets
 
 # 输出差异
 (cd public && git status -s)
+
+# 预先brotli压缩(因为caddy不支持在响应时进行brotli压缩)
+if command -v brotli &>/dev/null; then
+    (cd public && find -type f ! -path './images/*' ! -path '**/.*' \
+        -exec brotli {} \;)
+fi
