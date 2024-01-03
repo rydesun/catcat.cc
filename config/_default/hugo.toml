@@ -1,6 +1,6 @@
 baseURL = "https://catcat.cc"
 title = "双猫CC"
-copyright = "© 2020-2023 rydesun"
+copyright = "© 2020-2024 rydesun"
 
 theme = "hugo-notepadium"
 enableRobotsTXT = true
