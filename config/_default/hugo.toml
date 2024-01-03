@@ -39,8 +39,8 @@ slogan = ""
 enable = true
 [params.comments.remark42] # 被改成了只支持remark42
 host = "https://catcat.cc/srv/comments"
-site_id = "2cat.cc"
-url_prefix = "https://2cat.cc"
+site_id = "catcat.cc"
+url_prefix = "https://catcat.cc"
 theme = "light"
 locale = "zh"
 
