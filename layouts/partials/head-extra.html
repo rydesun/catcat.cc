@@ -8,10 +8,7 @@
 {{- end -}}
 
 {{/* 所有页面都必须启用的核心js */}}
-{{- $js := resources.Get "js/base.ts" -}}
-{{- $js = $js | js.Build | resources.Fingerprint "sha384" -}}
-<script src="{{- $js.RelPermalink -}}" defer
-  integrity="{{- $js.Data.Integrity -}}"></script>
+{{- partial "extend/head-extra-base-js" -}}
 
 {{/* 评论系统remark42的相关设置 */}}
 {{- $js := resources.Get "js-inline/remarkConfig.ts" -}}
@@ -23,7 +20,7 @@
 {{/* /post/被当作博客文章 */}}
 {{- $postJS := resources.Get "js/post.ts" | js.Build | resources.Fingerprint "sha384" -}}
 {{- if eq .Type "post" -}}
-  {{- partial "extend/post-head-extra" (dict "context" . "postJS" $postJS) -}}
+  {{- partial "extend/head-extra-post-js" (dict "context" . "postJS" $postJS) -}}
 {{- else -}}
   {{/* 在非文章页面预加载文章页面的JS脚本 */}}
   <link rel="preload" href="{{- $postJS.RelPermalink -}}" as="script" />

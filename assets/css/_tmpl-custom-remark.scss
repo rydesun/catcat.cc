@@ -1,0 +1,78 @@
+@use "sass:map";
+
+@use "colors/palette";
+
+@function toRGB($color) {
+  @return red($color)+", "+green($color)+", "+blue($color);
+}
+
+:root {
+  // 主色，按钮
+  --primary-color: #{toRGB(map-get(palette.$theme-light, "faint-blob"))};
+  --primary-brighter-color: #{toRGB(map-get(palette.$theme-light, "faint-blob"))};
+  --color15: #{map-get(palette.$theme-light, "faint-blob")}; // 发送按钮
+
+  // color5 和 color6 是留言框的颜色
+
+  // 置顶
+  --color4: #{map-get(palette.$theme-light, "vendor-page-background")};
+
+  // 链接
+  --color9: #{map-get(palette.$theme-light, "link")};
+  --color33: #{map-get(palette.$theme-light, "link")};
+  --color39: #{map-get(palette.$theme-light, "link-visited")};
+
+  // 用户名和虚线
+  --color10: #{map-get(palette.$theme-light, "glyph")};
+  // admin
+  --color29: #{map-get(palette.$theme-light, "glyph")};
+  // 实线
+  --color35: #{map-get(palette.$theme-light, "glyph")};
+  .thread__collapse::after {
+    border-left-width: 2px;
+  }
+
+  // 文本框被激活
+  --color47: #{rgba(map-get(palette.$theme-light, "faint-blob"), 0.8)};
+}
+
+:root .dark {
+  --primary-color: #{toRGB(map-get(palette.$theme-dark, "faint-blob"))};
+  --primary-brighter-color: #{toRGB(map-get(palette.$theme-dark, "faint-blob"))};
+  --color15: #{map-get(palette.$theme-dark, "faint-blob")};
+
+  // 留言框
+  --color7: #{map-get(palette.$theme-dark, "vendor-page-background")};
+  --color8: #{map-get(palette.$theme-dark, "codeblock")};
+
+  // 置顶
+  --color19: #{map-get(palette.$theme-dark, "vendor-page-background")};
+}
+
+// 留言链接
+.raw-content a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline dashed;
+    text-underline-offset: 4px;
+  }
+
+  // :visited被:hover的颜色覆盖了
+  &:visited {
+    color: var(--color39);
+  }
+}
+
+// 代码块
+:root {
+  {{ .chromaLight }}
+
+  .chroma {
+    background-color: #{map-get(palette.$theme-light, "codeblock")};
+  }
+
+  & .dark {
+    {{ .chromaDark }}
+  }
+}

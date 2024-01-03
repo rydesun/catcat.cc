@@ -1,4 +1,5 @@
 import { ThemeManager } from "./core/themeManager";
+import { addRemarkStyle } from "./core/remarkStyle";
 // 执行iconfont
 import "./vendor/iconfont.js";
 
@@ -15,3 +16,5 @@ themeManager = new ThemeManager(
   "theme",
   "themeVariant",
 );
+
+document.addEventListener("DOMContentLoaded", addRemarkStyle);

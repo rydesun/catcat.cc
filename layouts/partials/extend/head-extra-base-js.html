@@ -1,0 +1,24 @@
+{{/* 顺便让base.js获得为remark42注入CSS文件的能力 */}}
+{{/* 需要获取主题的chroma语法高亮 */}}
+{{- $syntaxUse := site.Params.syntax.use -}}
+{{- if eq $syntaxUse "prismjs" -}}
+  {{- $syntaxUse = "prism" -}}
+{{- end -}}
+{{- $themePath := path.Join "css" $syntaxUse -}}
+{{- $syntaxCSS := resources.Get (print (path.Join $themePath site.Params.syntax.theme) ".css") -}}
+{{- $darkSyntaxCSS := resources.Get (print (path.Join $themePath site.Params.syntax.darkTheme) ".css") -}}
+
+{{- $css := resources.Get "css/_tmpl-custom-remark.scss"
+  | resources.ExecuteAsTemplate "css/custom-remark.scss"
+  (dict "chromaLight" $syntaxCSS.Content "chromaDark" $darkSyntaxCSS.Content) -}}
+
+{{- $cssCompileOpts := dict "transpiler" "dartsass" -}}
+{{- $css = $css | resources.ToCSS $cssCompileOpts -}}
+{{- $css = $css | resources.Fingerprint "sha384" -}}
+
+{{- $compileOpts := (dict "params" (dict "remarkStyle" (
+  dict "url" $css.RelPermalink "integrity" $css.Data.Integrity))) -}}
+{{- $js := resources.Get "js/base.ts" -}}
+{{- $js = $js | js.Build $compileOpts | resources.Fingerprint "sha384" -}}
+
+<script src="{{- $js.RelPermalink -}}" defer integrity="{{- $js.Data.Integrity -}}"></script>
